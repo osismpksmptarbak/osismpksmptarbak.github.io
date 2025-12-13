@@ -1,21 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pong</title>
-    <link rel="stylesheet" href="./css/pong.css">
-  </head>
-  <body>
-    <div>
-      <div id="modes">
-        <a><a href="#PvP">PvP</a></li>
-        <a><a href="#PvE1">PvE Difficulty 1</a></li>
-        <a><a href="#PvE2">PvE Difficulty 2</a></li>
-        <a><a href="#PvE3">PvE Difficulty 3</a></li>
-      </div>
-      <canvas id="game" width="700" height="550"></canvas>
-    </div>
-    <script src="./javaScript/pong.js"></script>
+    <title>OSIS/MPK SMP Taruna Bakti</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/pages.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo-osismpksmptarbak.png" alt="Logo OSISMPK SMP Taruna Bakti">
+            </a>
+            
+            <nav class="nav-buttons">
+                <a href="index.html" class="nav-btn">Beranda</a>
+                <a href="#visi" class="nav-btn">Visi</a>
+                <a href="#misi" class="nav-btn">Misi</a>
+                <a href="#proker" class="nav-btn">Program Kerja</a>
+                <a href="struktur-organisasi.html" class="nav-btn">Struktur Organisasi</a>
+                <div class="nav-divider"></div>
+                <button class="menu-toggle btn btn-filled" id="menuToggle">Menu</button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="overlay" id="overlay"></div>
+
+    <aside class="side-menu" id="sideMenu">
+        <div class="menu-header">
+            <h2>Menu</h2>
+            <button class="close-btn" id="closeMenu">&times;</button>
+        </div>
+        <div class="menu-content">
+            <div class="menu-section">
+                <h3 class="accordion-header">Halaman Utama</h3>
+                <ul class="accordion-content">
+                    <li><a href="#visi">Visi</a></li>
+                    <li><a href="#misi">Misi</a></li>
+                    <li><a href="#proker">Program Kerja</a></li>
+                </ul>
+            </div>
+            <div class="menu-section">
+                <h3 class="accordion-header">Informasi</h3>
+                <ul class="accordion-content">
+                    <li><a href="struktur-organisasi.html">Struktur Organisasi</a></li>
+                </ul>
+            </div>
+            <div class="menu-section">
+                <h3 class="accordion-header">OSIS</h3>
+                <ul class="accordion-content">
+                    <li><a href="sekbid1.html">Sekbid 1 - Keimanan dan Ketaqwaan</a></li>
+                    <li><a href="sekbid2.html">Sekbid 2 - Budi Pekerti</a></li>
+                    <li><a href="sekbid3.html">Sekbid 3 - Bela Negara</a></li>
+                    <li><a href="sekbid4.html">Sekbid 4 - Prestasi dan Olahraga</a></li>
+                    <li><a href="sekbid5.html">Sekbid 5 - Demokrasi dan HAM</a></li>
+                    <li><a href="sekbid6.html">Sekbid 6 - Kreativitas dan Kewirausahaan</a></li>
+                    <li><a href="sekbid7.html">Sekbid 7 - Sastra Budaya</a></li>
+                    <li><a href="sekbid8.html">Sekbid 8 - Teknologi dan Informasi</a></li>
+                </ul>
+            </div>
+            <div class="menu-section">
+                <h3 class="accordion-header">MPK</h3>
+                <ul class="accordion-content">
+                    <li><a href="komisia.html">Komisi A - Mengawasi Anggaran Kegiatan OSIS</a></li>
+                    <li><a href="komisib.html">Komisi B - Mengawasi Akademik Anggota OSIS</a></li>
+                    <li><a href="komisic.html">Komisi C - Mengawasi Sekbid OSIS</a></li>
+                    <li><a href="komisid.html">Komisi D - Hubungan Masyarakat</a></li>
+                    <li><a href="komisie.html">Komisi E - Mengevaluasi Kegiatan OSIS</a></li>
+                </ul>
+            </div>
+            <div id="kegiatan-osis">
+                <!-- Kegiatan OSIS will be loaded by JavaScript -->
+            </div>
+        </div>
+    </aside>
+    
+    <div class="gradient-circle gradient-top-left"></div>
+    <div class="gradient-circle gradient-bottom-right"></div>
+
+    <section class="banner">
+        <img src="assets/images/placeholder-banner.png" alt="Banner" class="banner-bg">
+        <div class="banner-content">
+            <div class="banner-left">
+                <h1>OSIS/MPK SMP TARUNA BAKTI</h1>
+                <h2>MASA JABATAN 2025-2026</h2>
+                <div class="banner-buttons">
+                    <a href="#visi" class="btn btn-filled">Visi & Misi</a>
+                    <a href="struktur-organisasi.html" class="btn btn-outline">Struktur Organisasi</a>
+                </div>
+            </div>
+            <div class="banner-right">
+                <img src="assets/images/logo-osismpksmptarbak.png" alt="Logo OSISMPK SMP Taruna Bakti" class="banner-logo">
+            </div>
+        </div>
+    </section>
+
+    <section id="visi">
+        <h2>VISI</h2>
+        <p>Menjadikan OSIS SMP Taruna Bakti sebagai wadah kreatif, inovatif, dan kolaboratif untuk mengembangkan potensi siswa, menyalurkan aspirasi, serta menciptakan lingkungan sekolah yang berkarakter, berprestasi, dan harmonis.</p>
+    </section>
+
+    <section id="misi">
+        <h2>MISI</h2>
+        <p>1. Menumbuhkan karakter disiplin, tanggung jawab, dan kepemimpinan siswa sesuai nilai Pancasila dan 7 Landasan Mental SMP Taruna Bakti
+2. Menjadi jembatan aspirasi siswa dengan menciptakan ruang komunikasi yang terbuka, inklusif, dan kolaboratif
+3. Menyelenggarakan program kerja yang kreatif dan bermanfaat untuk mengembangkan minat, bakat, serta prestasi siswa baik akademik maupun non-akademik
+4. Mendorong budaya kebersamaan, gotong royong, dan kepedulian sosial melalui kegiatan internal maupun pengabdian masyarakat
+5. Menciptakan lingkungan sekolah yang aman, nyaman, dan inspiratif dengan kerja sama harmonis antara siswa, guru, dan seluruh warga sekolah</p>
+    </section>
+
+    <section id="proker">
+        <h2>PROGRAM KERJA</h2>
+        <p>1. Owlcast - Interview yang membicarakan tentang pelajaran seperti tips belajar, pola belajar, dll. Lalu akan di posting di Youtube SMP Taruna Bakti.
+2. Heart2Heart – Bazaar kewirausahaan dengan 50% hasil penjualan disumbangkan ke yang membutuhkan
+3. Cleaning time competition - Lomba membersihkan kelas setiap sebulan sekali</p>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <img src="assets/images/logo-osismpksmptarbak.png" alt="Logo OSISMPK SMP Taruna Bakti" class="footer-logo">
+            <h2>OSISMPK SMP Taruna Bakti</h2>
+            <div class="footer-divider"></div>
+            <div class="footer-info">
+                <p class="footer-left">© 2025 OSIS/MPK SMP Taruna Bakti. All Rights Reserved.</p>
+                <p class="footer-right">Website By <strong>Sekbid 8</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,520 @@
+/* ============================================
+   BERANDA.CSS
+   ============================================ */
+.banner {
+    position: relative;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    min-width: 100%;
+}
+
+.banner-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.banner-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    gap: 2rem;
+}
+
+.banner-left {
+    flex: 1;
+    color: white;
+}
+
+.banner-left h1 {
+    color: var(--primary-color);
+    font-size: 3rem;
+    margin-bottom: 0;
+    line-height: 1.2;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.banner-left h2 {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.banner-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.banner-buttons .btn {
+    text-shadow: none;
+}
+
+.banner-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.banner-logo {
+    max-width: 300px;
+    height: auto;
+    filter: drop-shadow(var(--shadow-md));
+}
+
+/* Sections */
+#visi {
+    background: var(--bg-light);
+    text-align: center;
+    border-radius: 24px;
+    border: 1px solid #e5e7eb;
+}
+
+/* Responsive */
+@media (max-width: 766px) {
+    .banner {
+        min-height: 400px;
+    }
+
+    .banner-content {
+        flex-direction: column;
+        padding: 1.5rem 1rem;
+        text-align: center;
+    }
+
+    .banner-left {
+        flex: none;
+        width: 100%;
+    }
+    
+    .banner-right {
+        display: none;
+    }
+
+    .banner-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner {
+        min-height: 350px;
+    }
+
+    .banner-content {
+        padding: 1rem 0.75rem;
+    }
+
+    .banner-buttons {
+        flex-direction: column;
+        gap: 0.75rem;
+        width: 100%;
+    }
+
+    .banner-buttons .btn {
+        width: 100%;
+        text-align: center;
+        padding: 0.75rem 1rem;
+    }
+}
+
+/* ============================================
+   STRUKTUR-ORGANISASI.CSS
+   ============================================ */
+
+/* Struktur Organisasi */
+.struktur-organisasi-section {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.struktur-organisasi-section img {
+    width: 240px;
+}
+
+.struktur-organisasi-section h1 {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+.struktur-organisasi-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    max-width: 1200px;
+    align-items: center;
+}
+
+.struktur-organisasi-horizontal {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+}
+
+.struktur-organisasi-card {
+    background: white;
+    border-radius: 24px;
+    border: 1px solid #e5e7eb;
+    overflow: hidden;
+    flex: 1 1 240px;
+    max-width: 240px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.struktur-organisasi-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+.struktur-organisasi-card-header {
+    padding: 24px 24px 0;
+}
+
+.struktur-organisasi-card-header img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3/4;
+    border-radius: 6px;
+    object-fit: cover;
+    display: block;
+}
+
+.struktur-organisasi-card-content {
+    text-align: left;
+    padding: 20px 24px 24px;
+    flex: 1;
+}
+
+.struktur-organisasi-badge {
+    background: var(--primary-color);
+    color: white;
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.struktur-organisasi-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #000;
+    margin: 0 0 4px 0;
+}
+
+.struktur-organisasi-class {
+    font-size: 0.875rem;
+    color: #9ca3af;
+    margin: 0;
+    font-weight: 400;
+}
+
+/* Sekbid Carousel */
+.sekbid-carousel-section {
+    padding: 4rem 2rem;
+    position: relative;
+}
+
+.sekbid-carousel-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    margin-bottom: 3rem;
+    letter-spacing: 2px;
+    font-weight: 900;
+}
+
+.carousel-container {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 70px;
+}
+
+.carousel-wrapper {
+    overflow: hidden;
+}
+
+.carousel-track {
+    display: flex;
+    gap: 24px;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sekbid-card {
+    background: white;
+    border-radius: 20px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    width: 350px;
+    min-width: 350px;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+}
+
+.sekbid-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.sekbid-card-image {
+    width: 100%;
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 2rem 0;
+    background: white;
+}
+
+.sekbid-card-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.sekbid-card-content {
+    padding: 1.5rem 2rem 2rem;
+    text-align: left;
+}
+
+.sekbid-badge {
+    background: var(--primary-color);
+    color: white;
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.sekbid-card-title {
+    font-size: 1.25rem;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    line-height: 1.4;
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+}
+
+.sekbid-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--primary-color);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.sekbid-btn:hover {
+    background: var(--primary-color-hover-bg);
+    transform: translateX(4px);
+}
+
+.sekbid-btn::after {
+    content: '→';
+    font-size: 1.2rem;
+}
+
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.carousel-nav:hover:not(:disabled) {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-nav:disabled {
+    cursor: not-allowed;
+}
+
+.carousel-nav.prev {
+    left: 10px;
+}
+
+.carousel-nav.next {
+    right: 10px;
+}
+
+/* Structure Toggle Button */
+.structure-toggle-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 14px 32px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin: 0 auto 2rem;
+    display: block;
+    box-shadow: 0 4px 15px rgba(110, 195, 225, 0.3);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.structure-toggle-btn:hover {
+    background: var(--primary-color-hover-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(110, 195, 225, 0.4);
+}
+
+.structure-toggle-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(110, 195, 225, 0.3);
+}
+
+.struktur-organisasi-vertical {
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .sekbid-card {
+        width: 350px;
+        min-width: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    .struktur-organisasi-section h1,
+    .sekbid-carousel-title {
+        font-size: 2rem;
+    }
+    
+    .struktur-organisasi-card {
+        flex: 1 1 220px;
+        max-width: 280px;
+    }
+
+    .carousel-container {
+        padding: 0 60px;
+    }
+
+    .sekbid-card {
+        width: 300px;
+        min-width: 300px;
+    }
+
+    .carousel-nav {
+        width: 44px;
+        height: 44px;
+        font-size: 1.3rem;
+    }
+
+    .structure-toggle-btn {
+        font-size: 0.9rem;
+        padding: 12px 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    .struktur-organisasi-section h1,
+    .sekbid-carousel-title {
+        font-size: 1.75rem;
+        letter-spacing: 1px;
+    }
+    
+    .struktur-organisasi-card {
+        max-width: 100%;
+        flex-basis: 100%;
+    }
+
+    .carousel-container {
+        padding: 0 50px;
+    }
+
+    .sekbid-card {
+        width: 280px;
+        min-width: 280px;
+    }
+
+    .sekbid-card-image {
+        height: 220px;
+        padding: 1.5rem 1.5rem 0;
+    }
+
+    .carousel-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    
+    .carousel-nav.prev {
+        left: 5px;
+    }
+    
+    .carousel-nav.next {
+        right: 5px;
+    }
+
+    .structure-toggle-btn {
+        font-size: 0.85rem;
+        padding: 10px 24px;
+    }
+}
