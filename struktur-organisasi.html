@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/pages.css">
+    <link rel="stylesheet" href="assets/css/struktur-organisasi.css">
 </head>
 <body>
     <header>
@@ -85,7 +85,12 @@
 
     <section class="struktur-organisasi-section">
         <h1>STRUKTUR ORGANISASI</h1>
-        <button class="structure-toggle-btn" id="structureToggleBtn">Lihat MPK</button>
+        <div class="structure-toggle-container">
+            <div class="structure-toggle-tabs">
+                <button class="structure-toggle-tab active" data-structure="OSIS">OSIS</button>
+                <button class="structure-toggle-tab" data-structure="MPK">MPK</button>
+            </div>
+        </div>
         <div class="struktur-organisasi-vertical" id="strukturContainer">
             <!-- Content will be dynamically loaded by structure.js -->
         </div>

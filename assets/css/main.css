@@ -1,5 +1,5 @@
 /* ============================================
-   BASE.CSS - RESET & BASE STYLES
+   BASE
    ============================================ */
 * {
     margin: 0;
@@ -29,7 +29,6 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Archivo Black', sans-serif;
 }
 
-/* Button Styles */
 .btn {
     padding: 0.5rem 1.5rem;
     border-radius: 5px;
@@ -60,7 +59,6 @@ h1, h2, h3, h4, h5, h6 {
     background: rgba(0, 0, 0, 0.137);
 }
 
-/* Content Sections */
 section {
     padding: 4rem 2rem;
     max-width: 1200px;
@@ -78,7 +76,6 @@ section p {
     color: var(--text-light);
 }
 
-/* Responsive Base */
 @media (max-width: 766px) {
     body {
         padding-top: 60px;
@@ -96,16 +93,14 @@ section p {
 }
 
 /* ============================================
-   HEADER.CSS
+   HEADER
    ============================================ */
-
-/* Background Gradients */
 .gradient-circle {
     position: fixed;
     width: 50rem;
     height: 50rem;
     pointer-events: none;
-    z-index: -1;
+    z-index: 2;
 }
 
 .gradient-top-left {
@@ -120,7 +115,6 @@ section p {
     right: -25rem;
 }
 
-/* Header */
 header {
     position: fixed;
     top: 0;
@@ -189,7 +183,6 @@ header {
     background: var(--primary-color-hover-bg);
 }
 
-/* Side Menu */
 .side-menu {
     position: fixed;
     top: 0;
@@ -308,7 +301,6 @@ header {
     visibility: visible;
 }
 
-/* Responsive */
 @media (max-width: 1100px) {
     .nav-btn {
         padding: 0.5rem 0.75rem;
@@ -364,7 +356,7 @@ header {
 }
 
 /* ============================================
-   FOOTER.CSS
+   FOOTER
    ============================================ */
 .footer {
     background: var(--bg-light);

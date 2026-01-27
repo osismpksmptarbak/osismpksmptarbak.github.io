@@ -1,6 +1,3 @@
-// ============================================
-// MENU SYSTEM
-// ============================================
 const menuToggle = document.getElementById('menuToggle');
 const closeMenu = document.getElementById('closeMenu');
 const sideMenu = document.getElementById('sideMenu');
@@ -22,9 +19,6 @@ menuToggle?.addEventListener('click', openMenu);
 closeMenu?.addEventListener('click', closeMenuFunc);
 overlay?.addEventListener('click', closeMenuFunc);
 
-// ============================================
-// SMOOTH SCROLLING
-// ============================================
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -36,14 +30,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// ============================================
-// ACCORDION
-// ============================================
 function initAccordion() {
     const headers = document.querySelectorAll('.accordion-header');
     
     headers.forEach((header, index) => {
-        // Remove old listeners by cloning
         const newHeader = header.cloneNode(true);
         header.parentNode.replaceChild(newHeader, header);
         
@@ -51,7 +41,6 @@ function initAccordion() {
             const content = this.nextElementSibling;
             const isActive = this.classList.contains('active');
             
-            // Toggle active state
             if (isActive) {
                 this.classList.remove('active');
                 content.classList.remove('active');
@@ -61,7 +50,6 @@ function initAccordion() {
             }
         });
         
-        // Open first accordion by default
         if (index === 0) {
             newHeader.classList.add('active');
             newHeader.nextElementSibling.classList.add('active');
@@ -69,9 +57,6 @@ function initAccordion() {
     });
 }
 
-// ============================================
-// KEGIATAN OSIS LOADER
-// ============================================
 async function loadKegiatanOsis() {
     const container = document.getElementById('kegiatan-osis');
     if (!container) return;
@@ -92,40 +77,33 @@ async function loadKegiatanOsis() {
             })
             .filter(a => a.year && a.title && a.link);
         
-        // Sort by title
         activities.sort((a, b) => a.title.localeCompare(b.title));
         
-        // Group by year
         const grouped = activities.reduce((acc, act) => {
             (acc[act.year] = acc[act.year] || []).push(act);
             return acc;
         }, {});
         
-        // Render
         const html = Object.keys(grouped).sort().map((year, i) => `
-            
-                Kegiatan OSIS ${year}
-                
+            <div class="menu-section">
+                <h3 class="accordion-header">Kegiatan OSIS ${year}</h3>
+                <ul class="accordion-content">
                     ${grouped[year].map(a => 
-                        `${a.title}`
+                        `<li><a href="${a.link}" target="_blank" rel="noopener noreferrer">${a.title}</a></li>`
                     ).join('')}
-                
-            
+                </ul>
+            </div>
         `).join('');
         
         container.innerHTML = html;
         
-        // Re-init accordion for dynamically added elements
         initAccordion();
     } catch (error) {
         console.error('Error loading kegiatan:', error);
-        container.innerHTML = 'Tidak ada kegiatan tersedia';
+        container.innerHTML = '<div class="menu-section"><p style="padding: 0.5rem; color: var(--text-light);">Tidak ada kegiatan tersedia</p></div>';
     }
 }
 
-// ============================================
-// INITIALIZATION
-// ============================================
 document.addEventListener('DOMContentLoaded', () => {
     initAccordion();
     loadKegiatanOsis();

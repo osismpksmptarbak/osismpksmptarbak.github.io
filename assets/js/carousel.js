@@ -67,7 +67,6 @@ nextBtn?.addEventListener('click', () => {
 
 window.addEventListener('resize', updateCarousel);
 
-// Public API
 window.carouselAPI = {
     updateCarousel,
     setTotalCards: (count) => {

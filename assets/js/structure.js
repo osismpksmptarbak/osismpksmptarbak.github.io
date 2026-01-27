@@ -95,7 +95,7 @@ const structures = {
                 name: 'Aranka Hagani W.',
                 class: 'VII-E',
                 position: 'Sekretaris 2',
-                image: 'assets/images/MPK/bendahara-sekretaris/Aranka Hagani Wyman-Sekre2.jpg'
+                image: 'assets/images/MPK/bendahara-sekretaris/Aranka Hagani Wyman-Sekretaris 2 .jpg'
             },
             {
                 name: 'Syabila Maheswari A.',
@@ -159,18 +159,15 @@ function renderStructure(type) {
     
     if (!container || !carouselTrack) return;
     
-    // Update section title
     sectionTitle.textContent = data.title;
     
-    // Update leadership section
     const leadershipHTML = `
         <div class="struktur-organisasi-horizontal">
-            <img src="${data.logo}" alt="Logo ${type} SMP Taruna Bakti">
+            <img class="struktur-organisasi-logo" src="${data.logo}" alt="Logo ${type} SMP Taruna Bakti">
             ${data.leadership.map(createCard).join('')}
         </div>
     `;
     
-    // Update management section
     const managementHTML = `
         <div class="struktur-organisasi-horizontal">
             ${data.management.map(createCard).join('')}
@@ -179,12 +176,10 @@ function renderStructure(type) {
     
     container.innerHTML = leadershipHTML + managementHTML;
     
-    // Update carousel
     const prefix = type === 'OSIS' ? 'Sekbid' : 'Komisi';
     carouselTitle.textContent = prefix.toUpperCase();
     carouselTrack.innerHTML = data.division.map(item => createSekbidCard(item, prefix)).join('');
     
-    // Update carousel - use the global variable approach
     window.carouselAPI.setTotalCards(data.division.length);
     window.currentIndex = 0;
     
@@ -193,22 +188,25 @@ function renderStructure(type) {
     }
 }
 
-function toggleStructure() {
-    currentStructure = currentStructure === 'OSIS' ? 'MPK' : 'OSIS';
+function toggleStructure(type) {
+    currentStructure = type;
     renderStructure(currentStructure);
     
-    // Update button text
-    const toggleBtn = document.getElementById('structureToggleBtn');
-    if (toggleBtn) {
-        toggleBtn.textContent = currentStructure === 'OSIS' ? 'Lihat MPK' : 'Lihat OSIS';
-    }
+    document.querySelectorAll('.structure-toggle-tab').forEach(tab => {
+        if (tab.dataset.structure === type) {
+            tab.classList.add('active');
+        } else {
+            tab.classList.remove('active');
+        }
+    });
 }
 
-// Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
-    const toggleBtn = document.getElementById('structureToggleBtn');
-    if (toggleBtn) {
-        toggleBtn.onclick = toggleStructure;
-        renderStructure('OSIS');
-    }
+    document.querySelectorAll('.structure-toggle-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            toggleStructure(tab.dataset.structure);
+        });
+    });
+    
+    renderStructure('OSIS');
 });

@@ -1,0 +1,360 @@
+.banner {
+    position: relative;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    min-width: 100%;
+}
+
+.banner-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.banner-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    gap: 2rem;
+}
+
+.banner-left {
+    flex: 1;
+    color: white;
+}
+
+.banner-left h1 {
+    color: var(--primary-color);
+    font-size: 3rem;
+    margin-bottom: 0;
+    line-height: 1.2;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.banner-left h2 {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.banner-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.banner-buttons .btn {
+    text-shadow: none;
+}
+
+.banner-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.banner-logo {
+    max-width: 300px;
+    height: auto;
+    filter: drop-shadow(var(--shadow-md));
+}
+
+#visi {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border-radius: 16px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    padding: 3rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#visi h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+#visi p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-dark);
+    max-width: 800px;
+}
+
+#misi {
+    background: white;
+    padding: 3rem 2.5rem;
+    text-align: center;
+}
+
+#misi h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    position: relative;
+    display: inline-block;
+}
+
+.misi-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.25rem;
+    justify-items: center;
+}
+
+.misi-list li {
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    background: white;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    width: 100%;
+    max-width: 400px;
+}
+
+.misi-list li:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(110, 195, 225, 0.15);
+}
+
+.misi-card-title {
+    background: var(--primary-color);
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 16px 16px 0 0;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.misi-card-content {
+    padding: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-dark);
+}
+
+#proker {
+    background: white;
+    padding: 3rem 2.5rem;
+    text-align: center;
+}
+
+#proker h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.proker-intro {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: var(--text-light);
+    margin-bottom: 2.5rem;
+}
+
+.proker-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.proker-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.proker-card:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 12px 24px rgba(110, 195, 225, 0.2);
+    border-color: var(--primary-color);
+}
+
+.proker-image {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #6ec3e1 0%, #318eaf 100%);
+}
+
+.proker-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.proker-number {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: white;
+    color: var(--primary-color);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-family: 'Archivo Black', sans-serif;
+}
+
+.proker-content {
+    padding: 1.75rem;
+}
+
+.proker-content h3 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-family: 'Archivo Black', sans-serif;
+}
+
+.proker-content p {
+    color: var(--text-dark);
+    line-height: 1.7;
+    font-size: 1rem;
+}
+
+section + section {
+    margin-top: 2rem;
+}
+
+@media (max-width: 766px) {
+    .banner {
+        min-height: 400px;
+    }
+
+    .banner-content {
+        flex-direction: column;
+        padding: 1.5rem 1rem;
+        text-align: center;
+    }
+
+    .banner-left {
+        flex: none;
+        width: 100%;
+    }
+    
+    .banner-right {
+        display: none;
+    }
+
+    .banner-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    #visi, #misi, #proker {
+        padding: 2.5rem 1.5rem;
+        border-radius: 12px;
+    }
+
+    #visi h2, #misi h2, #proker h2 {
+        font-size: 2rem;
+    }
+
+    #visi p, #misi p, .proker-intro {
+        font-size: 1rem;
+    }
+
+    .misi-list {
+        grid-template-columns: 1fr;
+    }
+
+    .misi-list li {
+        font-size: 0.95rem;
+    }
+
+    .proker-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .proker-image {
+        height: 200px;
+    }
+
+    section + section {
+        margin-top: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner {
+        min-height: 350px;
+    }
+
+    .banner-content {
+        padding: 1rem 0.75rem;
+    }
+
+    .banner-buttons {
+        flex-direction: column;
+        gap: 0.75rem;
+        width: 100%;
+    }
+
+    .banner-buttons .btn {
+        width: 100%;
+        text-align: center;
+        padding: 0.75rem 1rem;
+    }
+
+    #visi, #misi, #proker {
+        padding: 2rem 1.25rem;
+    }
+
+    #visi h2, #misi h2, #proker h2 {
+        font-size: 1.75rem;
+    }
+
+    .proker-grid {
+        gap: 1.25rem;
+    }
+
+    .proker-image {
+        height: 180px;
+    }
+
+    .proker-content {
+        padding: 1.5rem;
+    }
+
+    .proker-content h3 {
+        font-size: 1.25rem;
+    }
+
+    .proker-number {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+    }
+}
