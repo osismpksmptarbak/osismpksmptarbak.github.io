@@ -3,7 +3,6 @@ let currentStructure = 'OSIS';
 const structures = {
     OSIS: {
         title: 'STRUKTUR ORGANISASI OSIS',
-        logo: 'assets/images/OSIS/osis-logo.png',
         leadership: [
             {
                 name: 'Jasmine Azalea A.H.',
@@ -63,7 +62,6 @@ const structures = {
     },
     MPK: {
         title: 'STRUKTUR ORGANISASI MPK',
-        logo: 'assets/images/MPK/mpk-logo.png',
         leadership: [
             {
                 name: 'Arfa Wardana',
@@ -163,7 +161,6 @@ function renderStructure(type) {
     
     const leadershipHTML = `
         <div class="struktur-organisasi-horizontal">
-            <img class="struktur-organisasi-logo" src="${data.logo}" alt="Logo ${type} SMP Taruna Bakti">
             ${data.leadership.map(createCard).join('')}
         </div>
     `;

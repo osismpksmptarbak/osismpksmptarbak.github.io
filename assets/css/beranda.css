@@ -1,9 +1,10 @@
+/* Banner Section */
 .banner {
     position: relative;
     min-height: 500px;
     display: flex;
     align-items: center;
-    min-width: 100%;
+    min-width: 100vw;
 }
 
 .banner-bg {
@@ -31,11 +32,11 @@
 
 .banner-left {
     flex: 1;
-    color: white;
+    color: var(--background-white);
 }
 
 .banner-left h1 {
-    color: var(--primary-color);
+    color: var(--primary);
     font-size: 3rem;
     margin-bottom: 0;
     line-height: 1.2;
@@ -43,7 +44,7 @@
 }
 
 .banner-left h2 {
-    color: white;
+    color: var(--background-white);
     font-size: 1.5rem;
     font-weight: 300;
     margin-bottom: 2rem;
@@ -71,34 +72,39 @@
     filter: drop-shadow(var(--shadow-md));
 }
 
+/* Visi Section */
 #visi {
-    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-    border-radius: 16px;
-    border: 1px solid #e5e7eb;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    padding: 3rem 2.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    background-color: var(--background-gray-100);
+    min-width: 100vw;
+    margin-top: 0;
     text-align: center;
+}
+
+#visi-card {
+    background-color: var(--background-white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--primary);
+    max-width: 796px;
+    box-shadow: var(--shadow-md);
+    padding: 3rem 2.5rem;
+    margin: 0 auto;
 }
 
 #visi h2 {
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
-    position: relative;
-    display: inline-block;
 }
 
 #visi p {
     font-size: 1.1rem;
     line-height: 1.8;
     color: var(--text-dark);
-    max-width: 800px;
+    max-width: 700px;
 }
 
+/* Misi Section */
 #misi {
-    background: white;
+    background: var(--background-white);
     padding: 3rem 2.5rem;
     text-align: center;
 }
@@ -106,8 +112,6 @@
 #misi h2 {
     font-size: 2.5rem;
     margin-bottom: 2rem;
-    position: relative;
-    display: inline-block;
 }
 
 .misi-list {
@@ -120,40 +124,38 @@
 }
 
 .misi-list li {
-    border: 1px solid #e5e7eb;
-    border-radius: 16px;
-    background: white;
+    border: 1px solid var(--primary);
+    border-radius: var(--radius-lg);
+    background: var(--background-white);
     transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    box-shadow: var(--shadow-md);
     width: 100%;
     max-width: 400px;
+    padding: 1.5rem;
 }
 
 .misi-list li:hover {
-    border-color: var(--primary-color);
+    border-color: var(--primary);
     transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(110, 195, 225, 0.15);
+    box-shadow: var(--shadow-lg);
 }
 
 .misi-card-title {
-    background: var(--primary-color);
-    color: white;
-    padding: 1rem 1.5rem;
-    border-radius: 16px 16px 0 0;
+    color: var(--primary);
+    margin-bottom: 1rem;
     font-weight: 700;
     font-size: 1.1rem;
-    margin: 0;
 }
 
 .misi-card-content {
-    padding: 1.5rem;
     font-size: 1rem;
     line-height: 1.7;
     color: var(--text-dark);
 }
 
+/* Proker Section */
 #proker {
-    background: white;
+    background: var(--background-white);
     padding: 3rem 2.5rem;
     text-align: center;
 }
@@ -161,14 +163,12 @@
 #proker h2 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
-    position: relative;
-    display: inline-block;
 }
 
 .proker-intro {
     font-size: 1.05rem;
     line-height: 1.9;
-    color: var(--text-light);
+    color: var(--text-dark);
     margin-bottom: 2.5rem;
 }
 
@@ -180,18 +180,18 @@
 }
 
 .proker-card {
-    background: white;
-    border-radius: 16px;
+    background: var(--background-white);
+    border-radius: var(--radius-lg);
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    border: 1px solid #e5e7eb;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--primary);
     transition: all 0.3s ease;
 }
 
 .proker-card:hover {
     transform: translateY(-8px) scale(1.05);
-    box-shadow: 0 12px 24px rgba(110, 195, 225, 0.2);
-    border-color: var(--primary-color);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary);
 }
 
 .proker-image {
@@ -199,7 +199,8 @@
     width: 100%;
     height: 220px;
     overflow: hidden;
-    background: linear-gradient(135deg, #6ec3e1 0%, #318eaf 100%);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    cursor: pointer;
 }
 
 .proker-image img {
@@ -212,8 +213,8 @@
     position: absolute;
     top: 1rem;
     right: 1rem;
-    background: white;
-    color: var(--primary-color);
+    background: var(--background-white);
+    color: var(--primary);
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -222,7 +223,7 @@
     justify-content: center;
     font-size: 1.25rem;
     font-weight: 700;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--shadow-md);
     font-family: 'Archivo Black', sans-serif;
 }
 
@@ -231,7 +232,7 @@
 }
 
 .proker-content h3 {
-    color: var(--primary-color);
+    color: var(--primary);
     font-size: 1.5rem;
     margin-bottom: 1rem;
     font-family: 'Archivo Black', sans-serif;
@@ -243,11 +244,13 @@
     font-size: 1rem;
 }
 
+/* Section Spacing */
 section + section {
     margin-top: 2rem;
 }
 
-@media (max-width: 766px) {
+/* Responsive Design */
+@media (max-width: 768px) {
     .banner {
         min-height: 400px;
     }
@@ -274,23 +277,18 @@ section + section {
 
     #visi, #misi, #proker {
         padding: 2.5rem 1.5rem;
-        border-radius: 12px;
     }
 
     #visi h2, #misi h2, #proker h2 {
         font-size: 2rem;
     }
 
-    #visi p, #misi p, .proker-intro {
+    #visi p, .proker-intro {
         font-size: 1rem;
     }
 
     .misi-list {
         grid-template-columns: 1fr;
-    }
-
-    .misi-list li {
-        font-size: 0.95rem;
     }
 
     .proker-grid {
