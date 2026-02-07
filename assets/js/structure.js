@@ -3,6 +3,7 @@ let currentStructure = 'OSIS';
 const structures = {
     OSIS: {
         title: 'STRUKTUR ORGANISASI OSIS',
+        logo: 'assets/images/OSIS/osis-logo.png',
         leadership: [
             {
                 name: 'Jasmine Azalea A.H.',
@@ -62,6 +63,7 @@ const structures = {
     },
     MPK: {
         title: 'STRUKTUR ORGANISASI MPK',
+        logo: 'assets/images/MPK/mpk-logo.png',
         leadership: [
             {
                 name: 'Arfa Wardana',
@@ -157,7 +159,10 @@ function renderStructure(type) {
     
     if (!container || !carouselTrack) return;
     
-    sectionTitle.textContent = data.title;
+    sectionTitle.innerHTML = `
+        <img src="${data.logo}" alt="${type} Logo" style="height: 1.5em; vertical-align: middle; margin-right: 0.5em;">
+        ${data.title}
+    `;
     
     const leadershipHTML = `
         <div class="struktur-organisasi-horizontal">
