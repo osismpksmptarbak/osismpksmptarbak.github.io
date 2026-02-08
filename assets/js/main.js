@@ -62,7 +62,8 @@ async function loadKegiatanOsis() {
     if (!container) return;
     
     try {
-        const response = await fetch('/data/kegiatan-osis.txt');
+        const dataUrl = new URL('../../data/kegiatan-osis.txt', import.meta.url).href;
+        const response = await fetch(dataUrl);
         const text = await response.text();
         const lines = text.trim().split('\n');
         
