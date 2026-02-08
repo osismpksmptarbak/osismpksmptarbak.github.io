@@ -62,7 +62,8 @@ async function loadKegiatanOsis() {
     if (!container) return;
     
     try {
-        const response = await fetch('data/kegiatan.txt');
+        const datakegiatanLocation = document.currentScript.getAttribute('data-kegiatan-location');
+        const response = await fetch(datakegiatanLocation);
         const text = await response.text();
         const lines = text.trim().split('\n');
         

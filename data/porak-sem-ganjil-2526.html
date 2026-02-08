@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSIS/MPK SMP Taruna Bakti</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/kegiatan-osis.css">
+
+    <script>
+    const GALLERY_IMAGE_IDS = [
+        '10ESSElDOmQFoAlNDISRB5Q6GY33Sv14B',
+        '1AWbvwNb5LPT3Xo_RAtxzlXKp-Yqm7yBn',
+        '1MM5Q7Uxj_xWHUjLJf3agwoHAM3PXx5nt',
+        '1Na8zDVHK_WZMBknEGzq8nM3yK5RXgFBt',
+        '1vlE7VMSkstCNTTZ-XhQqAVwZqFfUelzE',
+        '14pC4dURK5aB5uT1RvIJhfL2VjSynFQwB',
+        '1oXZ8ZZ_6K-VgHPmBVE0wYPhKtiZ7spo1',
+        '1zd3vBqb_coneFDWFMSVxLwWu2ENGbUSe',
+        '1iWNvhyQeHlHvlAI-T6muSM-ROW9TS0dY',
+        '1oEEp3BCGgfjgKqxTm8PaPO0ft0RleNwN',
+        '1ksIYVYSXAKwtSpwTas5ELCHWd7B8L4is',
+        '1AdtZhfORYJXKRz6TaTw1XWxTVs27fb3x',
+        '1a7rsTH1_VycaCDIJIVxQsqGGCVzh_a72',
+        '1Pz4vrhuwNIHDJfqFk5jjeSy48gHgXj_g',
+        '1Jw4-ZUlX6QqcH6f40DPwEhT5jYIOkE1v',
+        '1FV12D1O2behOA6rjOxljrYSOY464pKzx',
+        '1ZrWxxRui3RjwDXIGn3R9x2duHEC3bQ_d',
+        '1FdEuQcLiIe9aAuljnzZkoW4DuAMTU88i',
+        '1BYxXVsY8PB3QUO67Inxet9xAG4vbyVnD',
+        '1DDYNQQdoG8sT3Dvr0MZcKIUEZawGy8Mq',
+        '1QoQEreK2RJfs57kdWFsnF8eyGq3Rpj5u',
+        '1vHX18GuhgOwyDxEFLFvwNURV1o14zrb1',
+        '1XbspA_vl6a5iQEFTB5FfPjYMdIr7M6qM',
+        '1iCksQ-rKKJavh_VHCb2hnKWKQNWlEXRd',
+        '1qIdli0W5bAjG_nyg0GtbztowpyrPqbqx',
+        '1kBDmR6wUxeuktrzWpa4Nx6tAxNTaz6RJ',
+        '1GzKqRiuUcEwgTA6ymwOug5fMrsXREMB6',
+        '1-e1kkID6OBiOzKfSUsgKlOtJb4AiqCjU',
+        '1kxQYs41SoZiwi6BOzopX0OaUqlj5s1zs',
+        '1FQ3Sogv6s-lxyYM0W38mzZSc8vGHzHmu',
+        '1K9oqib-w4QRUYjdMD8--tbk2cOOtDIyW',
+        '1vHZCM3Tbgjez7gXvL66oLmnAr6lWTrEI',
+        '1EXQ8rZ99g2DvzEEhAHByxkktZ5w9SY0Y',
+        '14xAK5qrybO4F3qGCnL6fstyzyS3VC9pX',
+        '1EVqBB8g9NHFBl9s52P12dtiSfnre1jXR',
+        '12VSMqXI4L3cLqF9S_i8FuU_voyaebW0L',
+        '1HRQ0Tisg-DhuCoJ8RnY7cWPjSnxe_IPE',
+        '1KFhFo16IEm-7j0MEWrVe2k7CrBgNDCYC',
+        '1gyWSO6tIelOSgWwWApstuysKTd5Kt0N5',
+        '1HncyOKg66KrfBfVfauzI-kYG677emFJ6',
+        '1Sd9apaS8Qm2a_sdlc6a0uIuODKLBxIXX',
+        '1TcaPduKlw-CmrQfTWEDStfmtBRfdx4Fv',
+        '1k_lK5RbR5xinhMwg96D54B4AijJv-J0K',
+        '1kBgzgjLh4yHYiYJlsjxH2R1StWcESsJ0',
+        '137KYGh-V2-Wyis2Yt9h3P0XolwF3mfF-',
+        '1BlyNIA7E3x6ncMpL3GuOXhcnOuZyoJCv',
+        '1613RywCsS1o0AC_E5wNORmeohAKH-WWS',
+        '1kFeubYI_k8Aw7j8bbzqESd8F15EbUa--',
+        '1ejYlZcHmjoetfoaayxzVvWH6lF_oc-NZ',
+        '1_XPaf0WVUv3F8pZRh0CnunptU69zqvvb',
+        '1EbCgsjPeiYZmGVZyir5GhlJx-3mbj7cH',
+        '1mG89-5kPBglQy5C26-B7eHLx7mlZwqfb',
+        '1yG9M0I9WDOUWksB4mkTtY2LmzzPJ_qPo',
+        '1a_iHCbJnx6HiATnz8Enj_7-oSquM8pPb',
+        '1bSFs9cEtkMg2buakAGSyAXq_ec18ziFY',
+        '1hiKdthq-JoQu9iraZb25e4YO3cbm0350',
+        '1u0EZkfSI765EkSq6NnzqqspDcj_1WRGl',
+        '1fNtNELAFXE_T649UcMW5odeiZQiBioN_',
+        '1FO-F-kVzxu90KSM094z9ax2_HYHgC5QW',
+        '1nICOoCe3hNdFH8ZUQNc1VgZFDPLmoBFA',
+        '1wDaq3VRQgFYllXQiI-_vkcl8eGn9bDX8',
+        '1BGng37v7qlB8Cukq-utQqUHP21kQaXE8',
+        '1ZvhWpNr0Y4vrypPtlZHNXzxPhgrIBuQw',
+        '1q9eyJ_n890DnrhYduY1o_5JujWkCnpX9',
+        '16ASdl-DATQpNQQui_ImoCYndnMH-KLxy',
+        '1mscBvqVq2rZktPE_XTkDKU-y13R7iIaF',
+        '18ZWZBU9Z_ZJdYS-l7TkYCRjGotDvdnn_',
+        '1OEXgaU7fCVLElJIexPUM2rZ_UMIhAAgk',
+        '1YjnIZVsVIZ6Cp2V7Zt-A2Zyct8F0VMsL',
+        '1HVf0nmJ5CKN8lcPmUDhS6Ked17m_IFb1',
+        '12VkYnCrqDlV_bdy2X0Vi6n_P33cNBmjP',
+        '1Zy80lyzdo1Kv4BIrRh0fYJHoYV3wpf5q',
+        '1xg6sDvpeXoQ4fNuILoI7F7a5Rxj7xwbe',
+        '1ftMepc7lRQ0whc7TihAQ9I4bJ16z2eTE',
+        '1yxHTjIJaBxKj8EDVtc4ZOHfUvdpdwhWL',
+        '1gkh0tbQV6cVs9IcVRQFefQ2dTHsidCRG',
+        '1-ejwk1OllPCdLh69FgoWXwH4uj2aABIp',
+        '1Gwj1EjDaa-jCZZ-zACucyEuke9d5ulya',
+        '12bY1Xh3yb4mTMzttb8AGGGmwDwVrXHTv',
+        '1CLEFa1DfIc781aNYzkD8sKNOX9HpUVhV',
+        '14fjp3_qW3QmgbtuMlHxmBcERdp0AvWGU',
+        '1qt5orT5eSPDuGM9o2GUIP88wBInUtrrV',
+        '1iHrSQ3x6dvzjsLVplVEFXNXw9WkqsrCA',
+        '1VbwkiKpmj3vBOJxy_9etFI5gWL6pEf-o',
+        '1QC5LhYm4oP-0UtM7vJHFjZ-D8hxH64ka',
+        '1xkHz8zPtdc-TEfZUcdcnbYoiMIBXwkOn',
+        '1TDKSlm3VYcNTyWKaGtzcwjxLccPm5ZKi',
+        '1x1cO_uOVYmHWINIGOR7XuW2lAWCQrTbL',
+        '1kc23wU6zrrQ9FjCK-ROt49VgBQUxjyic',
+        '1vy7xz8lRrgb89xnBOYMH67janlgAQRhV',
+        '1aHLnYvnDg1qUCUPqLWGamWAnYBmbGHx2',
+        '1GxQ5oCo9J6vLHfffTtMAQ9jxczLSr4Pn',
+        '1R6xo0R3G4OToeXjlz6B4A9NwWI6zfusU',
+        '16DpWTRTFilhPWZlH8gwxcLwF2yvDrPsu',
+        '1HjjYWStb3NPrzAHX_YTOCo1qXCEFhi4S',
+        '15iBDUAo51KVuXn-LgzqddwWLHr5SfJM3',
+        '18i5l48mBo_wHOWLYLVI8UX7Z0pp92cgE',
+        '1y1seVbclgi_Uohp5T3YFRKUdt5cthjgS',
+        '1CDRAkFJQ7THRCp3ynhLsHWq_WzcebLTq',
+        '1pwb6sSZtw-E_w9IgVILfHbtOUMhwQOap',
+        '1iYdHRC9_B9tcHE6kkQL9rgYLMHSu7kMd',
+        '1PomhUXN2fEV5I9JmnzNf4VhKCkFzBrkG',
+        '13cAvklnwBgCm4vZ0hM0cdClIYehObDdG',
+        '1sCCL0Wo6yjJfWxaOti60chmMfZX2fsti',
+        '1dLBLOm7cDjLA1ELitwRzpFvKm1GPBwsl',
+        '1pLwR8I_P0XoeXa78jRYuLfuwRMNapRH2',
+        '16UG-dOG7i1QOuo0l4bbNkutpWo-eU9p3',
+        '1K-39_NMh4-e6HQgXcmbgjXLHZ9CCt-ih',
+        '1VjV9441uYFsBChw9-fDLNaZgX1aBmJ6o',
+        '1LY3LiskhV1V8Zs9aczH4pXvY1xf0aM8l',
+        '1IUSZYxNQMySaRYn_mWsJwrQ2zUTFc32l',
+        '14pBDZeUdTTklfHKxu4eoDs513Sq6eBCq',
+        '13IXHdioEsnOkgkkaVcCQR72UYg7FxQXC',
+        '1omP7824QBK9o754HwUiNDT7_W87sHyjk',
+        '1bYjbwIdowFPVPLov-FlE-WxV3-rYARp8',
+        '1Dqib57HwoBFXyuLlvAUAdta4lkPuc4LL',
+        '16HlYzdBvkdjPkrbcVQtoX91cervZHGkB',
+        '1B88Pp_plSJp3fHXJf7VhG5cTpjPNBLNg',
+        '13JjNAZkWw1bhbVP7xvRrkMYposUaV2uv',
+        '1uQ3oqxUNObTKw2okcm5g9WnF8S3WB9re',
+        '12obXn6pzL2uZnYlIX2OTZtsPvpfO7vFJ',
+        '1xb-o5K-HaTH3bnTIhXsP-Mrj9mhL-iDI',
+        '1lZiKg1UCLor_kYTJfVnmOhvp6J9vv2OR',
+        '1SEVe54IBXb9m59PdDwCDp40K44UbRZ2p',
+        '1805--g4bqFWVdoBGZAT3WG2PluYJ2iVN',
+        '1YkBUy6TAK9XUHjLvnBO1wg2MM1t4vWgO',
+        '1R88uJG5jLVOjLnrM7AijZMvzUJV5SvAK',
+        '11sEsSVvKiCoA4kUhP2m2-XYVc3iRa9lr',
+        '1A8zzSoaSW7yX_4IqznqtlylCuSK1MZw8',
+        '1JQu4HGA8a_lK81Iwz74KpkJ5z-1wLBIX',
+        '1YSJegP9QKAkPgrV4jSexx-ypmDUk2Bvv',
+        '1gGm9A0kGCQiPDUnu_IuvtswN_RVCQrhf',
+        '1Dp3eP7sFkVNjoI0R_z7kUrpr8kyA8Gxj',
+        '1TeaCaaHvooSF14-_f9-cVek0QWF95_g2',
+        '1HjYp-ZLca6fiDNzYC6G8b-sgPGqKCyN0',
+        '1b15RIhSnut5GqhbCGFMszITYg0CLjTnm',
+        '1UnY8qwQM3IKdUJmjOvHPYS5fBWeHpwX8',
+        '12O9Vyj5Q2KEs5Dtd6zViBWY8gq4O_f4L',
+        '18xdGlDWbBg2hRcdWa5-Qb2vNpFxY-xuZ',
+        '1ALf9jqijLQ-tvYoSV7qKqUbkXJdjvnsi',
+        '1zzdwZnSMv5wL8we65K2Dmjf2wzGoGjNv',
+        '1VqcVjyh6-kYXh9xRve5EMBxmH1s9oo2G',
+        '1G2X3Qt0X5UkopKcH4DSmeol_eejjjqxl',
+        '1aZ5SJYBG7LEMe36nCFUHHCSoR5Wl0aiZ',
+        '1oWH4En5aWWmdngFN0gZrRvYQSPBNQ21_',
+        '1cLaNpIT8yGZN2mL-lcIAF5iG5WYRmU6b',
+        '1aGQNlnvIs7UqxGFD3rRxrq5nfwwjIrHU',
+        '1rg5vmDyP_naRQVxQJuJd_d6DvTXiW73B',
+        '1AvCqNSFI3-0yrRNdZn7iOMK-62oAlcQg',
+        '162w1qVLPOQs1BzD0JG3LdGPcwA1TKz1L',
+        '159wsXJBnjpWHa3XvnbwCsB5TfDZ4BbqQ',
+        '1l5Zjaq-YFWdLUpaoGYSLLU7ePcs6xy6V',
+        '1F3wrlnfAPIQFxebTRxU6zcyp6ejBexYt',
+        '1edQ3Khhr6unffHu96nxA7manvZ89BMRv',
+        '1NDA1-inlx8g-yJYAtoC01WKUm2Otyk8_',
+        '1dIM4yhOcVQZTRT-3imvjks58-z3v1S8n',
+        '1PQ7GNGSghygtDuEcg8VV4GkXeO-naIWf',
+        '1wNZ1EanxcPlxWXmaygu7RYQFQfAhShzy',
+        '1lccM10HR91vPQx6GR2-PN2pI69RPniil',
+        '17i-89rO_wtl-t2ZASMw_Hkspzefdv3yu',
+        '1A_e_Lz2RjXCvkPXKnXppNLv0RNHlb94d',
+        '1iJPhiSg6JiBeM0SFhc04UpbaehCE7ZZO',
+        '1pgzEQxQaQ3Rh5WmPXE5isxjvlLyeGba1',
+        '1eZ6e8bDZwuWEICd9HrXmTsEGcuDHRR6c',
+        '1dQgO0pSjcG94Vyr4ZAy8sS_iq1sZCyqF',
+        '1Macjms-bymBX6_Jh1BI5htLjrjNEU3-E',
+        '1YUyR5Jd-cLOXYwv1zhn64LOIjTMcuNzj',
+        '1W2RBkz5hCW2RFM9H2YfXE9j2ypKeI9nw',
+        '19MP33OfxHHnWDMrl8oU7dJ8v-XMFs4wn',
+        '1xzJHH9wodOKhM0XujHgKZZwVio2n_O94',
+        '1GeqpFIEH9_RK0GZzentdbs5P2-5WaRIU',
+        '1LvRq5g9TuMoDHnQlA1_hGWjYjPaNaUkE',
+        '1W1_LV4kzTOpbP5emlX8Gie0EW_Jvw_yA',
+        '1-P3libV8LvvvtE-OSZbsVyLB0ornUddQ',
+        '1zmFRmj3tiHc1vZuZpFKf9oaXS603b2C9',
+        '1rOtEDvXpbxHCjgd9538gw8r1SN4ut1yX',
+        '11Krm04M-cCMJj0zLAgC6ftU5NsciMS6L',
+        '14ocDOgT1uQaz0HEx9MxwZfDAZric-KZK',
+        '1Y7l3RlRmp-pXhv4tGBUAhJiI8jMnr21g',
+        '1G1EZ0c4M9VJHQPuJjmGcVbAZUwtEcYD5',
+        '1oQHFKKAnYFtQyBJ9jKKjDMyKt7mwat5B',
+        '1n5m1cXMuV9gQKtY4-vsUx2rhss2WasPe',
+        '1VAF-nMWuuDNfAWEambFoAQPRHCoVyYBH',
+        '14-Rvvk3PnCsOvmLGSpja7wHGAs2QDAc4',
+        '1OhAYoLpTraHmS6mGnAKxyMm79p5L4do9',
+        '1T9zj0baOSL-z1-FqOyQsvqZJ4YHNvo4e',
+        '1RQ9mYJ7NmT0gx4v75x-33yVM-R11eglS',
+        '19YBTuh6NeS8GPbGui5BpQE1ZHrbXkPPv',
+        '1HBh1Fhwab4Wte3RL3mzmzUFvWgWMddhu',
+        '1j5CLG-7q-02d4PyP69l_Xe30BMhPr5yu',
+        '1gKgyaX9U5Uc_AxVQUn85JuAVQO2nE6xC',
+        '1Nv5CZjk5JHi2f4VGr769CFVrlqnGU-A3',
+        '1ri0fYKU3D7f2RqrpTGCRK492YQwS7wXe',
+        '11LoldnkUoxUxzycuZcDDqtGwv_b77YGF',
+        '1kKipQH75yUmIUsBFQSvhAxmxYMsSZxGT',
+        '1RCsDHNphdLMl93Q6SKKLdmJ4d6TyD6mI',
+        '1G0jg0KQzMwnJF-QqNJS9WHdi4keTNSJy',
+        '1Ry2zyON8vs6KBnmUyWqZEG7esye6xJxB',
+        '1eHkNNbhCaDW5emKuxsbcKjcBdNhs5aHc',
+        '1zFRcNhzwlTBh_1V_DEVdwh2fAouVtLgb',
+        '15Ywj96Zq0BANVZ1LMV0lIn3gzV0OY9SB',
+        '1GWLjv67XurtvhqZAhgNmDhdS8wzPjEa9',
+        '1BlUgtMSkTVP2GRSc8LNZ9fhoDx8vgKoG',
+        '1hJL4nLSzbE-VQ-gZ1Ei8mTWtTI56amCe',
+        '1lU28pAF6QGmQkZZAi39kQcZHCuJlykBk',
+        '1TWmLKb6RP0dfnatao7NQxjwpCvdRfKV9',
+        '1B-Ia5efEnDFKniT6LwCeftvOrSPGnZ0W',
+        '1hbuc6vloL08cbR_U3uHRyR144-uBfBY6',
+        '1kPbI2r9AtNIh57-XO1B5SA180Uy9sIJn',
+        '1uuMZVYPhWiyOS5-VLT0Iwac-VAWVHJND',
+        '1W235fLoyx8qFu2IZ7yOZBFKhNV1OlVds',
+        '11_n7RGxUswzxYJozAon4PpPBV1cvOslv',
+        '17LFlKHSFX7YL_kfLmhjvPGNuTdJPuer_',
+        '17KNCx-aWwiJiH0Nfq8KlWkmKvmIzMJYb',
+        '1oNtToOJoOCKdS7YIRf5gvJv_ETvcR2j7',
+        '137wWHopKJ4m0jXdsQxxXIKkyrcSjsk7m',
+        '1eWah2vUQSeYh0c-644NsrRrNfFSYohyT',
+        '1tyF5Y6DHO9AcmL-s_ZQOj05-DZ-JVWQ-',
+        '1hS-b30Wh0xQOg7FU9H_litoMQd4TIcTj',
+        '12zd-a-3aoy139NiMAS1qkx1X4s84jeLW',
+        '1LegkwOqjE_afbklgUS82vt-160YUvv6t',
+        '16m86_2EYM9NrTJ2W3hao92MeDpeC15AN',
+        '1X2MKI4wF4-16D6ro8ZKWmqc6UihmDAGu',
+        '1T4G5QGgPEZB1wV9ERLf5mJp_se44gr0j',
+        '1nuZbFr02tQhLL68Wu9ou0FHP13QneYOm',
+        '181ZJY8wdtbCHzkq2koXUvdtWrCu9DXqW',
+        '1xhK7R1ma_RuRP1D4_8my4Pnq56Uks03C',
+        '1NhO2S1ADCIyhAgekviQGt6irM0otPsSP',
+        '1kTKoI6ExIDoWxZnsW8wRq1V2r5g4T4FB',
+        '1HUo6_61J476M7biebcm-mzcHzkIB3uTk',
+        '1hcMZTEnZ0DvOmHIw4x2ZOlcCOKyr6xlP',
+        '1_hjTpsFt5J_hJPe6lmecEftMo_j2oRXC',
+        '1daT1jethwnYrptXkNOPcxlQ3Cm2AQkpu',
+        '15rADZRyhNbYx1T4T1cbZWC8EGVi4URa0',
+        '11vhxKZJ5ZmUuYCLLsvNnj1sKmJt2JyKK',
+        '1N3Jlj3pq69GkAxgUoHcbhLri3O3m-ThY',
+        '11Dxb5dT1fq21kRl4z-5MwJ4MoQZqNZJd',
+        '1cRiji3z9VUqj-zFrB2G7NlA1M1_IqVqa',
+        '1dHhySc7FeAczInRvMVaTxjddMUEeWSKm',
+        '1hCtR7z_ssZ8b2IBnYYDB1vdN5dmwPCOf',
+        '1u1AYXzmBkrXo7BnHZr3cg-SH-7Y6xzZO',
+        '1JJaME_joO9XepedmKLF3n4KsFeQFfAkn',
+        '1D56rnw151kvqfM5QDPI0qVBalC9gxpcv',
+        '19hN4bHMHo1xFX3ke-XZhSY7rdEByFDqn',
+        '1TGHEsUz3MBozTap2twum_P3OxkBx06go',
+        '1zKUsb2qOqTfNjQEQzCH8nYidD5UgiK5m',
+        '1FCzz3qnUtQi-WLY2E7J05d5NYQn05ZvE',
+        '1uOCTk5YdpLhLqG-YINX3713_hbEc30uo',
+        '1rE0h4P7_qqcTlaFY3uAtf55WXOCnr518',
+        '1nH4kJmMjWz3JU_K-fmpKcbxNiIYWGx5F',
+        '1x3vcCN9hQR4sCjakm1ebvteMGGc6ACG-',
+        '1VB-SSUz18M7KO1f-6FwRiwLbKbUF908B',
+        '1axTKC32ZwM6hK-QNdyhxkDlc0VAMaPHm',
+        '1RmaMG-7CdCDXsV7PSZWmtuzdlNMx9dDB',
+        '1EJG0JpO_t5nVvOFci-SyWmDaXn8Do4b_',
+        '1ed2-g950VmQw3XGsYbUQ1CWdumzabVPb',
+        '1hm2AqXpgbDDD1DMOm99hF1kUWvbrJbyE',
+        '1GlKudlZulpGBksWUax1koeagDSBgSFWi',
+        '1C1MVPSA-IiDVgBZMnA9IhtdOM07ZXCPK',
+        '15NPYcGIfopGxYhDwwOlXxdTTm6He65x_',
+        '1WVtobO8NwXlnH9F7EZA9LgZCKCfBIUJ5',
+        '1-GOmwRJ4ge-6_0UEvHlUMnmBO4DC1iHK',
+        '16SgRiXD7RiUZZZvzKBpl22LP_PkNKnXF',
+        '1vSzND8TMQUTg1nZYocciuWI-WFf_Xakq',
+        '1BMFk0SryUrWae4pX1DgKs5TyZ3tWN93w',
+        '1Nnc3YdPsfM1-Plty985N8cDZ-jvE9L1h',
+        '1dOHhJfbbNiPfwf_NfOaNVCeuNIh2iUon',
+        '1RccYlXbSYQTiWWbSixJqOHiab0F_O9T4',
+        '1WV3ayZ6-DvpmBCo6ee0sO-R2LQuNj3Rg',
+        '1Xdqfdvh0EShICREJbfxF9UuSIn61L9mR',
+        '1byAM5uGIUyjnPWzte-dl6n5-blojMhwk',
+        '1gA0SDp9wUioyMEXS7PZLVcJmoUOuW3NG',
+        '1itGnYZr5_dwwd3S__xrydCHlBpgxY9An',
+        '1uTh2b-csB2pFJ5kAiSTDo4J5wEUIWJQD',
+        '1Iz1Xv4d7_8PBzbD4soXOHw3l5RE59uKs',
+        '1jtM7v3tYcn4xHx5_8UZ_-tVjedVCnl2k',
+        '1gGuIKQ4CYKMLID8zQl7oj56kImYH-Rty',
+        '1EaYAa_pCwQNaUt1-229gBH79yl1Paciw',
+        '17cW_3RwIMu_fgQkwKCcRKzj8gR6D4sKi',
+        '1G2TM5c2Tazo2WllEpBxO7axscd-v9rUb',
+        '192jjxvpcfRSQkiNdfdfyv2WWdIE1-J2s',
+        '14pIPglYFG4CP7KMz6n55cAg1xJiDwLjx',
+        '1TyC55uJXA1168rchmxICl8at3iv4FQ8v',
+        '10mVui4Cw2tVd-yARjW7Z1LqOqpjHyJg_',
+        '1Fsy74yFmIVZ6fz3sTTx2eYBWfOPP1HXu',
+        '1zOUoQksKs7LR-wJcCZ1W6KeT87rFKTKD',
+        '1HjtVgrGbOyQtCKFddikZg3bitIYRd5OD',
+        '1XTDTxVnrsUQB7AOB5d9b4dxU7ORKSyfv',
+        '1KVYNZ4o9hYuA0JglxnRaCHWxDqlrjGp8',
+        '16gtg5_BtVBzjAP4v7fq0BCWLBRXFu3yz',
+        '1HMMRzYnByIEVKmgj0_JYfIha-YqGj0LM',
+        '1IgC55IF_lPaDqV1q-3wPqUnMopPrlhcD',
+        '1R-UL5oHu85w62F3QC_f5M7-KHJb9sTqI',
+        '1fHRk3qtNI_1L8ieG9fsQT1Z6hxGF-tUT',
+        '1BfkdGkjoJyJO-Mq63yuws_tKoSwjHitF',
+        '1YSg9Nbf_IzRTh672PFyl-wIfwsvl6HEk',
+        '1wfT12Gt3gqzgczpqwaPV6pqbjNA6vDDt',
+        '1m_CAnkbxUdwbkI9BqD3gCLRpStCe6Kx7',
+        '1fpsKbj2eKfGd7ZivFCkTALYTsujn6xLf',
+        '1YPrXWZ0fre0qSfffOVFrVNcX3KkjQQAQ',
+        '1plSlfpUBaXLBLsSlRBFsu3HkdfQaYN1s',
+        '1FcOk9Su5aTVWlUiMkwvQz9uyiEwO2DE6',
+        '16Qc8PdS4fZrl_-1Hc46FoaG_E9Y-WaJE',
+        '15PDg1rHK6Vm2PqPkAcOzAuYzrxyrWagz',
+        '1b4a7iluK-yGx7SjoYErzAvdA-I2OpBN9',
+        '1-_S4v49wDi6XIrvWXddOve1IfN6-Fhvm',
+        '1MK2xqRayNViqVriXfLbOWPAXznEfMIUi',
+        '1IoM2hTs7KNBBKZfUMeu7cibKrlH9PlZ-',
+        '1eG8wkZzQghSxx-AemFGvSyjEjoHXsiWk',
+        '1ssX7kV94w5UeRdWNWDN1Gz8ChTu7mt5p',
+        '1wQltp5pDUKWZqd0vFMtskGKhvo1Y72b4',
+        '1fm1QsLZzUMQpj1qDY1i_vVeoMLdAZ_0f',
+        '1l5APGKC4-6ePtvbx1wBE87EEtxYzrXqo',
+        '1IgDN_-k7qPhwuiOmAH_RTNX0gZGVguHD',
+        '1tut4nwlR1rDbRmGpvvXDYVNtVsBJVqz6',
+        '1G7KVQ-vgCX4z3LoHkvDNMnzoKDRQBCD9',
+        '1zNdNPLz8ctiuwIpa3IlGCqmTbdHqQBRB',
+        '1c1oFCj2-MOgxLUJ18dwHI-MVlmWvOoM1',
+        '1e36QLzb7c1wSY8pt9uPNUmunvWeDS7A6',
+        '1SJSTMelJ-6gv6JW6BHHHJH7rQVwQeRz7',
+        '1Z8zTi-N85bONUv2UXwDT3_m_akJL32zZ',
+        '1hkhsjIDDvCsRUIO0N6aQs00Q3YrRODrU',
+        '1ZboXAneWT6MVCoaQMBC-Ldk20ijLJ2nA',
+        '1bdqAKz_axf0VqkH31jQUb1oo6Y-zaoQe',
+        '1eGmw62aBnmr0j3b8ic2ASfL_2BgaDug0',
+        '1Uzqp-TBCfE51hWkj1RQKnGkfRI-l3bLD',
+        '1OErR1DkzJdh0TKbdFi5CTYqgBDwaY9Le',
+        '1O0TVGGviyEKWsLy57aV2Tw75mlXwXGXJ',
+        '1WrlyaeMyvn_h6xHr4btRljEl9M9vqkbC',
+        '1n5ASeW5bYC5GNkJh4o7oOQeYtnwzzSQh',
+        '1pnuZ9eCxc3msDMym20l74Vysr7ISST8K',
+        '1Dpad-jfJPaxmvwYhhyXV1tRqYaFluWQT',
+        '1hIG2cOwHulVx2Ogf6i6eoNWqJ5l7b-C7',
+        '1hrOMtM1ZrGE9EVlMWOQn4qvOfTPQ5TgD',
+        '1JZY9KBQT3sxwD4Tz9KRh1G-KdZubQ_Mc',
+        '120UH6HNRp_EyjmmbZjk8ES8h9wiHj2Vd',
+        '1P4VoeBinlKhHneeCuyJw2lcYmbccX2ah',
+        '1zZoJuZzhJcof4bkA9whbd11HOG2B6JM3',
+        '17q4WkVq_rBye3Icp7Z5ksOd8Cnk-8EuV',
+        '18ZzMTss5cCozalPaKnZ910OMoxpEqkIw',
+        '1xk0zMTToajnSu_kPuLmemxxi5kEOwndy',
+        '1T5Tg0Q-u7dtD1M3nPIZMleEcoquXhbEk',
+        '1J_DO4Xi_w99n5u2g_1sGFuMVtPmOBWpf',
+        '19LiANiZZqSJMJJn_0WN_Gy49H4SNAOYb',
+        '1v9MqIk32sbt6mR_awtXtda7bk5hIIn08',
+        '1jPzzjtV3UUfxyJAOXEDWOVMPKQn6nGmS',
+        '1hTQZ2akUUbZAXfWjmAOjsTtdL9TnO2nC',
+        '1xMkWNHY5eqZ5LmmwROjMcce4MLxGUZ3I',
+        '1lZIJNwtbfkHEW45wiaqX0coXkAPpsL_j',
+        '1eWi1lNJWEQNgjN5G4Q4VY_SzpaYMvt_u',
+        '19lhUsaKZPX1-woD1i2DZU2Q5yu9sTa2c',
+        '124vf3VHKhIOxJnv0W2sK0i2TYF7w8Jk9',
+        '1PiNBM6LeagLCleJYwGN1It7gO2_WniKt',
+        '1NATSZGIABp1kGi3D8rOV_xcwA_sEzcXC',
+        '1YznSfhPzILa9FQkDI2oyeKlI1hfM5MjC',
+        '1Q_uv04ZoS1jUMWEkOgsv0-mzmSOG8qD3',
+        '1Q7V-jEpwLvFUtNaaRQ5PoynIjwLIko16',
+        '1plGc1XxchhQgJGhWIb3-fKf47ktEU13j',
+        '1q4_c5t1mtNIv4AyYpo8WX_bQBk4FFHNV',
+        '1ELClIdcwAlGNszoGzokMpT95uORCKSVw',
+        '1F8R4a_apymIelwed7NNDAId4MYaR1ry8',
+        '1IJ6sdTKqwLnnnC_ijqZs0CBw57Oze2lx',
+        '1UIX_1aKWOnQSuHpPM2VmeQOZPrgupPv6',
+        '1Hhs4iLdFVLVrNpCaxQE8h1tWrUXNHRqm',
+        '1PJd6QmHiHoD8mTUVF-kQ4IxDhISO8bYg',
+        '1WIy7jKaEVrQMa_-GdWxYkY3QX4p-nWsz',
+        '1wHZe_kw2xiE28NU9AUJsufjUBJsfE4Nz',
+        '1pLQ5004EQdSVTC8SPSZKJULfUzmV4yAA',
+        '1JLDrW2xIxK3JyiEjNWFhQOxq3f1pY9lq',
+        '1XSnkBlC_tF7pbg_psLXjxQpzS9DsslfD',
+        '1-8C4B4LYq3BsjsTXhv7GcZjeuj4FpR5e',
+        '1ndFj-985KW49n5tNKLVcT5JHnIVrKknK',
+        '1gQe0NZ7Ur6aFoHTeB-BVPES5OMcc-aCF',
+        '12o6292VsGA1iZrEjMwE2-IVypydxIUqC',
+        '1FMaDegZr4k_KlMI10u-fY4TsJZJUBDZC',
+        '1HxP4yIvOslSByZbBSoeruDmEnD4F9m5e',
+        '1lYuVGysUj5UFFRX-DSzV0BUKAJgFvyGa',
+        '1DCtAt18SAZ1GlrqfTZ6hSgyKyc8TmEvH',
+        '1BQsNCPodDyzoLgIzuihb1rCnr5n_GZYp',
+        '1B9-HWMIuNrGEBBe3UbulBnmYbGqnlHdy',
+        '1q9Q6DixKUOYtCYOLn9nmEopNTnztG3f_',
+        '1p2Tt7hImM_JmGlk7kIF0RfYfpnVwzai1',
+        '1ix5MIqLQKlO-aDC3Zbo5byhm5-OBis_E',
+        '1tpIPNgecm6dFRtGxC8HyLO6NfkgBBNLT',
+        '1KBZmI20aqvSxxWhq7kixfU_uEjHo9zIJ',
+        '1cAEuy-68T7Xkz-YSNWi4-G5A-WGO8zhP',
+        '1hSiTfSVKD1Cd8Pp52yQMT3H06P85ZsGO',
+        '1Po2vqYo1myg5fp746KdVZuynbkJfK97q',
+        '10tBjO5QVuJBXpeqlizYOpA73Rfh8fOtA',
+        '1nj3pH4LuYsO30L2c9rS5be9vfrWC6Vt5',
+        '1p7tSF9s-P580GyJ_agDW31Z7aA989_Oy',
+        '10GRZ8ztIx1riWzRzlVUSfQpGnUYy1sIV',
+        '11XYapCDuVABBe4jHicWcu5XhYhr7FcXq',
+        '14c29vjBCwlbI25-G0GpHljdHkDlWMUj9',
+        '14FgRk4PIhody5j_1qzroljXxQj7wQeKN',
+        '1mMR9P5eJJOtNw_BltqRxbocQrA1h7fkA',
+        '1bjjU_qX9CUz5isey8me2cqVPtrWxuD-C',
+        '1WcnfkIRe-0ACAc9B3bR-zNUKTj_mWqhV',
+        '1PHcby7cC1HwpkOgN8WcU1vHLWWVdGtDi',
+        '18vaabU5uOdWkUf0oWvNbrHXraTx85Mj5',
+        '10T1eXlUyzqmgr3DT3V0jHv9ERsuc_sn6',
+        '184qFubvwOtfugE8KpgLZqVXs38VaXf9P',
+        '1BBc-EskL6K5r5eSamAEFgVwRI0UfXfVL',
+        '1JFmqpwLIxwxwWxsv7w-Tfnr0E41O4w_o',
+        '1Y954oiIG8Rs4FD5hug3z93AgkILF6OvM',
+        '1HW_m9gV8loOvvL5HuVjw1CGV-OdfwCst',
+        '17tURsrXomVKa7CxIIkX3waw7jS4LozD6',
+        '1vb-2vab6ldu7Pdt8Cysd6dE0fKsYDN5I',
+        '1q-kJuEDtF3dArqr8GRHOSot_TA8ccpaW',
+        '1tdKNqIoNs1ytW-FY8Phz1MNha1A5cObl',
+        '1QxLOLXFxRw4KIpEnJsDJq04HAJYHMW1_',
+        '1VVRIUZYl4GU1MG-mcmw7v8Itn7cA7UIp',
+        '1z3G-h7SgXFBdtAeEcnBr-ZrMRAAQrzok',
+        '1iwBncDAXTLbXu1Haz2CZ6y3tI8X9rHe7',
+        '1l7lJUy1AkglYIRiBFYPyrk8LG2yYWnfo',
+        '1ugbv_hYJgI6g3MEtFapmDoApzH_awBnw',
+        '1-1f0Lt0l7TEpnkliTNhd105nvJiwkFs2',
+        '1Jr9iaKZQhMtXZE1Xhit0aAuDfpK6HC4y',
+        '1lKakh59xnNtmTK8JjO5H3wu4wdGDI-99',
+        '1eJ0AH5u88m102tbu1FCB_JDscja6a6QW',
+        '1HWYEJNHbLuZEsK1hNEs2bw_tGmpSNuL6',
+        '1YnoZq3k8fQ-_ynIh9susQMn2KJERysEF',
+        '1uhmEj9y8x34zZwkYxlU9-rvVZ2qx_v6G',
+        '1HlgmAJfGA_cvZYk0u0JEkFetm3SqWKeW',
+        '1iCCKQ-ODJirnKzykAHqn7OpGhW5R8tEY',
+        '1fw8BsdpZp_wQIXcLHlc9ZyGp4xpgTQ2V',
+        '1S4ub0xTbBUTV0P3sxw89bvFFsCHrOawR',
+        '1ztwZmowO-Ru1JOMHVXaqf_W7lUJmRAG1',
+        '1EqYqWrOWPsEERrqTSWrq8SeRd9kgrKLs',
+        '1vI-QLj4_dv7XKXWnKvaQmvXE6ZdxbPkB',
+        '1BxRE4c8cQvsBqwZbFbwBkpJdv57HEOjX',
+        '1L3NejYitVtFEfLJ0CwoO7QEpQxnuQTNt',
+        '1YL-scfCq4xha9r8QdcCh9GZYRsa64FUG',
+        '1pny0BEB3lxWD6mcBaBkBhtttm6t1nToV',
+        '1tAFBg-ylZ0s9DerGnnOFwvSLvIzFqYdZ',
+        '1WIxqkQySdau5yDnd8Qw-OjRHvX35IcBN',
+        '1EvltuRXphtusDhPOTVpfSIRvqhPIenQR',
+        '1FFhY5IgXRtxjazadwe_4Q-KZHUxOuU86',
+        '1gUcKMw2XabNBwb1TbL5-MMxzYTMKyr1H',
+        '15FqJnmwiiR1zgM1mCQY_lq9aM39rWs9I',
+        '1oiNzTQhpgUbFykCTFhPSsm166b8Kz8m8',
+        '1X9Kx1x4UvMokbokSlPNuwTL584adc2YX',
+        '1LsTU8bQzt74k1cgrn_NKzsTUsDyjeHnH',
+        '1QyNKsg7Luce4h4sLiz1ndIvKZ8EfCFlq',
+        '1bLpzf6U9Gzp5oB9q7QfLS6yv3br6jmqA',
+        '1rQMGz-PbAXoy7esmpfvUjfCPmejZ8Dmw',
+        '1clojNask-7KS5gJ_6Kos8OxqOG2bhgJn',
+        '1RBrWL8gsvbH3M-jk_c6XTtdCg0Lpy1mP',
+        '1gRuu5HTa5FufA_ciYp2vOCo62OyODDO-',
+        '1ANgJmSoN50yNQN__7VLoI0pwtLGN87TQ',
+        '13YFDHYsw2Khzp8MF4D3VFDyFWqthkIpI',
+        '1EEm0SFoIqTL1KsmxgIAYPsvau_1GefGh',
+        '1waALJanFirQfwAMc7I7CCWPCX2XkMhrF',
+        '1Z9k8YNg7FmDKGFTa2ZHbhdar4ByckDuK',
+        '11jJ_v_lFBLjyK_yBLaWALTxg0pAucJQa',
+        '1T4CVEchBBIkRQHvJC-dZpDCA5md8m85M',
+        '1nwTm1oKVmGUKIY3FQMqmDzljr8rOgUED',
+        '16aqbkNzpBulp6ZQ3LHrS0lqwBFDPQmn7',
+        '1WHK6d_Z8VTdxCHx1goevTO-0kWbqp6em',
+        '1G6BXzm1U5dIEhnXWEaF0IfslISj6A1jO',
+        '1KUOwmFLMNqQb7gNeM3GeNwNPdkDS9A9_',
+        '1AzjlDFmEIl6nRfAuBS8aRxZ-MFvk43EI',
+        '10t4J4-k-9O2Au6M30P-IZNod8HnAJ7G-',
+        '1paV4uzIlKXpQLkSxoyc9IYj9dTdoy-ZP',
+        '1ZLw7SsWsncGqEAByzkqjrtKfpIpmH56R',
+        '1yUGcDzlr9z4LPbmfqMHq_j2EBNUTwiRJ',
+        '1_KzGa9yVNpgDGQwFI_17zvJclMc-ivbh',
+        '1cUfT39A2dYaZ5eszzyt4nTHdO7OUPLcu',
+        '1VxPYbiCWtpiLtvsJbF7xaRqUowPVRogV',
+        '1QVmig3GBe1LfQkW5XeeIiS0WmYsH5uzE',
+        '18gsL9L2B4n6Nj5bpzjrkrwulYJEqX1he',
+    ];
+    </script>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="../index.html" class="logo">
+                <img src="../assets/images/logo-osismpksmptarbak.png" alt="Logo OSISMPK SMP Taruna Bakti">
+            </a>
+            
+            <nav class="nav-buttons">
+                <a href="../index.html" class="nav-btn">Beranda</a>
+                <a href="../index.html#visi" class="nav-btn">Visi</a>
+                <a href="../index.html#misi" class="nav-btn">Misi</a>
+                <a href="../index.html#proker" class="nav-btn">Program Kerja</a>
+                <a href="../struktur-organisasi.html" class="nav-btn">Struktur Organisasi</a>
+                <div class="nav-divider"></div>
+                <button class="menu-toggle btn btn-filled" id="menuToggle">Menu</button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="overlay" id="overlay"></div>
+
+    <aside class="side-menu" id="sideMenu">
+        <div class="menu-header">
+            <h2>Menu</h2>
+            <button class="close-btn" id="closeMenu">&times;</button>
+        </div>
+        <div class="menu-content">
+            <div class="menu-section">
+                <h3 class="accordion-header">Halaman Utama</h3>
+                <ul class="accordion-content">
+                    <li><a href="../index.html#visi">Visi</a></li>
+                    <li><a href="../index.html#misi">Misi</a></li>
+                    <li><a href="../index.html#proker">Program Kerja</a></li>
+                </ul>
+            </div>
+            <div class="menu-section">
+                <h3 class="accordion-header">Informasi</h3>
+                <ul class="accordion-content">
+                    <li><a href="../struktur-organisasi.html">Struktur Organisasi</a></li>
+                </ul>
+            </div>
+            <div class="menu-section">
+                <h3 class="accordion-header">OSIS</h3>
+                <ul class="accordion-content">
+                    <li><a href="../sekbid1.html">Sekbid 1 - Keimanan dan Ketaqwaan</a></li>
+                    <li><a href="../sekbid2.html">Sekbid 2 - Budi Pekerti</a></li>
+                    <li><a href="../sekbid3.html">Sekbid 3 - Bela Negara</a></li>
+                    <li><a href="../sekbid4.html">Sekbid 4 - Prestasi dan Olahraga</a></li>
+                    <li><a href="../sekbid5.html">Sekbid 5 - Demokrasi dan HAM</a></li>
+                    <li><a href="../sekbid6.html">Sekbid 6 - Kreativitas dan Kewirausahaan</a></li>
+                    <li><a href="../sekbid7.html">Sekbid 7 - Sastra Budaya</a></li>
+                    <li><a href="../sekbid8.html">Sekbid 8 - Teknologi dan Informasi</a></li>
+                </ul>
+            </div>
+            <div class="menu-section">
+                <h3 class="accordion-header">MPK</h3>
+                <ul class="accordion-content">
+                    <li><a href="../komisia.html">Komisi A - Mengawasi Anggaran Kegiatan OSIS</a></li>
+                    <li><a href="../komisib.html">Komisi B - Mengawasi Akademik Anggota OSIS</a></li>
+                    <li><a href="../komisic.html">Komisi C - Mengawasi Sekbid OSIS</a></li>
+                    <li><a href="../komisid.html">Komisi D - Hubungan Masyarakat</a></li>
+                    <li><a href="../komisie.html">Komisi E - Mengevaluasi Kegiatan OSIS</a></li>
+                </ul>
+            </div>
+            <div id="kegiatan-osis">
+                <!-- Kegiatan OSIS will be loaded by JavaScript -->
+            </div>
+        </div>
+    </aside>
+    
+    <div class="gradient-circle gradient-top-left"></div>
+    <div class="gradient-circle gradient-bottom-right"></div>
+
+    <section class="gallery-section">
+        <h2>Pekan Kreativitas</h2>
+
+        <div class="kegiatan-description-and-video">
+            <div class="video-wrapper">
+                <span class="video-badge">Recap Video</span>
+                <video width="280" height="498" controls preload="metadata">
+                    <source src="../assets/images/kegiatan-osis/recap-porak-sem-ganjil-2526.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            
+            <div class="description-content">
+                <h3>Pekan Kreativitas Semester Ganjil 2025</h3>
+                
+                <p>Pekan Kreativitas merupakan ajang rutin setiap akhir semester yang mempertemukan seluruh warga sekolah dalam berbagai kompetisi olahraga dan seni. Acara ini bertujuan untuk mengembangkan bakat siswa, mempererat kebersamaan antar kelas, serta menumbuhkan semangat sportivitas dan kreativitas di lingkungan SMP Taruna Bakti.</p>
+                
+                <div class="event-details">
+                    <div class="event-detail-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>17-19 Desember 2025</span>
+                    </div>
+                    <div class="event-detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>SMP Taruna Bakti, GOR Suci</span>
+                    </div>
+                    <div class="event-detail-item">
+                        <i class="fas fa-users"></i>
+                        <span>Seluruh Warga Sekolah</span>
+                    </div>
+                </div>
+                
+                <div class="event-highlights">
+                    <h4>Rangkaian Kegiatan:</h4>
+                    <ul>
+                        <li>Pembukaan oleh Wakil Kepala Sekolah</li>
+                        <li>Lomba Senam AIH antar kelas</li>
+                        <li>Lomba Lari Estafet antar kelas</li>
+                        <li>Lomba Basket 3x3 antar kelas</li>
+                        <li>Lomba Futsal antar kelas</li>
+                        <li>Lomba Poster Manual antar kelas</li>
+                        <li>Lomba Vokal antar kelas</li>
+                        <li>Penutupan dan Pengumuman Pemenang</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div id="loading" class="loading-state">
+            <div class="spinner"></div>
+            <p>Memuat gambar...</p>
+        </div>
+
+        <div id="error" class="error-state" style="display: none;">
+            <i class="fas fa-exclamation-circle"></i>
+            <p>Gagal memuat gambar. Silakan periksa konfigurasi Google Drive.</p>
+        </div>
+
+        <div class="carousel-container" id="carouselContainer">
+            <button class="carousel-nav carousel-prev" id="carouselPrev">&#10094;</button>
+            <div class="carousel-track-container">
+                <div class="carousel-track" id="carouselTrack"></div>
+            </div>
+            <button class="carousel-nav carousel-next" id="carouselNext">&#10095;</button>
+            <div class="carousel-indicators" id="carouselIndicators"></div>
+        </div>
+    </section>
+
+    <div id="lightbox" class="lightbox">
+        <button class="lightbox-close" id="closeLightbox">&times;</button>
+        <button class="lightbox-nav lightbox-prev" id="prevImage">&#10094;</button>
+        <button class="lightbox-nav lightbox-next" id="nextImage">&#10095;</button>
+        <img id="lightboxImage" class="lightbox-image" src="" alt="">
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <img src="../assets/images/logo-osismpksmptarbak.png" alt="Logo OSISMPK SMP Taruna Bakti" class="footer-logo">
+            <h2>OSISMPK SMP Taruna Bakti</h2>
+            <div class="footer-divider"></div>
+            <div class="footer-info">
+                <p class="footer-left">© 2025 OSIS/MPK SMP Taruna Bakti. All Rights Reserved.</p>
+                <p class="footer-right">Website By <strong>Sekbid 8</strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js" data-kegiatan-location="kegiatan.txt"></script>
+    <script src="../assets/js/kegiatan-osis.js"></script>
+</body>
+</html>
