@@ -65,21 +65,9 @@ function loadImages() {
 // Display images in carousel
 function displayCarousel(images) {
     const track = document.getElementById('carouselTrack');
-    const trackContainer = document.querySelector('.carousel-track-container');
     const indicators = document.getElementById('carouselIndicators');
     track.innerHTML = '';
     indicators.innerHTML = '';
-
-    // Create image counter above the carousel
-    const carouselContainer = document.getElementById('carouselContainer');
-    let imageCounter = carouselContainer.querySelector('.carousel-image-counter');
-    if (!imageCounter) {
-        imageCounter = document.createElement('div');
-        imageCounter.className = 'carousel-image-counter';
-        imageCounter.id = 'carouselImageCounter';
-        carouselContainer.insertBefore(imageCounter, trackContainer);
-    }
-    imageCounter.textContent = `1 / ${images.length}`;
 
     images.forEach((image, index) => {
         // Create carousel slide
@@ -114,18 +102,86 @@ function displayCarousel(images) {
         slide.appendChild(img);
         slide.onclick = () => openLightbox(index);
         track.appendChild(slide);
-
-        // Create indicator dot
-        const dot = document.createElement('button');
-        dot.className = 'carousel-dot';
-        if (index === 0) dot.classList.add('active');
-        dot.onclick = () => goToSlide(index);
-        dot.setAttribute('aria-label', `Slide ${index + 1}`);
-        indicators.appendChild(dot);
     });
+    
+    // Create pagination indicators with smart pagination
+    createPaginationDots(images.length, 0, indicators);
     
     // Preload all images
     preloadImages(images);
+}
+
+// Create pagination dots with ellipsis for many pages
+function createPaginationDots(totalPages, currentPage, container) {
+    container.innerHTML = '';
+    
+    const maxVisibleDots = 10; // Total dots to show including ellipsis
+    
+    const firstBtn = document.createElement('button');
+    firstBtn.className = 'carousel-dot carousel-nav-btn';
+    firstBtn.innerHTML = '«';
+    firstBtn.onclick = () => goToSlide(0);
+    firstBtn.setAttribute('aria-label', 'First slide');
+    firstBtn.disabled = currentPage === 0;
+    container.appendChild(firstBtn);
+    
+    if (totalPages <= maxVisibleDots) {
+        // Show all page numbers if we have few pages
+        for (let i = 0; i < totalPages; i++) {
+            container.appendChild(createDot(i, currentPage));
+        }
+    } else {
+        // Smart pagination with ellipsis
+        const dots = [];
+        
+        // Always show first page
+        dots.push(0);
+        
+        if (currentPage <= 2) {
+            dots.push(1, 2, 3, 4);
+            dots.push('ellipsis');
+            dots.push(totalPages - 1);
+        } else if (currentPage >= totalPages - 3) {
+            dots.push('ellipsis');
+            dots.push(totalPages - 5, totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1);
+        } else {
+            dots.push('ellipsis');
+            dots.push(currentPage - 1, currentPage, currentPage + 1);
+            dots.push('ellipsis');
+            dots.push(totalPages - 1);
+        }
+        
+        // Create dots
+        dots.forEach(index => {
+            if (index === 'ellipsis') {
+                const ellipsis = document.createElement('span');
+                ellipsis.className = 'carousel-ellipsis';
+                ellipsis.textContent = '...';
+                container.appendChild(ellipsis);
+            } else {
+                container.appendChild(createDot(index, currentPage));
+            }
+        });
+    }
+    
+    const lastBtn = document.createElement('button');
+    lastBtn.className = 'carousel-dot carousel-nav-btn';
+    lastBtn.innerHTML = '»';
+    lastBtn.onclick = () => goToSlide(totalPages - 1);
+    lastBtn.setAttribute('aria-label', 'Last slide');
+    lastBtn.disabled = currentPage === totalPages - 1;
+    container.appendChild(lastBtn);
+}
+
+// Create a single pagination dot
+function createDot(index, currentPage) {
+    const dot = document.createElement('button');
+    dot.className = 'carousel-dot';
+    dot.textContent = index + 1;
+    if (index === currentPage) dot.classList.add('active');
+    dot.onclick = () => goToSlide(index);
+    dot.setAttribute('aria-label', `Slide ${index + 1}`);
+    return dot;
 }
 
 // Preload all images
@@ -138,23 +194,19 @@ function preloadImages(images) {
 
 function goToSlide(index) {
     const slides = document.querySelectorAll('.carousel-slide');
-    const dots = document.querySelectorAll('.carousel-dot');
+    const indicators = document.getElementById('carouselIndicators');
     
     if (index < 0) index = slides.length - 1;
     if (index >= slides.length) index = 0;
     
     slides.forEach(slide => slide.classList.remove('active'));
-    dots.forEach(dot => dot.classList.remove('active'));
     
     slides[index].classList.add('active');
-    dots[index].classList.add('active');
     
     currentImageIndex = index;
     
-    const imageCounter = document.getElementById('carouselImageCounter');
-    if (imageCounter) {
-        imageCounter.textContent = `${index + 1} / ${slides.length}`;
-    }
+    // Create pagination dots 
+    createPaginationDots(slides.length, index, indicators);
     
     // Reset autoplay
     resetAutoplay();
