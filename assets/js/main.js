@@ -57,12 +57,13 @@ function initAccordion() {
     });
 }
 
+let datakegiatanLocation = null;
+
 async function loadKegiatanOsis() {
     const container = document.getElementById('kegiatan-osis');
     if (!container) return;
     
     try {
-        const datakegiatanLocation = document.currentScript.getAttribute('data-kegiatan-location');
         const response = await fetch(datakegiatanLocation);
         const text = await response.text();
         const lines = text.trim().split('\n');
@@ -106,6 +107,9 @@ async function loadKegiatanOsis() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    const script = document.currentScript || document.querySelector('script[data-kegiatan-location]');
+    datakegiatanLocation = script?.getAttribute('data-kegiatan-location');
+
     initAccordion();
     loadKegiatanOsis();
 });
