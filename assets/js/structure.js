@@ -1,5 +1,3 @@
-let currentStructure = 'OSIS';
-
 const structures = {
     OSIS: {
         title: 'STRUKTUR ORGANISASI OSIS',
@@ -120,35 +118,111 @@ const structures = {
     }
 };
 
-function createCard(person) {
-    return `
-        <div class="struktur-organisasi-card">
-            <div class="struktur-organisasi-card-header">
-                <img src="${person.image}" alt="${person.name}">
-            </div>
-            <div class="struktur-organisasi-card-content">
-                <div class="struktur-organisasi-badge">${person.position}</div>
-                <h2 class="struktur-organisasi-name">${person.name}</h2>
-                <p class="struktur-organisasi-class">${person.class}</p>
-            </div>
-        </div>
-    `;
+class Carousel {
+    constructor() {
+        this.track = document.getElementById('carouselTrack');
+        this.prevBtn = document.getElementById('prevBtn');
+        this.nextBtn = document.getElementById('nextBtn');
+        this.currentIndex = 0;
+        this.totalCards = 0;
+        
+        this.init();
+    }
+
+    init() {
+        this.prevBtn?.addEventListener('click', () => this.prev());
+        this.nextBtn?.addEventListener('click', () => this.next());
+        window.addEventListener('resize', () => this.update());
+    }
+
+    getCardWidth() {
+        const width = window.innerWidth;
+        if (width < 480) return 325;
+        if (width < 768) return 345;
+        return 395;
+    }
+
+    getVisibleCards() {
+        const width = window.innerWidth;
+        if (width < 768) return 1;
+        if (width < 1024) return 2;
+        return 3;
+    }
+
+    update() {
+        if (!this.track) return;
+        
+        const visibleCards = this.getVisibleCards();
+        const cardWidth = this.getCardWidth();
+        const maxIndex = Math.max(0, this.totalCards - visibleCards);
+        
+        this.currentIndex = Math.max(0, Math.min(this.currentIndex, maxIndex));
+        this.track.style.transform = `translateX(-${this.currentIndex * cardWidth}px)`;
+        this.updateButtons(maxIndex);
+    }
+
+    updateButtons(maxIndex) {
+        if (!this.prevBtn || !this.nextBtn) return;
+        
+        const isAtStart = this.currentIndex === 0;
+        const isAtEnd = this.currentIndex >= maxIndex;
+        
+        this.prevBtn.style.opacity = isAtStart ? '0.5' : '1';
+        this.prevBtn.style.cursor = isAtStart ? 'not-allowed' : 'pointer';
+        this.prevBtn.disabled = isAtStart;
+        
+        this.nextBtn.style.opacity = isAtEnd ? '0.5' : '1';
+        this.nextBtn.style.cursor = isAtEnd ? 'not-allowed' : 'pointer';
+        this.nextBtn.disabled = isAtEnd;
+    }
+
+    prev() {
+        if (this.currentIndex > 0) {
+            this.currentIndex--;
+            this.update();
+        }
+    }
+
+    next() {
+        const maxIndex = Math.max(0, this.totalCards - this.getVisibleCards());
+        if (this.currentIndex < maxIndex) {
+            this.currentIndex++;
+            this.update();
+        }
+    }
+
+    setTotalCards(count) {
+        this.totalCards = count;
+        this.currentIndex = 0;
+        this.update();
+    }
 }
 
-function createSekbidCard(item, prefix) {
-    return `
-        <div class="sekbid-card">
-            <div class="sekbid-card-image">
-                <img src="${item.logo}" alt="${prefix} ${item.id}">
-            </div>
-            <div class="sekbid-card-content">
-                <span class="sekbid-badge">${prefix} ${item.id}</span>
-                <h3 class="sekbid-card-title">${item.title}</h3>
-                <a href="${item.link}" class="sekbid-btn">Lihat Selengkapnya</a>
-            </div>
+const createCard = (person) => `
+    <div class="struktur-organisasi-card">
+        <div class="struktur-organisasi-card-header">
+            <img src="${person.image}" alt="${person.name}">
         </div>
-    `;
-}
+        <div class="struktur-organisasi-card-content">
+            <div class="struktur-organisasi-badge">${person.position}</div>
+            <h2 class="struktur-organisasi-name">${person.name}</h2>
+            <p class="struktur-organisasi-class">${person.class}</p>
+        </div>
+    </div>
+`;
+
+const createSekbidCard = (item, prefix) => `
+    <div class="sekbid-card">
+        <div class="sekbid-card-image">
+            <img src="${item.logo}" alt="${prefix} ${item.id}">
+        </div>
+        <div class="sekbid-card-content">
+            <span class="sekbid-badge">${prefix} ${item.id}</span>
+            <h3 class="sekbid-card-title">${item.title}</h3>
+            <a href="${item.link}" class="sekbid-btn">Lihat Selengkapnya</a>
+        </div>
+    </div>
+`;
 
 function renderStructure(type) {
     const data = structures[type];
@@ -164,74 +238,46 @@ function renderStructure(type) {
         ${data.title}
     `;
     
-    const leadershipHTML = `
+    container.innerHTML = `
         <div class="struktur-organisasi-horizontal">
             ${data.leadership.map(createCard).join('')}
         </div>
-    `;
-    
-    const managementHTML = `
         <div class="struktur-organisasi-horizontal">
             ${data.management.map(createCard).join('')}
         </div>
     `;
     
-    container.innerHTML = leadershipHTML + managementHTML;
-    
     const prefix = type === 'OSIS' ? 'Sekbid' : 'Komisi';
     carouselTitle.textContent = prefix.toUpperCase();
     carouselTrack.innerHTML = data.division.map(item => createSekbidCard(item, prefix)).join('');
     
-    window.carouselAPI.setTotalCards(data.division.length);
-    window.currentIndex = 0;
-    
-    if (window.updateCarousel) {
-        window.updateCarousel();
-    }
+    window.carousel?.setTotalCards(data.division.length);
 }
 
 function toggleStructure(type) {
-    currentStructure = type;
-    renderStructure(currentStructure);
+    renderStructure(type);
     
-    // Update URL with query parameter
     const url = new URL(window.location);
     url.searchParams.set('view', type.toLowerCase());
     window.history.pushState({}, '', url);
     
     document.querySelectorAll('.structure-toggle-tab').forEach(tab => {
-        if (tab.dataset.structure === type) {
-            tab.classList.add('active');
-        } else {
-            tab.classList.remove('active');
-        }
+        tab.classList.toggle('active', tab.dataset.structure === type);
     });
 }
 
 function getInitialStructure() {
-    // Check for query parameter
-    const urlParams = new URLSearchParams(window.location.search);
-    const viewParam = urlParams.get('view');
-    
-    if (viewParam) {
-        const structure = viewParam.toUpperCase();
-        if (structure === 'OSIS' || structure === 'MPK') {
-            return structure;
-        }
-    }
-    
-    // Default to OSIS
-    return 'OSIS';
+    const viewParam = new URLSearchParams(window.location.search).get('view');
+    const structure = viewParam?.toUpperCase();
+    return (structure === 'OSIS' || structure === 'MPK') ? structure : 'OSIS';
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    window.carousel = new Carousel();
+    
     document.querySelectorAll('.structure-toggle-tab').forEach(tab => {
-        tab.addEventListener('click', () => {
-            toggleStructure(tab.dataset.structure);
-        });
+        tab.addEventListener('click', () => toggleStructure(tab.dataset.structure));
     });
     
-    // Load initial structure based on query parameter or default to OSIS
-    const initialStructure = getInitialStructure();
-    toggleStructure(initialStructure);
+    toggleStructure(getInitialStructure());
 });
