@@ -194,6 +194,11 @@ function toggleStructure(type) {
     currentStructure = type;
     renderStructure(currentStructure);
     
+    // Update URL with query parameter
+    const url = new URL(window.location);
+    url.searchParams.set('view', type.toLowerCase());
+    window.history.pushState({}, '', url);
+    
     document.querySelectorAll('.structure-toggle-tab').forEach(tab => {
         if (tab.dataset.structure === type) {
             tab.classList.add('active');
@@ -203,6 +208,22 @@ function toggleStructure(type) {
     });
 }
 
+function getInitialStructure() {
+    // Check for query parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const viewParam = urlParams.get('view');
+    
+    if (viewParam) {
+        const structure = viewParam.toUpperCase();
+        if (structure === 'OSIS' || structure === 'MPK') {
+            return structure;
+        }
+    }
+    
+    // Default to OSIS
+    return 'OSIS';
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.structure-toggle-tab').forEach(tab => {
         tab.addEventListener('click', () => {
@@ -210,5 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    renderStructure('OSIS');
+    // Load initial structure based on query parameter or default to OSIS
+    const initialStructure = getInitialStructure();
+    toggleStructure(initialStructure);
 });
