@@ -1,6 +1,5 @@
 let currentImages = [];
 let currentImageIndex = 0;
-let autoplayInterval = null;
 
 // Get image configuration from global variables
 function getImageConfig() {
@@ -52,10 +51,6 @@ function loadImages() {
         
         loading.style.display = 'none';
         carouselContainer.style.display = 'block';
-
-        // Start autoplay
-        startAutoplay();
-
     } catch (err) {
         console.error('Error loading images:', err);
         showError('Gagal memuat gambar. Periksa konfigurasi GALLERY_IMAGE_IDS.');
@@ -207,9 +202,6 @@ function goToSlide(index) {
     
     // Create pagination dots 
     createPaginationDots(slides.length, index, indicators);
-    
-    // Reset autoplay
-    resetAutoplay();
 }
 
 function nextSlide() {
@@ -218,23 +210,6 @@ function nextSlide() {
 
 function prevSlide() {
     goToSlide(currentImageIndex - 1);
-}
-
-// Autoplay functionality
-function startAutoplay() {
-    autoplayInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
-}
-
-function stopAutoplay() {
-    if (autoplayInterval) {
-        clearInterval(autoplayInterval);
-        autoplayInterval = null;
-    }
-}
-
-function resetAutoplay() {
-    stopAutoplay();
-    startAutoplay();
 }
 
 // Show error message
@@ -276,18 +251,12 @@ function openLightbox(index) {
     
     lightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
-    
-    // Stop carousel autoplay when lightbox is open
-    stopAutoplay();
 }
 
 function closeLightbox() {
     const lightbox = document.getElementById('lightbox');
     lightbox.classList.remove('active');
     document.body.style.overflow = 'auto';
-    
-    // Resume autoplay when lightbox closes
-    startAutoplay();
 }
 
 function nextImage() {
@@ -327,10 +296,6 @@ document.getElementById('carouselPrev')?.addEventListener('click', prevSlide);
 document.getElementById('closeLightbox')?.addEventListener('click', closeLightbox);
 document.getElementById('nextImage')?.addEventListener('click', nextImage);
 document.getElementById('prevImage')?.addEventListener('click', prevImage);
-
-// Pause autoplay on hover
-document.getElementById('carouselContainer')?.addEventListener('mouseenter', stopAutoplay);
-document.getElementById('carouselContainer')?.addEventListener('mouseleave', startAutoplay);
 
 // Keyboard navigation
 document.addEventListener('keydown', (e) => {
@@ -378,16 +343,4 @@ function handleSwipe() {
 // Initialize when page loads
 document.addEventListener('DOMContentLoaded', () => {
     loadImages();
-});
-
-// Stop autoplay when user leaves the page
-document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-        stopAutoplay();
-    } else {
-        const lightbox = document.getElementById('lightbox');
-        if (!lightbox.classList.contains('active')) {
-            startAutoplay();
-        }
-    }
 });
