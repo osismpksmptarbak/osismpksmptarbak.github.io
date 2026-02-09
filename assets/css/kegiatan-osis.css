@@ -1,4 +1,3 @@
-/* Kegiatan Description and Video */
 .kegiatan-description-and-video {
     display: flex;
     flex-direction: row;
@@ -124,7 +123,6 @@
     font-size: 1.1rem;
 }
 
-/* Gallery Section */
 .gallery-section {
     min-height: 60vh;
 }
@@ -140,8 +138,8 @@
     color: var(--text-gray-600);
 }
 
-/* Loading State */
-.loading-state {
+.loading-state,
+.error-state {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -169,14 +167,7 @@
     font-size: 1rem;
 }
 
-/* Error State */
 .error-state {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 4rem 2rem;
-    gap: 1rem;
     color: #e74c3c;
 }
 
@@ -189,7 +180,6 @@
     text-align: center;
 }
 
-/* Carousel Container */
 .carousel-container {
     position: relative;
     max-width: 1000px;
@@ -197,7 +187,6 @@
     display: none;
 }
 
-/* Carousel Track */
 .carousel-track-container {
     overflow: hidden;
     border-radius: var(--radius-lg);
@@ -243,7 +232,6 @@
     transition: opacity 0.3s ease;
 }
 
-/* Image Loading Spinner */
 .image-spinner {
     position: absolute;
     top: 50%;
@@ -258,14 +246,10 @@
 .image-spinner .spinner {
     width: 50px;
     height: 50px;
-    border: 4px solid var(--border-color);
-    border-top: 4px solid var(--primary);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
 }
 
-/* Carousel Navigation Buttons */
-.carousel-nav {
+.carousel-nav,
+.lightbox-nav {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -288,22 +272,32 @@
     padding: 0;
 }
 
-.carousel-nav:hover {
+.carousel-nav:hover,
+.lightbox-nav:hover {
     background: var(--primary-dark);
     border-color: var(--primary-dark);
     transform: translateY(-50%) scale(1.15);
     box-shadow: 0 6px 16px rgba(110, 195, 225, 0.6);
 }
 
-.carousel-prev {
+.carousel-prev,
+.lightbox-prev {
     left: 1rem;
 }
 
-.carousel-next {
+.carousel-next,
+.lightbox-next {
     right: 1rem;
 }
 
-/* Carousel Indicators */
+.lightbox-prev {
+    left: 2rem;
+}
+
+.lightbox-next {
+    right: 2rem;
+}
+
 .carousel-indicators {
     display: flex;
     justify-content: center;
@@ -350,7 +344,6 @@
     cursor: not-allowed;
 }
 
-/* Navigation buttons (first/last) */
 .carousel-nav-btn {
     font-size: 1.8rem;
     line-height: 1;
@@ -375,7 +368,6 @@
     pointer-events: none;
 }
 
-/* Lightbox */
 .lightbox {
     display: none;
     position: fixed;
@@ -422,44 +414,6 @@
     transform: scale(1.1);
 }
 
-.lightbox-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 56px;
-    height: 56px;
-    background: var(--primary);
-    border: 2px solid var(--primary);
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.8rem;
-    color: var(--background-white);
-    box-shadow: 0 4px 12px rgba(110, 195, 225, 0.4);
-    transition: all 0.3s ease;
-    z-index: 1001;
-    font-weight: bold;
-    padding: 0;
-}
-
-.lightbox-nav:hover {
-    background: var(--primary-dark);
-    border-color: var(--primary-dark);
-    transform: translateY(-50%) scale(1.15);
-    box-shadow: 0 6px 16px rgba(110, 195, 225, 0.6);
-}
-
-.lightbox-prev {
-    left: 2rem;
-}
-
-.lightbox-next {
-    right: 2rem;
-}
-
-/* Responsive Design */
 @media (max-width: 768px) {
     .kegiatan-description-and-video {
         flex-direction: column;
@@ -491,7 +445,8 @@
         margin: 1.5rem auto;
     }
 
-    .carousel-nav {
+    .carousel-nav,
+    .lightbox-nav {
         width: 50px;
         height: 50px;
         font-size: 1.6rem;
@@ -505,9 +460,12 @@
         right: 0.5rem;
     }
 
-    .carousel-image-counter {
-        font-size: 0.9rem;
-        padding: 0.4rem 0.8rem;
+    .lightbox-prev {
+        left: 1rem;
+    }
+
+    .lightbox-next {
+        right: 1rem;
     }
 
     .carousel-indicators {
@@ -515,7 +473,8 @@
         gap: 0.4rem;
     }
 
-    .carousel-dot {
+    .carousel-dot,
+    .carousel-ellipsis {
         min-width: 44px;
         height: 44px;
         font-size: 0.95rem;
@@ -524,12 +483,6 @@
 
     .carousel-nav-btn {
         font-size: 1.6rem;
-    }
-
-    .carousel-ellipsis {
-        min-width: 44px;
-        height: 44px;
-        font-size: 0.95rem;
     }
 
     .lightbox-image {
@@ -541,20 +494,6 @@
         top: 1rem;
         right: 1rem;
         font-size: 2.5rem;
-    }
-
-    .lightbox-nav {
-        width: 50px;
-        height: 50px;
-        font-size: 1.6rem;
-    }
-
-    .lightbox-prev {
-        left: 1rem;
-    }
-
-    .lightbox-next {
-        right: 1rem;
     }
 }
 
@@ -597,7 +536,8 @@
         height: 300px;
     }
 
-    .carousel-nav {
+    .carousel-nav,
+    .lightbox-nav {
         width: 46px;
         height: 46px;
         font-size: 1.4rem;
@@ -611,16 +551,20 @@
         right: 0.25rem;
     }
 
-    .carousel-image-counter {
-        font-size: 0.85rem;
-        padding: 0.35rem 0.7rem;
+    .lightbox-prev {
+        left: 0.5rem;
+    }
+
+    .lightbox-next {
+        right: 0.5rem;
     }
 
     .carousel-indicators {
         gap: 0.3rem;
     }
 
-    .carousel-dot {
+    .carousel-dot,
+    .carousel-ellipsis {
         min-width: 40px;
         height: 40px;
         font-size: 0.9rem;
@@ -629,25 +573,5 @@
 
     .carousel-nav-btn {
         font-size: 1.5rem;
-    }
-
-    .carousel-ellipsis {
-        min-width: 40px;
-        height: 40px;
-        font-size: 0.9rem;
-    }
-
-    .lightbox-nav {
-        width: 46px;
-        height: 46px;
-        font-size: 1.4rem;
-    }
-
-    .lightbox-prev {
-        left: 0.5rem;
-    }
-
-    .lightbox-next {
-        right: 0.5rem;
     }
 }

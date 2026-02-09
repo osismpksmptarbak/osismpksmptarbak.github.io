@@ -1,23 +1,25 @@
-const menuToggle = document.getElementById('menuToggle');
-const closeMenu = document.getElementById('closeMenu');
-const sideMenu = document.getElementById('sideMenu');
-const overlay = document.getElementById('overlay');
+const menuElements = {
+    toggle: document.getElementById('menuToggle'),
+    close: document.getElementById('closeMenu'),
+    menu: document.getElementById('sideMenu'),
+    overlay: document.getElementById('overlay')
+};
 
 function openMenu() {
-    sideMenu.classList.add('open');
-    overlay.classList.add('active');
+    menuElements.menu.classList.add('open');
+    menuElements.overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
 }
 
-function closeMenuFunc() {
-    sideMenu.classList.remove('open');
-    overlay.classList.remove('active');
+function closeMenu() {
+    menuElements.menu.classList.remove('open');
+    menuElements.overlay.classList.remove('active');
     document.body.style.overflow = 'auto';
 }
 
-menuToggle?.addEventListener('click', openMenu);
-closeMenu?.addEventListener('click', closeMenuFunc);
-overlay?.addEventListener('click', closeMenuFunc);
+menuElements.toggle?.addEventListener('click', openMenu);
+menuElements.close?.addEventListener('click', closeMenu);
+menuElements.overlay?.addEventListener('click', closeMenu);
 
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -25,7 +27,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            closeMenuFunc();
+            closeMenu();
         }
     });
 });
@@ -41,13 +43,8 @@ function initAccordion() {
             const content = this.nextElementSibling;
             const isActive = this.classList.contains('active');
             
-            if (isActive) {
-                this.classList.remove('active');
-                content.classList.remove('active');
-            } else {
-                this.classList.add('active');
-                content.classList.add('active');
-            }
+            this.classList.toggle('active', !isActive);
+            content.classList.toggle('active', !isActive);
         });
         
         if (index === 0) {
@@ -65,9 +62,9 @@ async function loadKegiatanOsis() {
         const dataUrl = new URL('../../data/kegiatan.txt', import.meta.url).href;
         const response = await fetch(dataUrl);
         const text = await response.text();
-        const lines = text.trim().split('\n');
         
-        const activities = lines
+        const activities = text.trim()
+            .split('\n')
             .map(line => {
                 const [year, title, link] = line.split('|');
                 return { 
@@ -76,28 +73,28 @@ async function loadKegiatanOsis() {
                     link: link?.trim() 
                 };
             })
-            .filter(a => a.year && a.title && a.link);
-        
-        activities.sort((a, b) => a.title.localeCompare(b.title));
+            .filter(a => a.year && a.title && a.link)
+            .sort((a, b) => a.title.localeCompare(b.title));
         
         const grouped = activities.reduce((acc, act) => {
             (acc[act.year] = acc[act.year] || []).push(act);
             return acc;
         }, {});
         
-        const html = Object.keys(grouped).sort().map((year, i) => `
-            <div class="menu-section">
-                <h3 class="accordion-header">Kegiatan OSIS ${year}</h3>
-                <ul class="accordion-content">
-                    ${grouped[year].map(a => 
-                        `<li><a href="${a.link}" target="_blank" rel="noopener noreferrer">${a.title}</a></li>`
-                    ).join('')}
-                </ul>
-            </div>
-        `).join('');
+        const html = Object.keys(grouped)
+            .sort()
+            .map(year => `
+                <div class="menu-section">
+                    <h3 class="accordion-header">Kegiatan OSIS ${year}</h3>
+                    <ul class="accordion-content">
+                        ${grouped[year].map(a => 
+                            `<li><a href="${a.link}" target="_blank" rel="noopener noreferrer">${a.title}</a></li>`
+                        ).join('')}
+                    </ul>
+                </div>
+            `).join('');
         
         container.innerHTML = html;
-        
         initAccordion();
     } catch (error) {
         console.error('Error loading kegiatan:', error);
