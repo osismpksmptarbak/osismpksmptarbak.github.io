@@ -7,19 +7,19 @@ const structures = {
                 name: 'Jasmine Azalea A.H.',
                 class: 'VIII-BIL2',
                 position: 'Ketua Umum',
-                image: 'assets/images/OSIS/ketua-osis/8BIL2_Jasmine Azalea A.H._Ketua Umum.png'
+                image: 'assets/images/OSIS/ketua-osis/8BIL2_Jasmine Azalea A.H._Ketua Umum.jpeg'
             },
             {
                 name: 'Kania Dahayu U.',
                 class: 'VIII-BIL3',
                 position: 'Ketua 1',
-                image: 'assets/images/OSIS/ketua-osis/8Bil3_Kania Dahayu U._Ketua 1.jpg'
+                image: 'assets/images/OSIS/ketua-osis/8Bil3_Kania Dahayu U._Ketua 1.jpeg'
             },
             {
                 name: 'Ferandy Bintang P.P.',
                 class: 'VIII-C',
                 position: 'Ketua 2',
-                image: 'assets/images/OSIS/ketua-osis/8C_Ferandy Bintang P.P_Ketua 2.png'
+                image: 'assets/images/OSIS/ketua-osis/8C_Ferandy Bintang P.P_Ketua 2.jpeg'
             }
         ],
         management: [
@@ -27,25 +27,25 @@ const structures = {
                 name: 'Rachel Ivana N.U.',
                 class: 'VIII-BIL1',
                 position: 'Sekretaris 1',
-                image: 'assets/images/OSIS/bendahara-sekretaris/8BIL1_Rachel Ivana N.U_Sekretaris 1.png'
+                image: 'assets/images/OSIS/bendahara-sekretaris/8BIL1_Rachel Ivana N.U_Sekretaris 1.jpeg'
             },
             {
                 name: 'Felcia Kinsey A.G.S.',
                 class: 'VII-BIL1',
                 position: 'Sekretaris 2',
-                image: 'assets/images/OSIS/bendahara-sekretaris/7BIL1_Felcia Kinsey A.G.S._Sekretaris 2.jpg'
+                image: 'assets/images/OSIS/bendahara-sekretaris/7BIL1_Felcia Kinsey A.G.S._Sekretaris 2.jpeg'
             },
             {
                 name: 'Dinda Rasya Aulia',
                 class: 'VIII-BIL1',
                 position: 'Bendahara 1',
-                image: 'assets/images/OSIS/bendahara-sekretaris/8BIL1_Dinda Rasya Aulia_Bendahara 1.jpg'
+                image: 'assets/images/OSIS/bendahara-sekretaris/8BIL1_Dinda Rasya Aulia_Bendahara 1.jpeg'
             },
             {
                 name: 'Aliyya M. Halim',
                 class: 'VII-F',
                 position: 'Bendahara 2',
-                image: 'assets/images/OSIS/bendahara-sekretaris/7F_Aliyya M. Halim_Bendara 2.png'
+                image: 'assets/images/OSIS/bendahara-sekretaris/7F_Aliyya M. Halim_Bendara 2.jpeg'
             }
         ],
         division: [
@@ -67,19 +67,19 @@ const structures = {
                 name: 'Arfa Wardana',
                 class: 'VIII-BIL1',
                 position: 'Ketua Umum',
-                image: 'assets/images/MPK/ketua-mpk/Arfa Wardana - Ketua.png'
+                image: 'assets/images/MPK/ketua-mpk/Arfa Wardana - Ketua.jpeg'
             },
             {
                 name: 'Inggit Cahaya G.S.',
                 class: 'VIII-BIL1',
                 position: 'Ketua 1',
-                image: 'assets/images/MPK/ketua-mpk/Inggit Cahaya Ganira Suryatmana - Ketua 1.jpg'
+                image: 'assets/images/MPK/ketua-mpk/Inggit Cahaya Ganira Suryatmana - Ketua 1.jpeg'
             },
             {
                 name: 'Rinjani Atreya H.',
                 class: 'VIII-C',
                 position: 'Ketua 2',
-                image: 'assets/images/MPK/ketua-mpk/Rinjani Atreya Hasyim - Ketua 2 MPK.jpg'
+                image: 'assets/images/MPK/ketua-mpk/Rinjani Atreya Hasyim - Ketua 2 MPK.jpeg'
             }
         ],
         management: [
@@ -87,25 +87,25 @@ const structures = {
                 name: 'Abia Jemima',
                 class: 'VIII-D',
                 position: 'Sekretaris 1',
-                image: 'assets/images/MPK/bendahara-sekretaris/Abia Jemima - Sekretaris 1.png'
+                image: 'assets/images/MPK/bendahara-sekretaris/Abia Jemima - Sekretaris 1.jpeg'
             },
             {
                 name: 'Aranka Hagani W.',
                 class: 'VII-E',
                 position: 'Sekretaris 2',
-                image: 'assets/images/MPK/bendahara-sekretaris/Aranka Hagani Wyman-Sekretaris 2 .jpg'
+                image: 'assets/images/MPK/bendahara-sekretaris/Aranka Hagani Wyman-Sekretaris 2 .jpeg'
             },
             {
                 name: 'Syabila Maheswari A.',
                 class: 'VIII-A',
                 position: 'Bendahara 1',
-                image: 'assets/images/MPK/bendahara-sekretaris/Syabila Maheswari Anandaku - Bendahara 1.jpg'
+                image: 'assets/images/MPK/bendahara-sekretaris/Syabila Maheswari Anandaku - Bendahara 1.jpeg'
             },
             {
                 name: 'Wigumvar Adtwija A.',
                 class: 'VII-BIL2',
                 position: 'Bendahara 2',
-                image: 'assets/images/MPK/bendahara-sekretaris/Wigumvar Adtwija Ardiwinangun - Bendahara 2.jpg'
+                image: 'assets/images/MPK/bendahara-sekretaris/Wigumvar Adtwija Ardiwinangun - Bendahara 2.jpeg'
             }
         ],
         division: [
