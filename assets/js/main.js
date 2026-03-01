@@ -42,11 +42,10 @@ function initAccordion() {
         newHeader.addEventListener('click', function() {
             const content = this.nextElementSibling;
             const isActive = this.classList.contains('active');
-            
             this.classList.toggle('active', !isActive);
             content.classList.toggle('active', !isActive);
         });
-        
+
         if (index === 0) {
             newHeader.classList.add('active');
             newHeader.nextElementSibling.classList.add('active');
@@ -57,44 +56,37 @@ function initAccordion() {
 async function loadKegiatanOsis() {
     const container = document.getElementById('kegiatan-osis');
     if (!container) return;
-    
+
     try {
         const dataUrl = new URL('../../data/kegiatan.txt', import.meta.url).href;
         const response = await fetch(dataUrl);
         const text = await response.text();
-        
+
         const activities = text.trim()
             .split('\n')
             .map(line => {
                 const [year, title, link] = line.split('|');
-                return { 
-                    year: year?.trim(), 
-                    title: title?.trim(), 
-                    link: link?.trim() 
-                };
+                return { year: year?.trim(), title: title?.trim(), link: link?.trim() };
             })
             .filter(a => a.year && a.title && a.link)
             .sort((a, b) => a.title.localeCompare(b.title));
-        
+
         const grouped = activities.reduce((acc, act) => {
             (acc[act.year] = acc[act.year] || []).push(act);
             return acc;
         }, {});
-        
-        const html = Object.keys(grouped)
-            .sort()
-            .map(year => `
-                <div class="menu-section">
-                    <h3 class="accordion-header">Kegiatan OSIS ${year}</h3>
-                    <ul class="accordion-content">
-                        ${grouped[year].map(a => 
-                            `<li><a href="${a.link}" target="_blank" rel="noopener noreferrer">${a.title}</a></li>`
-                        ).join('')}
-                    </ul>
-                </div>
-            `).join('');
-        
-        container.innerHTML = html;
+
+        container.innerHTML = Object.keys(grouped).sort().map(year => `
+            <div class="menu-section">
+                <h3 class="accordion-header">Kegiatan OSIS ${year}</h3>
+                <ul class="accordion-content">
+                    ${grouped[year].map(a =>
+                        `<li><a href="${a.link}" target="_blank" rel="noopener noreferrer">${a.title}</a></li>`
+                    ).join('')}
+                </ul>
+            </div>
+        `).join('');
+
         initAccordion();
     } catch (error) {
         console.error('Error loading kegiatan:', error);

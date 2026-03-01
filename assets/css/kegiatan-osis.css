@@ -1,3 +1,6 @@
+/* ============================================================
+   DESCRIPTION + VIDEO BLOCK
+   ============================================================ */
 .kegiatan-description-and-video {
     display: flex;
     flex-direction: row;
@@ -6,10 +9,10 @@
     margin: 0 auto 3rem;
     max-width: 1000px;
     padding: 2rem;
-    background: var(--background-white);
+    background: var(--bg-white);
     border-radius: var(--radius-xl);
+    border: 1px solid var(--border);
     box-shadow: var(--shadow-lg);
-    border: 1px solid var(--border-color);
 }
 
 .video-wrapper {
@@ -20,10 +23,10 @@
 .video-wrapper video {
     width: 280px;
     height: auto;
+    display: block;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-md);
-    display: block;
-    background: var(--background-dark);
+    background: var(--bg-dark);
 }
 
 .video-badge {
@@ -31,14 +34,14 @@
     top: -12px;
     left: -12px;
     background: var(--primary);
-    color: var(--background-white);
+    color: var(--bg-white);
     padding: 8px 16px;
     border-radius: var(--radius-sm);
     font-size: 0.85rem;
     font-weight: 700;
-    box-shadow: var(--shadow-md);
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    box-shadow: var(--shadow-md);
 }
 
 .description-content {
@@ -51,16 +54,16 @@
 .description-content h3 {
     color: var(--primary);
     font-size: 1.5rem;
-    margin: 0;
     font-weight: 700;
+    margin: 0;
 }
 
 .description-content p {
     color: var(--text-dark);
-    line-height: 1.7;
-    margin: 0;
-    text-align: left;
     font-size: 1rem;
+    line-height: 1.7;
+    text-align: left;
+    margin: 0;
 }
 
 .event-details {
@@ -77,14 +80,13 @@
     color: var(--text-gray-600);
     font-size: 0.95rem;
 }
-
 .event-detail-item i {
     color: var(--primary);
     font-size: 1.1rem;
 }
 
 .event-highlights {
-    background: var(--background-gray-50);
+    background: var(--bg-50);
     padding: 1.25rem;
     border-radius: var(--radius-md);
     border-left: 4px solid var(--primary);
@@ -93,8 +95,8 @@
 .event-highlights h4 {
     color: var(--text-dark);
     font-size: 1.1rem;
-    margin: 0 0 0.75rem 0;
     font-weight: 600;
+    margin: 0 0 0.75rem;
 }
 
 .event-highlights ul {
@@ -107,25 +109,25 @@
 }
 
 .event-highlights li {
-    color: var(--text-gray-600);
-    padding-left: 1.5rem;
     position: relative;
+    padding-left: 1.5rem;
+    color: var(--text-gray-600);
     font-size: 0.95rem;
     line-height: 1.5;
 }
-
 .event-highlights li::before {
     content: '•';
-    color: var(--primary);
-    font-weight: bold;
     position: absolute;
     left: 0;
+    color: var(--primary);
+    font-weight: bold;
     font-size: 1.1rem;
 }
 
-.gallery-section {
-    min-height: 60vh;
-}
+/* ============================================================
+   GALLERY SECTION
+   ============================================================ */
+.gallery-section { min-height: 60vh; }
 
 .gallery-section h2 {
     text-align: center;
@@ -134,8 +136,8 @@
 
 .gallery-section > p {
     text-align: center;
-    margin-bottom: 3rem;
     color: var(--text-gray-600);
+    margin-bottom: 3rem;
 }
 
 .loading-state,
@@ -151,35 +153,25 @@
 .spinner {
     width: 50px;
     height: 50px;
-    border: 4px solid var(--border-color);
-    border-top: 4px solid var(--primary);
+    border: 4px solid var(--border);
+    border-top-color: var(--primary);
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    to { transform: rotate(360deg); }
 }
 
-.loading-state p {
-    color: var(--text-gray-600);
-    font-size: 1rem;
-}
+.loading-state p { color: var(--text-gray-600); font-size: 1rem; }
 
-.error-state {
-    color: #e74c3c;
-}
+.error-state { color: #e74c3c; }
+.error-state i { font-size: 3rem; }
+.error-state p { font-size: 1rem; text-align: center; }
 
-.error-state i {
-    font-size: 3rem;
-}
-
-.error-state p {
-    font-size: 1rem;
-    text-align: center;
-}
-
+/* ============================================================
+   CAROUSEL
+   ============================================================ */
 .carousel-container {
     position: relative;
     max-width: 1000px;
@@ -190,7 +182,7 @@
 .carousel-track-container {
     overflow: hidden;
     border-radius: var(--radius-lg);
-    background: var(--background-gray-50);
+    background: var(--bg-50);
     box-shadow: var(--shadow-md);
     height: 400px;
     display: flex;
@@ -210,11 +202,10 @@
     height: 100%;
     display: none;
     opacity: 0;
-    transition: opacity 0.5s ease-in-out;
     position: relative;
-    background: var(--background-white);
+    background: var(--bg-white);
+    transition: opacity 0.5s ease-in-out;
 }
-
 .carousel-slide.active {
     display: flex;
     opacity: 1;
@@ -229,7 +220,7 @@
     display: block;
     cursor: pointer;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity var(--transition);
 }
 
 .image-spinner {
@@ -241,11 +232,6 @@
     align-items: center;
     justify-content: center;
     z-index: 5;
-}
-
-.image-spinner .spinner {
-    width: 50px;
-    height: 50px;
 }
 
 .carousel-nav,
@@ -263,15 +249,15 @@
     align-items: center;
     justify-content: center;
     font-size: 1.8rem;
-    color: var(--background-white);
-    box-shadow: 0 4px 12px rgba(110, 195, 225, 0.4);
-    transition: all 0.3s ease;
-    z-index: 10;
     font-weight: bold;
+    color: var(--bg-white);
+    box-shadow: 0 4px 12px rgba(110, 195, 225, 0.4);
+    transition: background var(--transition), border-color var(--transition),
+                transform var(--transition), box-shadow var(--transition);
+    z-index: 10;
     user-select: none;
     padding: 0;
 }
-
 .carousel-nav:hover,
 .lightbox-nav:hover {
     background: var(--primary-dark);
@@ -280,30 +266,17 @@
     box-shadow: 0 6px 16px rgba(110, 195, 225, 0.6);
 }
 
-.carousel-prev,
-.lightbox-prev {
-    left: 1rem;
-}
-
-.carousel-next,
-.lightbox-next {
-    right: 1rem;
-}
-
-.lightbox-prev {
-    left: 2rem;
-}
-
-.lightbox-next {
-    right: 2rem;
-}
+.carousel-prev { left: 1rem; }
+.carousel-next { right: 1rem; }
+.lightbox-prev { left: 2rem; }
+.lightbox-next { right: 2rem; }
 
 .carousel-indicators {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 0.5rem;
     margin-top: 1.5rem;
-    flex-wrap: wrap;
     padding: 0 1rem;
 }
 
@@ -311,11 +284,9 @@
     min-width: 48px;
     height: 48px;
     border-radius: 12px;
-    background: var(--background-white);
-    border: 2px solid var(--border-color);
+    background: var(--bg-white);
+    border: 2px solid var(--border);
     cursor: pointer;
-    transition: all 0.3s ease;
-    padding: 0;
     font-size: 1rem;
     font-weight: 600;
     color: var(--text-dark);
@@ -323,22 +294,21 @@
     align-items: center;
     justify-content: center;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: background var(--transition), border-color var(--transition),
+                transform var(--transition), box-shadow var(--transition);
 }
-
 .carousel-dot:hover:not(:disabled) {
     background: var(--hover-bg);
     border-color: var(--text-gray-400);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
-
 .carousel-dot.active {
     background: var(--primary);
-    color: var(--background-white);
+    color: var(--bg-white);
     border-color: var(--primary);
     box-shadow: 0 4px 16px rgba(110, 195, 225, 0.4);
 }
-
 .carousel-dot:disabled {
     opacity: 0.4;
     cursor: not-allowed;
@@ -349,10 +319,9 @@
     line-height: 1;
     font-weight: 400;
 }
-
 .carousel-nav-btn:hover:not(:disabled) {
     background: var(--primary);
-    color: var(--background-white);
+    color: var(--bg-white);
     border-color: var(--primary);
 }
 
@@ -368,29 +337,26 @@
     pointer-events: none;
 }
 
+/* ============================================================
+   LIGHTBOX
+   ============================================================ */
 .lightbox {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     background: rgba(0, 0, 0, 0.95);
     z-index: 1000;
     align-items: center;
     justify-content: center;
 }
-
-.lightbox.active {
-    display: flex;
-}
+.lightbox.active { display: flex; }
 
 .lightbox-image {
     max-width: 90%;
     max-height: 90vh;
     object-fit: contain;
     border-radius: var(--radius-sm);
-    transition: opacity 0.3s ease;
+    transition: opacity var(--transition);
 }
 
 .lightbox-close {
@@ -399,21 +365,21 @@
     right: 2rem;
     background: transparent;
     border: none;
-    color: var(--background-white);
+    color: var(--bg-white);
     font-size: 3rem;
     cursor: pointer;
     z-index: 1001;
-    transition: transform 0.2s ease;
     line-height: 1;
     padding: 0;
     width: 40px;
     height: 40px;
+    transition: transform 0.2s ease;
 }
+.lightbox-close:hover { transform: scale(1.1); }
 
-.lightbox-close:hover {
-    transform: scale(1.1);
-}
-
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
 @media (max-width: 768px) {
     .kegiatan-description-and-video {
         flex-direction: column;
@@ -427,51 +393,26 @@
         justify-content: center;
         margin-top: 1rem;
     }
-
     .video-wrapper video {
         width: 100%;
         max-width: 280px;
     }
 
-    .description-content h3 {
-        font-size: 1.3rem;
-    }
+    .description-content h3 { font-size: 1.3rem; }
 
-    .event-details {
-        gap: 0.75rem;
-    }
+    .event-details { gap: 0.75rem; }
 
-    .carousel-container {
-        margin: 1.5rem auto;
-    }
+    .carousel-container { margin: 1.5rem auto; }
 
     .carousel-nav,
-    .lightbox-nav {
-        width: 50px;
-        height: 50px;
-        font-size: 1.6rem;
-    }
+    .lightbox-nav { width: 50px; height: 50px; font-size: 1.6rem; }
 
-    .carousel-prev {
-        left: 0.5rem;
-    }
+    .carousel-prev { left: 0.5rem; }
+    .carousel-next { right: 0.5rem; }
+    .lightbox-prev { left: 1rem; }
+    .lightbox-next { right: 1rem; }
 
-    .carousel-next {
-        right: 0.5rem;
-    }
-
-    .lightbox-prev {
-        left: 1rem;
-    }
-
-    .lightbox-next {
-        right: 1rem;
-    }
-
-    .carousel-indicators {
-        margin-top: 1rem;
-        gap: 0.4rem;
-    }
+    .carousel-indicators { margin-top: 1rem; gap: 0.4rem; }
 
     .carousel-dot,
     .carousel-ellipsis {
@@ -481,87 +422,38 @@
         border-radius: 10px;
     }
 
-    .carousel-nav-btn {
-        font-size: 1.6rem;
-    }
+    .carousel-nav-btn { font-size: 1.6rem; }
 
-    .lightbox-image {
-        max-width: 95%;
-        max-height: 85vh;
-    }
+    .lightbox-image { max-width: 95%; max-height: 85vh; }
 
-    .lightbox-close {
-        top: 1rem;
-        right: 1rem;
-        font-size: 2.5rem;
-    }
+    .lightbox-close { top: 1rem; right: 1rem; font-size: 2.5rem; }
 }
 
 @media (max-width: 480px) {
-    .kegiatan-description-and-video {
-        padding: 1.25rem;
-        gap: 1.25rem;
-    }
+    .kegiatan-description-and-video { padding: 1.25rem; gap: 1.25rem; }
 
-    .description-content h3 {
-        font-size: 1.2rem;
-    }
+    .description-content h3 { font-size: 1.2rem; }
+    .description-content p  { font-size: 0.95rem; }
 
-    .description-content p {
-        font-size: 0.95rem;
-    }
+    .event-detail-item { font-size: 0.9rem; }
 
-    .event-detail-item {
-        font-size: 0.9rem;
-    }
+    .event-highlights { padding: 1rem; }
+    .event-highlights h4 { font-size: 1rem; }
+    .event-highlights li  { font-size: 0.9rem; }
 
-    .event-highlights {
-        padding: 1rem;
-    }
+    .gallery-section > p { font-size: 0.9rem; margin-bottom: 2rem; }
 
-    .event-highlights h4 {
-        font-size: 1rem;
-    }
-
-    .event-highlights li {
-        font-size: 0.9rem;
-    }
-
-    .gallery-section > p {
-        font-size: 0.9rem;
-        margin-bottom: 2rem;
-    }
-
-    .carousel-track-container {
-        height: 300px;
-    }
+    .carousel-track-container { height: 300px; }
 
     .carousel-nav,
-    .lightbox-nav {
-        width: 46px;
-        height: 46px;
-        font-size: 1.4rem;
-    }
+    .lightbox-nav { width: 46px; height: 46px; font-size: 1.4rem; }
 
-    .carousel-prev {
-        left: 0.25rem;
-    }
+    .carousel-prev { left: 0.25rem; }
+    .carousel-next { right: 0.25rem; }
+    .lightbox-prev { left: 0.5rem; }
+    .lightbox-next { right: 0.5rem; }
 
-    .carousel-next {
-        right: 0.25rem;
-    }
-
-    .lightbox-prev {
-        left: 0.5rem;
-    }
-
-    .lightbox-next {
-        right: 0.5rem;
-    }
-
-    .carousel-indicators {
-        gap: 0.3rem;
-    }
+    .carousel-indicators { gap: 0.3rem; }
 
     .carousel-dot,
     .carousel-ellipsis {
@@ -571,7 +463,5 @@
         border-radius: 8px;
     }
 
-    .carousel-nav-btn {
-        font-size: 1.5rem;
-    }
+    .carousel-nav-btn { font-size: 1.5rem; }
 }

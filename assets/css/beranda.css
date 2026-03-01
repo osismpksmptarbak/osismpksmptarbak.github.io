@@ -1,15 +1,17 @@
+/* ============================================================
+   BANNER
+   ============================================================ */
 .banner {
     position: relative;
     min-height: 500px;
+    min-width: 100vw;
     display: flex;
     align-items: center;
-    min-width: 100vw;
 }
 
 .banner-bg {
     position: absolute;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -23,7 +25,7 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    max-width: 1200px;
+    max-width: var(--max-width);
     margin: 0 auto;
     padding: 2rem;
     gap: 2rem;
@@ -31,7 +33,7 @@
 
 .banner-left {
     flex: 1;
-    color: var(--background-white);
+    color: var(--bg-white);
 }
 
 .banner-left h1 {
@@ -43,20 +45,11 @@
 }
 
 .banner-left h2 {
-    color: var(--background-white);
+    color: var(--bg-white);
     font-size: 1.5rem;
     font-weight: 300;
     margin-bottom: 2rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.banner-buttons {
-    display: flex;
-    gap: 1rem;
-}
-
-.banner-buttons .btn {
-    text-shadow: none;
 }
 
 .banner-right {
@@ -71,15 +64,52 @@
     filter: drop-shadow(var(--shadow-md));
 }
 
+/* ============================================================
+   TOGGLE TABS  (shared pattern, beranda variant)
+   ============================================================ */
+.beranda-toggle-tabs {
+    display: flex;
+    gap: 1rem;
+}
+
+.beranda-toggle-tab {
+    flex: 1;
+    background: transparent;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    padding: 12px 24px;
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all var(--transition);
+}
+
+.beranda-toggle-tab.active {
+    background: var(--primary);
+    color: var(--bg-white);
+    box-shadow: 0 2px 8px rgba(110, 195, 225, 0.4);
+}
+
+/* ============================================================
+   PANEL VISIBILITY
+   ============================================================ */
+.org-panel.hidden { display: none; }
+
+/* ============================================================
+   VISI
+   ============================================================ */
 #visi {
-    background-color: var(--background-gray-100);
+    background-color: var(--bg-100);
     min-width: 100vw;
     margin-top: 0;
     text-align: center;
 }
 
 #visi-card {
-    background-color: var(--background-white);
+    background-color: var(--bg-white);
     border-radius: var(--radius-lg);
     border: 1px solid var(--primary);
     max-width: 796px;
@@ -88,28 +118,26 @@
     margin: 0 auto;
 }
 
-#visi h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-}
+#visi h2 { font-size: 2.5rem; margin-bottom: 1.5rem; }
 
 #visi p {
     font-size: 1.1rem;
     line-height: 1.8;
     color: var(--text-dark);
     max-width: 700px;
+    margin: 0 auto;
 }
 
+/* ============================================================
+   MISI
+   ============================================================ */
 #misi {
-    background: var(--background-white);
+    background: var(--bg-white);
     padding: 3rem 2.5rem;
     text-align: center;
 }
 
-#misi h2 {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-}
+#misi h2 { font-size: 2.5rem; margin-bottom: 2rem; }
 
 .misi-list {
     list-style: none;
@@ -123,25 +151,23 @@
 .misi-list li {
     border: 1px solid var(--primary);
     border-radius: var(--radius-lg);
-    background: var(--background-white);
-    transition: all 0.3s ease;
+    background: var(--bg-white);
     box-shadow: var(--shadow-md);
     width: 100%;
     max-width: 400px;
     padding: 1.5rem;
+    transition: transform var(--transition), box-shadow var(--transition);
 }
-
 .misi-list li:hover {
-    border-color: var(--primary);
     transform: translateY(-4px);
     box-shadow: var(--shadow-lg);
 }
 
 .misi-card-title {
     color: var(--primary);
-    margin-bottom: 1rem;
     font-weight: 700;
     font-size: 1.1rem;
+    margin-bottom: 1rem;
 }
 
 .misi-card-content {
@@ -150,16 +176,16 @@
     color: var(--text-dark);
 }
 
+/* ============================================================
+   PROKER
+   ============================================================ */
 #proker {
-    background: var(--background-white);
+    background: var(--bg-white);
     padding: 3rem 2.5rem;
     text-align: center;
 }
 
-#proker h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-}
+#proker h2 { font-size: 2.5rem; margin-bottom: 1rem; }
 
 .proker-intro {
     font-size: 1.05rem;
@@ -176,18 +202,16 @@
 }
 
 .proker-card {
-    background: var(--background-white);
+    background: var(--bg-white);
     border-radius: var(--radius-lg);
     overflow: hidden;
-    box-shadow: var(--shadow-md);
     border: 1px solid var(--primary);
-    transition: all 0.3s ease;
+    box-shadow: var(--shadow-md);
+    transition: transform var(--transition), box-shadow var(--transition);
 }
-
 .proker-card:hover {
     transform: translateY(-8px) scale(1.05);
     box-shadow: var(--shadow-lg);
-    border-color: var(--primary);
 }
 
 .proker-image {
@@ -198,7 +222,6 @@
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
     cursor: pointer;
 }
-
 .proker-image img {
     width: 100%;
     height: 100%;
@@ -209,7 +232,7 @@
     position: absolute;
     top: 1rem;
     right: 1rem;
-    background: var(--background-white);
+    background: var(--bg-white);
     color: var(--primary);
     width: 50px;
     height: 50px;
@@ -219,19 +242,17 @@
     justify-content: center;
     font-size: 1.25rem;
     font-weight: 700;
-    box-shadow: var(--shadow-md);
     font-family: 'Archivo Black', sans-serif;
+    box-shadow: var(--shadow-md);
 }
 
-.proker-content {
-    padding: 1.75rem;
-}
+.proker-content { padding: 1.75rem; }
 
 .proker-content h3 {
     color: var(--primary);
     font-size: 1.5rem;
-    margin-bottom: 1rem;
     font-family: 'Archivo Black', sans-serif;
+    margin-bottom: 1rem;
 }
 
 .proker-content p {
@@ -240,14 +261,11 @@
     font-size: 1rem;
 }
 
-section + section {
-    margin-top: 2rem;
-}
-
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
 @media (max-width: 768px) {
-    .banner {
-        min-height: 400px;
-    }
+    .banner { min-height: 400px; }
 
     .banner-content {
         flex-direction: column;
@@ -255,98 +273,78 @@ section + section {
         text-align: center;
     }
 
-    .banner-left {
-        flex: none;
-        width: 100%;
-    }
-    
-    .banner-right {
-        display: none;
-    }
+    .banner-left { flex: none; width: 100%; }
+    .banner-right { display: none; }
 
     .banner-buttons {
         justify-content: center;
         flex-wrap: wrap;
     }
 
-    #visi, #misi, #proker {
-        padding: 2.5rem 1.5rem;
-    }
+    #visi, #misi, #proker { padding: 2.5rem 1.5rem; }
 
-    #visi h2, #misi h2, #proker h2 {
-        font-size: 2rem;
-    }
+    #visi h2, #misi h2, #proker h2 { font-size: 2rem; }
 
-    #visi p, .proker-intro {
-        font-size: 1rem;
-    }
+    #visi p, .proker-intro { font-size: 1rem; }
 
-    .misi-list {
-        grid-template-columns: 1fr;
-    }
+    .misi-list { grid-template-columns: 1fr; }
 
     .proker-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
 
-    .proker-image {
-        height: 200px;
-    }
+    .proker-image { height: 200px; }
 
-    section + section {
-        margin-top: 1.5rem;
+    .beranda-toggle-tabs { max-width: 400px; }
+
+    .beranda-toggle-tab {
+        font-size: 0.9rem;
+        padding: 10px 20px;
     }
 }
 
 @media (max-width: 480px) {
-    .banner {
-        min-height: 350px;
-    }
+    .banner { min-height: 350px; }
 
-    .banner-content {
-        padding: 1rem 0.75rem;
-    }
+    .banner-content { padding: 1rem 0.75rem; }
 
     .banner-buttons {
         flex-direction: column;
         gap: 0.75rem;
         width: 100%;
     }
-
     .banner-buttons .btn {
         width: 100%;
         text-align: center;
         padding: 0.75rem 1rem;
     }
 
-    #visi, #misi, #proker {
-        padding: 2rem 1.25rem;
-    }
+    #visi, #misi, #proker { padding: 2rem 1.25rem; }
 
-    #visi h2, #misi h2, #proker h2 {
-        font-size: 1.75rem;
-    }
+    #visi h2, #misi h2, #proker h2 { font-size: 1.75rem; }
 
-    .proker-grid {
-        gap: 1.25rem;
-    }
+    .proker-grid { gap: 1.25rem; }
 
-    .proker-image {
-        height: 180px;
-    }
+    .proker-image { height: 180px; }
 
-    .proker-content {
-        padding: 1.5rem;
-    }
+    .proker-content { padding: 1.5rem; }
 
-    .proker-content h3 {
-        font-size: 1.25rem;
-    }
+    .proker-content h3 { font-size: 1.25rem; }
 
     .proker-number {
         width: 45px;
         height: 45px;
         font-size: 1.1rem;
+    }
+
+    .beranda-toggle-tabs {
+        padding: 4px;
+        max-width: 100%;
+    }
+
+    .beranda-toggle-tab {
+        font-size: 0.85rem;
+        padding: 10px 16px;
     }
 }

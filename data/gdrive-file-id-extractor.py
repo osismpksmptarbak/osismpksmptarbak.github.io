@@ -72,14 +72,12 @@ class DriveExtractor:
     def extract_file_ids(self, html_content: str) -> List[str]:
         """Extract file IDs from HTML content"""
         matches = self.FILE_PATTERN.findall(html_content)
-        # Remove duplicates while preserving order
         return list(dict.fromkeys(matches))
     
     def extract_subfolder_ids(self, html_content: str, current_folder_id: str) -> List[str]:
         """Extract subfolder IDs from HTML content"""
         matches = self.FOLDER_PATTERN.findall(html_content)
         unique_folders = list(dict.fromkeys(matches))
-        # Remove current folder
         return [f for f in unique_folders if f != current_folder_id]
     
     def process_folder(
@@ -105,7 +103,6 @@ class DriveExtractor:
         """
         indent = "  " * depth
         
-        # Prevent infinite recursion and revisiting folders
         if depth > max_depth:
             print(f"{indent}Warning: Max depth reached for folder {folder_id}")
             return []
@@ -123,14 +120,12 @@ class DriveExtractor:
         
         file_infos = []
         
-        # Extract files
         file_ids = self.extract_file_ids(html_content)
         for file_id in file_ids:
             file_infos.append(FileInfo(file_id=file_id, folder_path=folder_path))
         
         print(f"{indent}Found {len(file_ids)} files")
         
-        # Process subfolders if recursive
         if recursive:
             subfolder_ids = self.extract_subfolder_ids(html_content, folder_id)
             
@@ -175,7 +170,7 @@ class DriveExtractor:
         file_infos = self.process_folder(folder_id, recursive, max_depth=max_depth)
         
         if not file_infos:
-            print("\n⚠️  Warning: No files found.")
+            print("\nWarning: No files found.")
             print("Make sure the folder is shared publicly:")
             print("  1. Right-click folder > Share")
             print("  2. Click 'Get link'")
@@ -209,7 +204,7 @@ if (typeof module !== 'undefined' && module.exports) {{
 }}
 """
         output_file.write_text(js_content)
-        print(f"✅ JavaScript config saved to: {output_file}")
+        print(f"JavaScript config saved to: {output_file}")
     
     @staticmethod
     def generate_json(file_infos: List[FileInfo], output_file: Path) -> None:
@@ -228,14 +223,14 @@ if (typeof module !== 'undefined' && module.exports) {{
         }
         
         output_file.write_text(json.dumps(data, indent=2))
-        print(f"✅ JSON config saved to: {output_file}")
+        print(f"JSON config saved to: {output_file}")
     
     @staticmethod
     def generate_txt(file_infos: List[FileInfo], output_file: Path) -> None:
         """Generate plain text file with file IDs"""
         content = "\n".join(info.file_id for info in file_infos)
         output_file.write_text(content)
-        print(f"✅ Text file saved to: {output_file}")
+        print(f"Text file saved to: {output_file}")
 
 
 def main():
@@ -285,7 +280,6 @@ Examples:
     
     args = parser.parse_args()
     
-    # Get folder URL from args or prompt
     folder_url = args.folder_url
     if not folder_url:
         try:
@@ -298,7 +292,6 @@ Examples:
         parser.print_help()
         return
     
-    # Extract file IDs
     print()
     extractor = DriveExtractor()
     file_infos = extractor.extract_from_url(
@@ -310,9 +303,8 @@ Examples:
     if not file_infos:
         sys.exit(1)
     
-    print(f"\n✅ Total files found: {len(file_infos)}")
+    print(f"\nTotal files found: {len(file_infos)}")
     
-    # Output results
     if args.list:
         print("\nFile IDs:")
         for info in file_infos:
@@ -320,7 +312,6 @@ Examples:
     else:
         output_path = Path(args.output)
         
-        # Auto-detect format from extension if not specified
         if args.format == 'js' and output_path.suffix:
             if output_path.suffix == '.json':
                 args.format = 'json'

@@ -94,9 +94,9 @@
             <div class="banner-left">
                 <h1>OSIS/MPK SMP TARUNA BAKTI</h1>
                 <h2>MASA JABATAN 2025-2026</h2>
-                <div class="banner-buttons">
-                    <a href="#visi" class="btn btn-filled">Visi & Misi</a>
-                    <a href="struktur-organisasi.html" class="btn btn-outline">Struktur Organisasi</a>
+                <div class="beranda-toggle-tabs">
+                    <button class="beranda-toggle-tab active" data-org="OSIS">OSIS</button>
+                    <button class="beranda-toggle-tab" data-org="MPK">MPK</button>
                 </div>
             </div>
             <div class="banner-right">
@@ -105,16 +105,28 @@
         </div>
     </section>
 
-    <section id="visi">
+    <section id="visi" class="org-panel" data-org-panel="OSIS">
         <div id="visi-card">
             <h2>- VISI -</h2>
-            <p>Menjadikan OSIS SMP Taruna Bakti sebagai wadah kreatif, inovatif, dan kolaboratif untuk mengembangkan potensi siswa, menyalurkan aspirasi, serta menciptakan lingkungan sekolah yang berkarakter, berprestasi, dan harmonis.</p>
+            <div>
+                <p>Menjadikan OSIS SMP Taruna Bakti sebagai wadah kreatif, inovatif, dan kolaboratif untuk mengembangkan potensi siswa, menyalurkan aspirasi, serta menciptakan lingkungan sekolah yang berkarakter, berprestasi, dan harmonis.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="visi" class="org-panel hidden" data-org-panel="MPK">
+        <div id="visi-card">
+            <h2>- VISI -</h2>
+            <div>
+                <p>Menciptakan lingkungan organisasi yang disiplin, bertanggung jawab, serta memiliki rasa kebersamaan yang tinggi dalam melaksanakan fungsi organisasi untuk menjadikan lingkungan organisasi yang unggul dan berkarakter.</p>
+            </div>
         </div>
     </section>
 
     <section id="misi">
         <h2>- MISI -</h2>
-        <ul class="misi-list">
+
+        <ul class="misi-list org-panel" data-org-panel="OSIS">
             <li>
                 <h3 class="misi-card-title"><i class="fa-solid fa-people-group"></i> Karakter & Kepemimpinan</h3>
                 <p class="misi-card-content">Menumbuhkan karakter disiplin, tanggung jawab, dan kepemimpinan siswa sesuai nilai Pancasila dan 7 Landasan Mental SMP Taruna Bakti</p>
@@ -136,44 +148,111 @@
                 <p class="misi-card-content">Menciptakan lingkungan sekolah yang aman, nyaman, dan inspiratif dengan kerja sama harmonis antara siswa, guru, dan seluruh warga sekolah</p>
             </li>
         </ul>
+
+        <ul class="misi-list org-panel hidden" data-org-panel="MPK">
+            <li>
+                <h3 class="misi-card-title"><i class="fa-solid fa-shield-halved"></i> Disiplin & Tanggung Jawab</h3>
+                <p class="misi-card-content">Membangun rasa disiplin dan tanggung jawab dalam melaksanakan fungsi organisasi</p>
+            </li>
+            <li>
+                <h3 class="misi-card-title"><i class="fa-solid fa-people-arrows"></i> Kerja Sama Organisasi</h3>
+                <p class="misi-card-content">Menjalin kerja sama yang baik dengan sesama anggota untuk memaksimalkan seluruh kerja sama organisasi</p>
+            </li>
+            <li>
+                <h3 class="misi-card-title"><i class="fa-solid fa-magnifying-glass-chart"></i> Evaluasi & Pengawasan</h3>
+                <p class="misi-card-content">Mengoptimalkan evaluasi dan pengawasan terhadap anggota OSIS untuk terciptanya lingkungan organisasi yang ideal</p>
+            </li>
+        </ul>
     </section>
 
     <section id="proker">
         <h2>- PROGRAM KERJA -</h2>
-        <p class="proker-intro">Program kerja unggulan OSIS/MPK SMP Taruna Bakti periode 2025-2026</p>
-        <div class="proker-grid">
-            <div class="proker-card">
-                <div class="proker-image">
-                    <a href="https://www.instagram.com/reel/DPsizn9k8l5/">
-                        <img src="assets/images/proker/proker-owlcast.jpeg" alt="Owlcast">
-                    </a>
-                    <div class="proker-number">01</div>
+
+        <div class="org-panel" data-org-panel="OSIS">
+            <p class="proker-intro">Program kerja unggulan OSIS SMP Taruna Bakti periode 2025-2026</p>
+            <div class="proker-grid">
+                <div class="proker-card">
+                    <div class="proker-image">
+                        <a href="https://www.instagram.com/reel/DPsizn9k8l5/">
+                            <img src="assets/images/proker/proker-owlcast.jpeg" alt="Owlcast">
+                        </a>
+                        <div class="proker-number">01</div>
+                    </div>
+                    <div class="proker-content">
+                        <h3>Owlcast</h3>
+                        <p>Interview yang membicarakan tentang pelajaran seperti tips belajar, pola belajar, dll. Lalu akan di posting di Youtube SMP Taruna Bakti.</p>
+                    </div>
                 </div>
-                <div class="proker-content">
-                    <h3>Owlcast</h3>
-                    <p>Interview yang membicarakan tentang pelajaran seperti tips belajar, pola belajar, dll. Lalu akan di posting di Youtube SMP Taruna Bakti.</p>
+
+                <div class="proker-card">
+                    <div class="proker-image">
+                        <img src="assets/images/taruna-bakti-picture.jpeg" alt="Heart2Heart Placeholder">
+                        <div class="proker-number">02</div>
+                    </div>
+                    <div class="proker-content">
+                        <h3>Heart2Heart</h3>
+                        <p>Bazaar kewirausahaan dengan 50% hasil penjualan disumbangkan ke yang membutuhkan.</p>
+                    </div>
+                </div>
+
+                <div class="proker-card">
+                    <div class="proker-image">
+                        <img src="assets/images/taruna-bakti-picture.jpeg" alt="Cleaning Time Competition Placeholder">
+                        <div class="proker-number">03</div>
+                    </div>
+                    <div class="proker-content">
+                        <h3>Cleaning Time Competition</h3>
+                        <p>Lomba membersihkan kelas setiap sebulan sekali untuk menciptakan lingkungan belajar yang bersih dan nyaman.</p>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <div class="proker-card">
-                <div class="proker-image">
-                    <img src="assets/images/proker/proker-heart2heart.jpeg" alt="Heart2Heart">
-                    <div class="proker-number">02</div>
+        <div class="org-panel hidden" data-org-panel="MPK">
+            <p class="proker-intro">Program kerja unggulan MPK SMP Taruna Bakti periode 2025-2026</p>
+            <div class="proker-grid">
+                <div class="proker-card">
+                    <div class="proker-image">
+                        <img src="assets/images/taruna-bakti-picture.jpeg" alt="Rapat Dwibulan Placeholder">
+                        <div class="proker-number">01</div>
+                    </div>
+                    <div class="proker-content">
+                        <h3>Rapat Dwibulan</h3>
+                        <p>Rapat Tim Inti MPK yang dilaksanakan setiap dua bulan sekali dengan tujuan membahas dan melaporkan kemajuan serta progres selama masa jabatan.</p>
+                    </div>
                 </div>
-                <div class="proker-content">
-                    <h3>Heart2Heart</h3>
-                    <p>Bazaar kewirausahaan dengan 50% hasil penjualan disumbangkan ke yang membutuhkan.</p>
-                </div>
-            </div>
 
-            <div class="proker-card">
-                <div class="proker-image">
-                    <img src="assets/images/proker/proker-cleaning.jpeg" alt="Cleaning Time Competition">
-                    <div class="proker-number">03</div>
+                <div class="proker-card">
+                    <div class="proker-image">
+                        <img src="assets/images/taruna-bakti-picture.jpeg" alt="Tarbak VoiceBox Placeholder">
+                        <div class="proker-number">02</div>
+                    </div>
+                    <div class="proker-content">
+                        <h3>Tarbak VoiceBox</h3>
+                        <p>Survei terbuka berupa Google Forms bagi siswa-siswi untuk memberi ide dan masukan kepada OSIS dan MPK.</p>
+                    </div>
                 </div>
-                <div class="proker-content">
-                    <h3>Cleaning Time Competition</h3>
-                    <p>Lomba membersihkan kelas setiap sebulan sekali untuk menciptakan lingkungan belajar yang bersih dan nyaman.</p>
+
+                <div class="proker-card">
+                    <div class="proker-image">
+                        <img src="assets/images/taruna-bakti-picture.jpeg" alt="Laporan Kinerja Pengurus Placeholder">
+                        <div class="proker-number">03</div>
+                    </div>
+                    <div class="proker-content">
+                        <h3>Laporan Kinerja Pengurus</h3>
+                        <p>Laporan yang berisi tentang peningkatan secara akademis dan penilaian keorganisasian setiap pengurus.</p>
+                    </div>
+                </div>
+
+                <div class="proker-card">
+                    <div class="proker-image">
+                        <img src="assets/images/taruna-bakti-picture.jpeg" alt="Laporan Evaluasi Acara Placeholder">
+                        <div class="proker-number">04</div>
+                    </div>
+                    <div class="proker-content">
+                        <h3>Laporan Evaluasi Acara</h3>
+                        <p>Laporan evaluasi acara OSISMPK yang dibuat dengan bantuan sekretaris MPK setelah setiap acara berlangsung.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -192,5 +271,6 @@
     </footer>
 
     <script type="module" src="assets/js/main.js"></script>
+    <script src="assets/js/tab-switching.js"></script>
 </body>
 </html>

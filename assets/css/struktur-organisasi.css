@@ -1,3 +1,6 @@
+/* ============================================================
+   PAGE SECTION
+   ============================================================ */
 .struktur-organisasi-section {
     text-align: center;
     padding: 60px 20px;
@@ -5,11 +8,14 @@
 
 .struktur-organisasi-section h1 {
     font-size: 2.5rem;
-    margin-bottom: 3rem;
     font-weight: 700;
     color: var(--text-gray-900);
+    margin-bottom: 3rem;
 }
 
+/* ============================================================
+   TOGGLE TABS  (structure variant)
+   ============================================================ */
 .structure-toggle-container {
     display: flex;
     justify-content: center;
@@ -19,7 +25,7 @@
 
 .structure-toggle-tabs {
     display: flex;
-    background: var(--background-gray-100);
+    background: var(--bg-100);
     border-radius: var(--radius-md);
     padding: 6px;
     box-shadow: var(--shadow-md);
@@ -30,32 +36,31 @@
 .structure-toggle-tab {
     flex: 1;
     background: transparent;
-    color: var(--text-gray-600);
     border: none;
+    color: var(--text-gray-600);
     padding: 12px 24px;
     border-radius: var(--radius-sm);
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    transition: all var(--transition);
 }
-
-.structure-toggle-tab:hover {
-    color: var(--text-gray-700);
-}
-
+.structure-toggle-tab:hover { color: var(--text-gray-700); }
 .structure-toggle-tab.active {
     background: var(--primary);
-    color: var(--background-white);
+    color: var(--bg-white);
     box-shadow: 0 2px 8px rgba(110, 195, 225, 0.4);
 }
 
+/* ============================================================
+   ORG CHART LAYOUT
+   ============================================================ */
 .struktur-organisasi-container {
     display: inline-flex;
     gap: 40px;
-    max-width: 1200px;
+    max-width: var(--max-width);
     margin: 0 auto;
     align-items: flex-start;
 }
@@ -69,7 +74,7 @@
 
 .sekbid-description {
     flex: 0 0 350px;
-    background: var(--background-white);
+    background: var(--bg-white);
     border-radius: var(--radius-xl);
     border: 1px solid var(--primary);
     padding: 32px;
@@ -88,19 +93,19 @@
 .sekbid-description h2 {
     font-size: 1.75rem;
     color: var(--primary);
-    margin-bottom: 1rem;
     font-weight: 700;
+    margin-bottom: 1rem;
 }
 
 .sekbid-description > p {
     color: var(--text-light);
+    font-size: 0.95rem;
     line-height: 1.7;
     margin-bottom: 1.5rem;
-    font-size: 0.95rem;
 }
 
 .sekbid-highlights {
-    background: var(--background-gray-50);
+    background: var(--bg-50);
     border-radius: var(--radius-md);
     padding: 20px;
     margin-top: 1.5rem;
@@ -109,8 +114,8 @@
 .sekbid-highlights h3 {
     font-size: 1.1rem;
     color: var(--text-dark);
-    margin-bottom: 12px;
     font-weight: 600;
+    margin-bottom: 12px;
 }
 
 .sekbid-highlights ul {
@@ -120,25 +125,24 @@
 }
 
 .sekbid-highlights li {
-    color: var(--text-light);
-    padding: 8px 0 8px 24px;
     position: relative;
+    padding: 8px 0 8px 24px;
+    color: var(--text-light);
     font-size: 0.9rem;
 }
-
 .sekbid-highlights li::before {
     content: '•';
-    color: var(--primary);
-    font-weight: bold;
     position: absolute;
     left: 8px;
+    color: var(--primary);
+    font-weight: bold;
 }
 
 .struktur-organisasi-vertical {
     display: inline-flex;
     flex-direction: column;
+    align-items: center;
     gap: 32px;
-    animation: fadeIn 0.4s ease;
     width: fit-content;
 }
 
@@ -150,46 +154,46 @@
     width: fit-content;
 }
 
+/* ============================================================
+   PERSON CARD
+   ============================================================ */
 .struktur-organisasi-card {
-    background: var(--background-white);
+    background: var(--bg-white);
     border-radius: 24px;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--border);
     overflow: hidden;
     width: 240px;
     box-shadow: var(--shadow-md);
-    transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
+    transition: transform var(--transition), box-shadow var(--transition);
 }
-
 .struktur-organisasi-card:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-lg);
 }
 
-.struktur-organisasi-card-header {
-    padding: 24px 24px 0;
-}
+.struktur-organisasi-card-header { padding: 24px 24px 0; }
 
 .struktur-organisasi-card-header img {
     width: 100%;
     height: auto;
-    aspect-ratio: 3/4;
+    aspect-ratio: 3 / 4;
     border-radius: 6px;
     object-fit: cover;
     display: block;
 }
 
 .struktur-organisasi-card-content {
+    flex: 1;
     text-align: left;
     padding: 20px 24px 24px;
-    flex: 1;
 }
 
 .struktur-organisasi-badge {
-    background: var(--primary);
-    color: var(--background-white);
     display: inline-block;
+    background: var(--primary);
+    color: var(--bg-white);
     padding: 6px 14px;
     border-radius: var(--radius-sm);
     font-size: 13px;
@@ -201,16 +205,19 @@
     font-size: 1rem;
     font-weight: 700;
     color: var(--text-black);
-    margin: 0 0 4px 0;
+    margin: 0 0 4px;
 }
 
 .struktur-organisasi-class {
     font-size: 0.875rem;
+    font-weight: 400;
     color: var(--text-gray-400);
     margin: 0;
-    font-weight: 400;
 }
 
+/* ============================================================
+   SEKBID CAROUSEL SECTION
+   ============================================================ */
 .sekbid-carousel-section {
     padding: 4rem 0 6rem;
     position: relative;
@@ -220,11 +227,11 @@
 .sekbid-carousel-title {
     text-align: center;
     font-size: 2.5rem;
+    font-weight: 900;
     color: var(--primary);
     text-transform: uppercase;
-    margin-bottom: 3rem;
     letter-spacing: 2px;
-    font-weight: 900;
+    margin-bottom: 3rem;
     padding: 0 2rem;
 }
 
@@ -241,17 +248,16 @@
 }
 
 .sekbid-card {
-    background: var(--background-white);
+    background: var(--bg-white);
     border-radius: var(--radius-xl);
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--border);
     box-shadow: var(--shadow-md);
     overflow: hidden;
     width: 350px;
     min-width: 350px;
     flex-shrink: 0;
-    transition: all 0.3s ease;
+    transition: transform var(--transition), box-shadow var(--transition);
 }
-
 .sekbid-card:hover {
     transform: translateY(-8px);
     box-shadow: var(--shadow-lg);
@@ -264,9 +270,8 @@
     align-items: center;
     justify-content: center;
     padding: 2rem 2rem 0;
-    background: var(--background-white);
+    background: var(--bg-white);
 }
-
 .sekbid-card-image img {
     max-width: 100%;
     max-height: 100%;
@@ -279,26 +284,26 @@
 }
 
 .sekbid-badge {
-    background: var(--primary);
-    color: var(--background-white);
     display: inline-block;
+    background: var(--primary);
+    color: var(--bg-white);
     padding: 6px 16px;
     border-radius: var(--radius-sm);
     font-size: 13px;
     font-weight: 700;
-    margin-bottom: 12px;
     text-transform: uppercase;
+    margin-bottom: 12px;
 }
 
 .sekbid-card-title {
     font-size: 1.25rem;
-    color: var(--text-dark);
-    margin-bottom: 1.5rem;
     font-weight: 700;
+    color: var(--text-dark);
     line-height: 1.4;
     min-height: 70px;
     display: flex;
     align-items: center;
+    margin-bottom: 1.5rem;
 }
 
 .sekbid-btn {
@@ -306,24 +311,19 @@
     align-items: center;
     gap: 8px;
     background: var(--primary);
-    color: var(--background-white);
+    color: var(--bg-white);
     padding: 12px 24px;
     border-radius: var(--radius-sm);
     text-decoration: none;
     font-weight: 700;
     font-size: 0.95rem;
-    transition: all 0.3s ease;
+    transition: background var(--transition), transform var(--transition);
 }
-
 .sekbid-btn:hover {
     background: var(--primary-hover);
     transform: translateX(4px);
 }
-
-.sekbid-btn::after {
-    content: '→';
-    font-size: 1.2rem;
-}
+.sekbid-btn::after { content: '→'; font-size: 1.2rem; }
 
 .carousel-nav {
     position: absolute;
@@ -339,46 +339,112 @@
     align-items: center;
     justify-content: center;
     font-size: 1.8rem;
-    color: var(--background-white);
-    box-shadow: 0 4px 12px rgba(110, 195, 225, 0.4);
-    transition: all 0.3s ease;
-    z-index: 10;
     font-weight: bold;
+    color: var(--bg-white);
+    box-shadow: 0 4px 12px rgba(110, 195, 225, 0.4);
+    transition: background var(--transition), border-color var(--transition),
+                transform var(--transition), box-shadow var(--transition);
+    z-index: 10;
 }
-
 .carousel-nav:hover:not(:disabled) {
     background: var(--primary-dark);
     border-color: var(--primary-dark);
     transform: translateY(-50%) scale(1.15);
     box-shadow: 0 6px 16px rgba(110, 195, 225, 0.6);
 }
-
 .carousel-nav:disabled {
-    cursor: not-allowed;
     opacity: 0.4;
+    cursor: not-allowed;
     background: var(--text-gray-400);
     border-color: var(--text-gray-400);
 }
+.carousel-nav.prev { left: 10px; }
+.carousel-nav.next { right: 10px; }
 
-.carousel-nav.prev {
-    left: 10px;
+/* ============================================================
+   PROKER PANEL
+   ============================================================ */
+.proker-row-wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 32px;
+    width: fit-content;
 }
 
-.carousel-nav.next {
-    right: 10px;
+.proker-panel {
+    background: var(--bg-white);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--primary);
+    padding: 28px 32px;
+    box-shadow: var(--shadow-md);
+    min-width: 320px;
+    max-width: 420px;
+    text-align: left;
+    align-self: stretch;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.proker-panel-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    font-family: 'Archivo Black', sans-serif;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--primary);
 }
 
+.proker-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: proker-counter;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.proker-list li {
+    counter-increment: proker-counter;
+    padding-left: 36px;
+    position: relative;
+}
+.proker-list li::before {
+    content: counter(proker-counter);
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 24px;
+    height: 24px;
+    background: var(--primary);
+    color: var(--bg-white);
+    border-radius: 50%;
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.proker-name {
+    display: block;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+}
+
+.proker-desc {
+    font-size: 0.85rem;
+    color: var(--text-gray-600);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
 @media (max-width: 1024px) {
     .struktur-organisasi-container {
         flex-direction: column;
@@ -392,94 +458,62 @@
         position: static;
     }
 
-    .struktur-organisasi-section > .struktur-organisasi-logo {
-        display: none;
+    .struktur-organisasi-section > .struktur-organisasi-logo { display: none; }
+
+    .proker-row-wrapper {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 600px;
+    }
+
+    .proker-panel {
+        width: 100%;
+        max-width: 600px;
     }
 }
 
 @media (max-width: 768px) {
     .struktur-organisasi-section h1,
-    .sekbid-carousel-title {
-        font-size: 2rem;
-    }
-    
-    .struktur-organisasi-card {
-        width: 220px;
-    }
+    .sekbid-carousel-title { font-size: 2rem; }
 
-    .carousel-container {
-        padding: 40px 60px 60px;
-    }
+    .struktur-organisasi-card { width: 220px; }
 
-    .sekbid-card {
-        width: 300px;
-        min-width: 300px;
-    }
+    .carousel-container { padding: 40px 60px 60px; }
 
-    .carousel-nav {
-        width: 50px;
-        height: 50px;
-        font-size: 1.6rem;
-    }
+    .sekbid-card { width: 300px; min-width: 300px; }
 
-    .structure-toggle-tabs {
-        max-width: 400px;
-    }
+    .carousel-nav { width: 50px; height: 50px; font-size: 1.6rem; }
+
+    .structure-toggle-tabs { max-width: 400px; }
 
     .structure-toggle-tab {
         font-size: 0.9rem;
         padding: 10px 20px;
     }
+
+    .proker-panel { padding: 20px 24px; min-width: unset; }
 }
 
 @media (max-width: 480px) {
     .struktur-organisasi-section h1,
-    .sekbid-carousel-title {
-        font-size: 1.75rem;
-        letter-spacing: 1px;
-    }
-    
-    .struktur-organisasi-card {
-        width: 100%;
-        max-width: 280px;
-    }
+    .sekbid-carousel-title { font-size: 1.75rem; letter-spacing: 1px; }
 
-    .struktur-organisasi-horizontal {
-        width: 100%;
-    }
+    .struktur-organisasi-card { width: 100%; max-width: 280px; }
 
-    .carousel-container {
-        padding: 40px 50px 60px;
-    }
+    .struktur-organisasi-horizontal { width: 100%; }
 
-    .sekbid-card {
-        width: 280px;
-        min-width: 280px;
-    }
+    .carousel-container { padding: 40px 50px 60px; }
 
-    .sekbid-card-image {
-        height: 220px;
-        padding: 1.5rem 1.5rem 0;
-    }
+    .sekbid-card { width: 280px; min-width: 280px; }
 
-    .carousel-nav {
-        width: 46px;
-        height: 46px;
-        font-size: 1.4rem;
-    }
-    
-    .carousel-nav.prev {
-        left: 5px;
-    }
-    
-    .carousel-nav.next {
-        right: 5px;
-    }
+    .sekbid-card-image { height: 220px; padding: 1.5rem 1.5rem 0; }
 
-    .structure-toggle-tabs {
-        padding: 4px;
-        max-width: 100%;
-    }
+    .carousel-nav { width: 46px; height: 46px; font-size: 1.4rem; }
+    .carousel-nav.prev { left: 5px; }
+    .carousel-nav.next { right: 5px; }
+
+    .structure-toggle-tabs { padding: 4px; max-width: 100%; }
 
     .structure-toggle-tab {
         font-size: 0.85rem;
