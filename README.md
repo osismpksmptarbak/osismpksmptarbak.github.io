@@ -1,7 +1,7 @@
 # Website Resmi OSIS/MPK SMP Taruna Bakti
 
-## Ini apa?
-Website ini merupakan bagian dari <strong>Program Kerja Sekbid 8 (Teknologi Informasi & Komunikasi)</strong>. Tujuan utamanya adalah untuk mendigitalisasi informasi organisasi agar lebih mudah diakses oleh siswa, guru, dan alumni.
+## Ini Apa?
+Website ini merupakan bagian dari <strong>Proker Sekbid 8 (Teknologi, Informasi, dan Komunikasi)</strong>. Tujuan utamanya adalah untuk mendigitalisasi informasi organisasi agar lebih mudah diakses oleh siswa, guru, dan alumni.
 
 ## Pengembang & Pengelola
 * **Developer:** Arslan (Sekbid 8)

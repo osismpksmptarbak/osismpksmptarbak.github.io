@@ -280,12 +280,12 @@ header {
     position: absolute;
     right: 0.5rem;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-50%) rotate(180deg);
     transition: transform var(--transition);
     font-size: 0.8rem;
 }
 .accordion-header.active::after {
-    transform: translateY(-50%) rotate(180deg);
+    transform: translateY(-50%);
 }
 
 .accordion-content {

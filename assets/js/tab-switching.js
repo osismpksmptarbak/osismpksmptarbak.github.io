@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('sectionTitle').childNodes[2].textContent = isOSIS
                     ? ' STRUKTUR ORGANISASI OSIS'
                     : ' STRUKTUR ORGANISASI MPK';
-                document.getElementById('carouselTitle').textContent = isOSIS ? 'SEKBID' : 'KOMISI';
+                document.getElementById('carouselTitle').textContent = isOSIS ? '- SEKBID -' : '- KOMISI -';
 
                 window.carousel.setTrack(isOSIS ? osisTrack : mpkTrack, isFirstLoad ? initialIndex : 0);
                 isFirstLoad = false;
