@@ -31,7 +31,7 @@ class Carousel {
     _structureUpdate() {
         if (!this.activeTrack) return;
 
-        const totalCards = this.activeTrack.querySelectorAll('.sekbid-card').length;
+        const totalCards = this.activeTrack.querySelectorAll('.divisi-card').length;
         const maxIndex = Math.max(0, totalCards - this._getVisibleCards());
 
         this.currentIndex = Math.max(0, Math.min(this.currentIndex, maxIndex));
@@ -56,7 +56,7 @@ class Carousel {
 
     _structureNext() {
         if (!this.activeTrack) return;
-        const totalCards = this.activeTrack.querySelectorAll('.sekbid-card').length;
+        const totalCards = this.activeTrack.querySelectorAll('.divisi-card').length;
         const maxIndex = Math.max(0, totalCards - this._getVisibleCards());
         if (this.currentIndex < maxIndex) {
             this.currentIndex++;

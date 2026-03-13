@@ -72,7 +72,7 @@
     margin: 0 auto;
 }
 
-.sekbid-description {
+.divisi-description {
     flex: 0 0 350px;
     background: var(--bg-white);
     border-radius: var(--radius-xl);
@@ -84,53 +84,47 @@
     top: 100px;
 }
 
-.sekbid-description .struktur-organisasi-logo {
+.divisi-description .struktur-organisasi-logo {
     width: 200px;
     height: 200px;
     margin-bottom: 24px;
 }
 
-.sekbid-description h2 {
+.divisi-description h2 {
     font-size: 1.75rem;
     color: var(--primary);
     font-weight: 700;
     margin-bottom: 1rem;
 }
 
-.sekbid-description > p {
+.divisi-description > p {
     color: var(--text-light);
     font-size: 0.95rem;
     line-height: 1.7;
     margin-bottom: 1.5rem;
 }
 
-.sekbid-highlights {
-    background: var(--bg-50);
-    border-radius: var(--radius-md);
-    padding: 20px;
-    margin-top: 1.5rem;
-}
-
-.sekbid-highlights h3 {
+.divisi-description h3 {
     font-size: 1.1rem;
     color: var(--text-dark);
     font-weight: 600;
     margin-bottom: 12px;
 }
 
-.sekbid-highlights ul {
+.divisi-description ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.sekbid-highlights li {
+.divisi-description li {
     position: relative;
     padding: 8px 0 8px 24px;
-    color: var(--text-light);
+    color: var(--text-dark);
     font-size: 0.9rem;
 }
-.sekbid-highlights li::before {
+
+.divisi-description li::before {
     content: '•';
     position: absolute;
     left: 8px;
@@ -150,7 +144,7 @@
     display: inline-flex;
     flex-wrap: wrap;
     gap: 24px;
-    justify-content: left;
+    justify-content: center;
     width: fit-content;
 }
 
@@ -218,13 +212,13 @@
 /* ============================================================
    SEKBID CAROUSEL SECTION
    ============================================================ */
-.sekbid-carousel-section {
+.divisi-carousel-section {
     padding: 4rem 0 6rem;
     position: relative;
     overflow: hidden;
 }
 
-.sekbid-carousel-title {
+.divisi-carousel-title {
     text-align: center;
     font-size: 2.5rem;
     font-weight: 900;
@@ -247,7 +241,7 @@
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.sekbid-card {
+.divisi-card {
     background: var(--bg-white);
     border-radius: var(--radius-xl);
     border: 1px solid var(--border);
@@ -258,12 +252,12 @@
     flex-shrink: 0;
     transition: transform var(--transition), box-shadow var(--transition);
 }
-.sekbid-card:hover {
+.divisi-card:hover {
     transform: translateY(-8px);
     box-shadow: var(--shadow-lg);
 }
 
-.sekbid-card-image {
+.divisi-card-image {
     width: 100%;
     height: 280px;
     display: flex;
@@ -272,18 +266,18 @@
     padding: 2rem 2rem 0;
     background: var(--bg-white);
 }
-.sekbid-card-image img {
+.divisi-card-image img {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
 }
 
-.sekbid-card-content {
+.divisi-card-content {
     padding: 1.5rem 2rem 2rem;
     text-align: left;
 }
 
-.sekbid-badge {
+.divisi-badge {
     display: inline-block;
     background: var(--primary);
     color: var(--bg-white);
@@ -295,7 +289,7 @@
     margin-bottom: 12px;
 }
 
-.sekbid-card-title {
+.divisi-card-title {
     font-size: 1.25rem;
     font-weight: 700;
     color: var(--text-dark);
@@ -306,7 +300,7 @@
     margin-bottom: 1.5rem;
 }
 
-.sekbid-btn {
+.divisi-btn {
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -319,11 +313,11 @@
     font-size: 0.95rem;
     transition: background var(--transition), transform var(--transition);
 }
-.sekbid-btn:hover {
+.divisi-btn:hover {
     background: var(--primary-hover);
     transform: translateX(4px);
 }
-.sekbid-btn::after { content: '→'; font-size: 1.2rem; }
+.divisi-btn::after { content: '→'; font-size: 1.2rem; }
 
 .carousel-nav {
     position: absolute;
@@ -451,7 +445,7 @@
         align-items: center;
     }
 
-    .sekbid-description {
+    .divisi-description {
         flex: 0 0 auto;
         width: 100%;
         max-width: 600px;
@@ -475,13 +469,13 @@
 
 @media (max-width: 768px) {
     .struktur-organisasi-section h1,
-    .sekbid-carousel-title { font-size: 2rem; }
+    .divisi-carousel-title { font-size: 2rem; }
 
     .struktur-organisasi-card { width: 220px; }
 
     .carousel-container { padding: 40px 60px 60px; }
 
-    .sekbid-card { width: 300px; min-width: 300px; }
+    .divisi-card { width: 300px; min-width: 300px; }
 
     .carousel-nav { width: 50px; height: 50px; font-size: 1.6rem; }
 
@@ -497,7 +491,7 @@
 
 @media (max-width: 480px) {
     .struktur-organisasi-section h1,
-    .sekbid-carousel-title { font-size: 1.75rem; letter-spacing: 1px; }
+    .divisi-carousel-title { font-size: 1.75rem; letter-spacing: 1px; }
 
     .struktur-organisasi-card { width: 100%; max-width: 280px; }
 
@@ -505,9 +499,9 @@
 
     .carousel-container { padding: 40px 50px 60px; }
 
-    .sekbid-card { width: 280px; min-width: 280px; }
+    .divisi-card { width: 280px; min-width: 280px; }
 
-    .sekbid-card-image { height: 220px; padding: 1.5rem 1.5rem 0; }
+    .divisi-card-image { height: 220px; padding: 1.5rem 1.5rem 0; }
 
     .carousel-nav { width: 46px; height: 46px; font-size: 1.4rem; }
     .carousel-nav.prev { left: 5px; }
