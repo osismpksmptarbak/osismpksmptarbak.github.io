@@ -203,7 +203,6 @@
     height: 13.75rem;
     overflow: hidden;
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-    cursor: pointer;
 }
 .proker-image img {
     width: 100%;
