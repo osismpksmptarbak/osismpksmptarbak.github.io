@@ -210,8 +210,6 @@ class Carousel {
             return span;
         };
 
-        container.appendChild(makeNavBtn('«', 'First slide', 0));
-
         if (total <= maxVisible) {
             for (let i = 0; i < total; i++) container.appendChild(makeDot(i));
         } else {
@@ -225,8 +223,6 @@ class Carousel {
             }
             dots.forEach(i => container.appendChild(i === 'ellipsis' ? makeEllipsis() : makeDot(i)));
         }
-
-        container.appendChild(makeNavBtn('»', 'Last slide', total - 1));
     }
 
     _goToSlide(index) {
