@@ -1,0 +1,43 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+body {
+    font-family: $font-body;
+    padding-top: $header-height;
+    color: $text-dark;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: $font-heading;
+}
+
+section {
+    padding: 4rem 2rem;
+    max-width: $max-width;
+    margin: 0 auto;
+
+    h2 {
+        color: $primary;
+        margin-bottom: 1rem;
+        font-size: 2rem;
+    }
+
+    p {
+        line-height: 1.6;
+        color: $text-light;
+    }
+
+    & + section {
+        margin-top: 2rem;
+    }
+}
+
+@include tablet {
+    body { padding-top: $header-height-md; }
+
+    section { padding: 3rem 1.5rem; }
+}
+
+@include mobile {
+    body { padding-top: $header-height-sm; }
+}

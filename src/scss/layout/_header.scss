@@ -1,0 +1,227 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: $header-height;
+    background: $bg-white;
+    padding: 1rem 2rem;
+    box-shadow: $shadow-sm;
+    z-index: 100;
+}
+
+.header-container {
+    max-width: $max-width;
+    width: 100%;
+    margin: 0 auto;
+    @include flex-between;
+    gap: 1rem;
+    height: 100%;
+}
+
+.logo img {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+// --- Nav ---
+
+.nav-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-btn {
+    background: transparent;
+    border: none;
+    border-radius: $radius-sm;
+    color: $text-dark;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background $transition;
+    white-space: nowrap;
+
+    &:hover { color: $text-black; }
+}
+
+.nav-divider {
+    width: 1px;
+    height: 1.5rem;
+    margin-right: 1rem;
+    background: $text-dark;
+}
+
+.menu-toggle {
+    border: none;
+    padding: 0.75rem 1rem;
+    border-radius: $radius-sm;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background $transition;
+    white-space: nowrap;
+
+    &:hover { background: $primary-hover; }
+}
+
+// --- Side menu ---
+
+.side-menu {
+    position: fixed;
+    top: 0;
+    right: -21.875rem;
+    width: 21.875rem;
+    height: 100vh;
+    background: $bg-white;
+    box-shadow: -0.125rem 0 0.625rem rgba(0, 0, 0, 0.2);
+    transition: right $transition;
+    z-index: 200;
+    overflow-y: auto;
+
+    &.open { right: 0; }
+}
+
+.menu-header {
+    padding: 1.5rem;
+    @include flex-between;
+
+    h2 {
+        font-size: 1rem;
+        font-weight: 400;
+    }
+}
+
+.close-btn {
+    background: transparent;
+    border: none;
+    color: $text-dark;
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.menu-content {
+    padding: 2rem 1.5rem;
+}
+
+.menu-section {
+    margin-bottom: 1rem;
+}
+
+// --- Accordion ---
+
+.accordion-header {
+    color: $text-dark;
+    font-weight: 400;
+    font-size: 1rem;
+    border-bottom: 1px solid $text-dark;
+    padding: 0.5rem 2rem 0.5rem 0.5rem;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    transition: background $transition;
+
+    &:hover { background: $hover-bg; }
+
+    &::after {
+        content: '▼';
+        position: absolute;
+        right: 0.5rem;
+        top: 50%;
+        transform: translateY(-50%) rotate(180deg);
+        transition: transform $transition;
+        font-size: 0.8rem;
+    }
+
+    &.active::after {
+        transform: translateY(-50%);
+    }
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height $transition;
+    list-style: none;
+
+    &.active { max-height: 31.25rem; }
+
+    a {
+        color: $text-dark;
+        text-decoration: none;
+        display: block;
+        padding: 0.5rem;
+        transition: background $transition, color $transition;
+
+        &:hover {
+            background: $hover-bg;
+            color: $primary;
+        }
+    }
+}
+
+// --- Overlay ---
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: $overlay;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity $transition, visibility $transition;
+    z-index: 150;
+
+    &.active {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+// --- Responsive ---
+
+@include wide {
+    .nav-btn {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.9rem;
+    }
+}
+
+@include nav-collapse {
+    .nav-buttons .nav-btn:not(.menu-toggle),
+    .nav-divider {
+        display: none;
+    }
+}
+
+@include tablet {
+    header { padding: 0.75rem 1rem; height: $header-height-md; }
+
+    .logo img { width: 2rem; height: 2rem; }
+
+    .side-menu {
+        width: 85vw;
+        max-width: 21.875rem;
+        right: calc(-85vw);
+    }
+}
+
+@include mobile {
+    header { padding: 0.5rem 0.75rem; height: $header-height-sm; }
+
+    .side-menu {
+        width: 90vw;
+        right: calc(-90vw);
+    }
+
+    .menu-content { padding: 1.5rem 1rem; }
+
+    .accordion-header {
+        font-size: 0.95rem;
+        padding: 0.5rem 1.5rem 0.5rem 0.5rem;
+    }
+}

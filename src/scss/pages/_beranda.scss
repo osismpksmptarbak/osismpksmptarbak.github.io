@@ -1,0 +1,336 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// --- Banner ---
+
+.banner {
+    position: relative;
+    min-height: 31.25rem;
+    min-width: 100vw;
+    display: flex;
+    align-items: center;
+
+    &-bg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 1;
+    }
+
+    &-content {
+        position: relative;
+        z-index: 2;
+        @include flex-between;
+        width: 100%;
+        max-width: $max-width;
+        margin: 0 auto;
+        padding: 2rem;
+        gap: 2rem;
+    }
+
+    &-left {
+        flex: 1;
+        color: $bg-white;
+
+        h1 {
+            color: $primary;
+            font-size: 3rem;
+            margin-bottom: 0;
+            line-height: 1.2;
+            text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5);
+        }
+
+        h2 {
+            color: $bg-white;
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5);
+        }
+    }
+
+    &-right {
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    &-logo {
+        max-width: 18.75rem;
+        height: auto;
+        filter: drop-shadow($shadow-md);
+    }
+}
+
+// --- Toggle tabs ---
+
+.beranda-toggle-tabs {
+    display: flex;
+    gap: 1rem;
+}
+
+.beranda-toggle-tab {
+    flex: 1;
+    background: transparent;
+    border: 1px solid $primary;
+    color: $primary;
+    padding: 0.75rem 1.5rem;
+    border-radius: $radius-sm;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.03125rem;
+    transition: all $transition;
+
+    &.active {
+        background: $primary;
+        color: $bg-white;
+        box-shadow: 0 0.125rem 0.5rem rgba(110, 195, 225, 0.4);
+    }
+}
+
+// --- Visi ---
+
+#visi {
+    background-color: $bg-100;
+    min-width: 100vw;
+    margin-top: 0;
+    text-align: center;
+
+    h2 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+
+    p {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: $text-dark;
+        max-width: 43.75rem;
+        margin: 0 auto;
+    }
+}
+
+#visi-card {
+    @include card;
+    max-width: 49.75rem;
+    padding: 3rem 2.5rem;
+    margin: 0 auto;
+}
+
+// --- Misi ---
+
+#misi {
+    background: $bg-white;
+    padding: 3rem 2.5rem;
+    text-align: center;
+
+    h2 { font-size: 2.5rem; margin-bottom: 2rem; }
+}
+
+.misi-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    justify-content: center;
+
+    li {
+        border: 1px solid $primary;
+        border-radius: $radius-lg;
+        background: $bg-white;
+        box-shadow: $shadow-md;
+        flex: 1 1 18.75rem;
+        padding: 1.5rem;
+        @include hover-lift;
+    }
+}
+
+.misi-card-title {
+    color: $primary;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.misi-card-content {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: $text-dark;
+}
+
+// --- Proker ---
+
+#proker {
+    background: $bg-white;
+    padding: 3rem 2.5rem;
+    text-align: center;
+
+    h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+}
+
+.proker-intro {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: $text-dark;
+    margin-bottom: 2.5rem;
+}
+
+.proker-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 2rem;
+    justify-content: center;
+}
+
+.proker-card {
+    @include card;
+    overflow: hidden;
+    flex: 1 1 20rem;
+    @include hover-lift(-0.5rem);
+
+    &:hover { transform: translateY(-0.5rem) scale(1.05); }
+}
+
+.proker-image {
+    position: relative;
+    width: 100%;
+    height: 13.75rem;
+    overflow: hidden;
+    background: linear-gradient(135deg, $primary 0%, $primary-dark 100%);
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.proker-number {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: $bg-white;
+    color: $primary;
+    width: 3.125rem;
+    height: 3.125rem;
+    border-radius: 50%;
+    @include flex-center;
+    font-size: 1.25rem;
+    font-weight: 700;
+    font-family: $font-heading;
+    box-shadow: $shadow-md;
+}
+
+.proker-content {
+    padding: 1.75rem;
+
+    h3 {
+        color: $primary;
+        font-size: 1.5rem;
+        font-family: $font-heading;
+        margin-bottom: 1rem;
+    }
+
+    p {
+        color: $text-dark;
+        line-height: 1.7;
+        font-size: 1rem;
+    }
+}
+
+// --- Responsive ---
+
+@include tablet {
+    .banner {
+        min-height: 25rem;
+
+        &-content {
+            flex-direction: column;
+            padding: 1.5rem 1rem;
+            text-align: center;
+        }
+
+        &-left { flex: none; width: 100%; }
+        &-right { display: none; }
+    }
+
+    .banner-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    #visi, #misi, #proker { padding: 2.5rem 1.5rem; }
+
+    #visi h2, #misi h2, #proker h2 { font-size: 2rem; }
+
+    #visi p, .proker-intro { font-size: 1rem; }
+
+    .misi-list { grid-template-columns: 1fr; }
+
+    .proker-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .proker-image { height: 12.5rem; }
+
+    .beranda-toggle-tabs { max-width: 25rem; }
+
+    .beranda-toggle-tab {
+        font-size: 0.9rem;
+        padding: 0.625rem 1.25rem;
+    }
+}
+
+@include mobile {
+    .banner {
+        min-height: 21.875rem;
+
+        &-content { padding: 1rem 0.75rem; }
+    }
+
+    .banner-buttons {
+        flex-direction: column;
+        gap: 0.75rem;
+        width: 100%;
+
+        .btn {
+            width: 100%;
+            text-align: center;
+            padding: 0.75rem 1rem;
+        }
+    }
+
+    #visi, #misi, #proker { padding: 2rem 1.25rem; }
+
+    #visi h2, #misi h2, #proker h2 { font-size: 1.75rem; }
+
+    .proker-grid { gap: 1.25rem; }
+
+    .proker-image { height: 11.25rem; }
+
+    .proker-content {
+        padding: 1.5rem;
+
+        h3 { font-size: 1.25rem; }
+    }
+
+    .proker-number {
+        width: 2.8125rem;
+        height: 2.8125rem;
+        font-size: 1.1rem;
+    }
+
+    .beranda-toggle-tabs {
+        padding: 0.25rem;
+        max-width: 100%;
+    }
+
+    .beranda-toggle-tab {
+        font-size: 0.85rem;
+        padding: 0.625rem 1rem;
+    }
+}

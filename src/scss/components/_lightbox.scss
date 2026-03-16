@@ -1,0 +1,61 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 1000;
+    @include flex-center;
+
+    &.active { display: flex; }
+
+    &-image {
+        max-width: 90%;
+        max-height: 90vh;
+        object-fit: contain;
+        border-radius: $radius-sm;
+        transition: opacity $transition;
+    }
+
+    &-close {
+        position: absolute;
+        top: 1.5rem;
+        right: 2rem;
+        background: transparent;
+        border: none;
+        color: $bg-white;
+        font-size: 3rem;
+        cursor: pointer;
+        z-index: 1001;
+        line-height: 1;
+        padding: 0;
+        width: 2.5rem;
+        height: 2.5rem;
+        transition: transform 0.2s ease;
+
+        &:hover { transform: scale(1.1); }
+    }
+
+    &-nav {
+        @include carousel-nav-base;
+    }
+
+    &-prev { left: 2rem; }
+    &-next { right: 2rem; }
+}
+
+@include tablet {
+    .lightbox-nav { width: 3.125rem; height: 3.125rem; font-size: 1.6rem; }
+    .lightbox-prev { left: 1rem; }
+    .lightbox-next { right: 1rem; }
+    .lightbox-image { max-width: 95%; max-height: 85vh; }
+    .lightbox-close { top: 1rem; right: 1rem; font-size: 2.5rem; }
+}
+
+@include mobile {
+    .lightbox-nav { width: 2.875rem; height: 2.875rem; font-size: 1.4rem; }
+    .lightbox-prev { left: 0.5rem; }
+    .lightbox-next { right: 0.5rem; }
+}

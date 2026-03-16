@@ -1,0 +1,26 @@
+@use '../abstracts/variables' as *;
+
+.hidden {
+    display: none !important;
+}
+
+.gradient-circle {
+    position: fixed;
+    width: 50rem;
+    height: 50rem;
+    pointer-events: none;
+    z-index: 2;
+    border-radius: 50%;
+}
+
+.gradient-top-left {
+    background: radial-gradient(circle, rgba(74, 135, 232, 0.3) 0%, transparent 70%);
+    top: -25rem;
+    left: -25rem;
+}
+
+.gradient-bottom-right {
+    background: radial-gradient(circle, rgba(74, 135, 232, 0.3) 0%, transparent 70%);
+    bottom: -25rem;
+    right: -25rem;
+}

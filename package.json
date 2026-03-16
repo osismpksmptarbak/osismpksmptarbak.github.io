@@ -1,0 +1,28 @@
+{
+	"name": "osismpksmptarbak",
+	"version": "1.0.0",
+	"description": "Website ini merupakan bagian dari <strong>Proker Sekbid 8 (Teknologi, Informasi, dan Komunikasi)</strong>. Tujuan utamanya adalah untuk mendigitalisasi informasi organisasi agar lebih mudah diakses oleh siswa, guru, dan alumni.",
+	"main": "index.js",
+	"scripts": {
+		"sass": "sass src/scss/main.scss dist/css/main.css --watch",
+		"ts": "tsc --watch",
+		"build": "sass src/scss/main.scss dist/css/main.css && tsc"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://REMOVED@github.com/osismpksmptarbak/osismpksmptarbak.github.io.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+    "type": "module",
+	"bugs": {
+		"url": "https://github.com/osismpksmptarbak/osismpksmptarbak.github.io/issues"
+	},
+	"homepage": "https://github.com/osismpksmptarbak/osismpksmptarbak.github.io#readme",
+	"devDependencies": {
+		"@types/node": "^25.5.0",
+		"sass": "^1.98.0",
+		"typescript": "^5.9.3"
+	}
+}
