@@ -1,13 +1,13 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as *;
 
-// --- Kegiatan carousel ---
+// ─── Kegiatan carousel ──────────────────────────────────────────────────────
 
 .carousel-container {
     position: relative;
     max-width: 62.5rem;
     margin: 2rem auto;
-    display: none;
+    display: none; // toggled via JS; overridden in divisi context below
 }
 
 .carousel-track-container {
@@ -65,7 +65,7 @@
 // --- Nav buttons ---
 
 .carousel-nav {
-    @include carousel-nav-base;
+    @include nav-btn-base;
 }
 
 .carousel-prev { left: 1rem; }
@@ -93,7 +93,7 @@
     font-weight: 600;
     color: $text-dark;
     @include flex-center;
-    box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.08);
+    box-shadow: $shadow-sm;
     transition: background $transition, border-color $transition,
                 transform $transition, box-shadow $transition;
 
@@ -101,7 +101,7 @@
         background: $hover-bg;
         border-color: $text-gray-400;
         transform: translateY(-0.125rem);
-        box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.12);
+        box-shadow: $shadow-md;
     }
 
     &.active {
@@ -139,7 +139,7 @@
     pointer-events: none;
 }
 
-// --- Loading & error states ---
+// ─── Loading & error states ─────────────────────────────────────────────────
 
 .loading-state,
 .error-state {
@@ -173,7 +173,7 @@
     p { font-size: 1rem; text-align: center; }
 }
 
-// --- Struktur organisasi divisi carousel ---
+// ─── Divisi (struktur-organisasi) carousel ──────────────────────────────────
 
 .divisi-carousel-section {
     padding: 4rem 0 6rem;
@@ -192,18 +192,31 @@
     padding: 0 2rem;
 }
 
-// Override carousel-container for struktur-organisasi usage
-.divisi-carousel-section .carousel-container {
-    display: block; // always visible here, not toggled
-    max-width: 100%;
-    margin: 0;
-    padding: 2.5rem 4.375rem 3.75rem;
-}
+.divisi-carousel-section {
+    .carousel-container {
+        display: block;
+        max-width: 100%;
+        margin: 0;
+        padding: 2.5rem 4.375rem 3.75rem;
+    }
 
-.divisi-carousel-section .carousel-track {
-    gap: 1.5rem;
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    height: auto; // override kegiatan height
+    .carousel-track {
+        gap: 1.5rem;
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        height: auto;
+    }
+
+    .carousel-nav {
+        &.prev { left: 0.625rem; }
+        &.next { right: 0.625rem; }
+
+        &:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            background: $text-gray-400;
+            border-color: $text-gray-400;
+        }
+    }
 }
 
 .divisi-card {
@@ -215,7 +228,7 @@
     width: 21.875rem;
     min-width: 21.875rem;
     flex-shrink: 0;
-    @include hover-lift(-0.5rem);
+    @include hover-lift;
 
     &-image {
         width: 100%;
@@ -276,25 +289,12 @@
     }
 }
 
-// Struktur page nav overrides
-.divisi-carousel-section .carousel-nav {
-    &.prev { left: 0.625rem; }
-    &.next { right: 0.625rem; }
-
-    &:disabled {
-        opacity: 0.4;
-        cursor: not-allowed;
-        background: $text-gray-400;
-        border-color: $text-gray-400;
-    }
-}
-
-// --- Responsive ---
+// ─── Responsive ─────────────────────────────────────────────────────────────
 
 @include tablet {
-    .carousel-nav { width: 3.125rem; height: 3.125rem; font-size: 1.6rem; }
-    .carousel-prev { left: 0.5rem; }
-    .carousel-next { right: 0.5rem; }
+    .carousel-nav        { width: 3.125rem; height: 3.125rem; font-size: 1.6rem; }
+    .carousel-prev       { left: 0.5rem; }
+    .carousel-next       { right: 0.5rem; }
     .carousel-indicators { margin-top: 1rem; gap: 0.25rem; }
 
     .carousel-dot,
@@ -302,23 +302,20 @@
         min-width: 2.75rem;
         height: 2.75rem;
         font-size: 0.95rem;
-        border-radius: $radius-md;
     }
 
-    .carousel-nav-btn { font-size: 1.6rem; }
-
-    .divisi-carousel-title { font-size: 2rem; }
-    .divisi-carousel-section .carousel-container { padding: 2.5rem 3.75rem 3.75rem; }
-    .divisi-card { width: 18.75rem; min-width: 18.75rem; }
-    .divisi-carousel-section .carousel-nav { width: 3.125rem; height: 3.125rem; font-size: 1.6rem; }
+    .divisi-carousel-title                           { font-size: 2rem; }
+    .divisi-carousel-section .carousel-container    { padding: 2.5rem 3.75rem 3.75rem; }
+    .divisi-card                                     { width: 18.75rem; min-width: 18.75rem; }
+    .divisi-carousel-section .carousel-nav           { width: 3.125rem; height: 3.125rem; font-size: 1.6rem; }
 }
 
 @include mobile {
     .carousel-track-container { height: 18.75rem; }
-    .carousel-nav { width: 2.875rem; height: 2.875rem; font-size: 1.4rem; }
-    .carousel-prev { left: 0.25rem; }
-    .carousel-next { right: 0.25rem; }
-    .carousel-indicators { gap: 0.1875rem; }
+    .carousel-nav             { width: 2.875rem; height: 2.875rem; font-size: 1.4rem; }
+    .carousel-prev            { left: 0.25rem; }
+    .carousel-next            { right: 0.25rem; }
+    .carousel-indicators      { gap: 0.1875rem; }
 
     .carousel-dot,
     .carousel-ellipsis {
@@ -328,13 +325,10 @@
         border-radius: $radius-sm;
     }
 
-    .carousel-nav-btn { font-size: 1.5rem; }
-
-    .divisi-carousel-title { font-size: 1.75rem; letter-spacing: 0.0625rem; }
-    .divisi-carousel-section .carousel-container { padding: 2.5rem 3.125rem 3.75rem; }
-    .divisi-card { width: 17.5rem; min-width: 17.5rem; }
-
-    .divisi-card-image { height: 13.75rem; padding: 1.5rem 1.5rem 0; }
+    .divisi-carousel-title                           { font-size: 1.75rem; letter-spacing: 0.0625rem; }
+    .divisi-carousel-section .carousel-container    { padding: 2.5rem 3.125rem 3.75rem; }
+    .divisi-card                                     { width: 17.5rem; min-width: 17.5rem; }
+    .divisi-card-image                               { height: 13.75rem; padding: 1.5rem 1.5rem 0; }
 
     .divisi-carousel-section .carousel-nav {
         width: 2.875rem;

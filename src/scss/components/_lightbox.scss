@@ -38,24 +38,25 @@
         &:hover { transform: scale(1.1); }
     }
 
-    &-nav {
-        @include carousel-nav-base;
-    }
-
+    &-nav  { @include nav-btn-base; }
     &-prev { left: 2rem; }
     &-next { right: 2rem; }
 }
 
 @include tablet {
-    .lightbox-nav { width: 3.125rem; height: 3.125rem; font-size: 1.6rem; }
-    .lightbox-prev { left: 1rem; }
-    .lightbox-next { right: 1rem; }
-    .lightbox-image { max-width: 95%; max-height: 85vh; }
-    .lightbox-close { top: 1rem; right: 1rem; font-size: 2.5rem; }
+    .lightbox {
+        &-nav   { width: 3.125rem; height: 3.125rem; font-size: 1.6rem; }
+        &-prev  { left: 1rem; }
+        &-next  { right: 1rem; }
+        &-image { max-width: 95%; max-height: 85vh; }
+        &-close { top: 1rem; right: 1rem; font-size: 2.5rem; }
+    }
 }
 
 @include mobile {
-    .lightbox-nav { width: 2.875rem; height: 2.875rem; font-size: 1.4rem; }
-    .lightbox-prev { left: 0.5rem; }
-    .lightbox-next { right: 0.5rem; }
+    .lightbox {
+        &-nav  { width: 2.875rem; height: 2.875rem; font-size: 1.4rem; }
+        &-prev { left: 0.5rem; }
+        &-next { right: 0.5rem; }
+    }
 }

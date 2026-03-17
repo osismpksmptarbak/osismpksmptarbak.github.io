@@ -44,17 +44,17 @@ header {
     font-size: 1rem;
     text-decoration: none;
     cursor: pointer;
-    transition: background $transition;
+    transition: color $transition;
     white-space: nowrap;
 
-    &:hover { color: $text-black; }
+    &:hover { color: $primary; }
 }
 
 .nav-divider {
     width: 1px;
     height: 1.5rem;
     margin-right: 1rem;
-    background: $text-dark;
+    background: $border;
 }
 
 .menu-toggle {
@@ -66,7 +66,7 @@ header {
     transition: background $transition;
     white-space: nowrap;
 
-    &:hover { background: $primary-hover; }
+    &:hover { background: $hover-bg; }
 }
 
 // --- Side menu ---
@@ -119,7 +119,7 @@ header {
     color: $text-dark;
     font-weight: 400;
     font-size: 1rem;
-    border-bottom: 1px solid $text-dark;
+    border-bottom: 1px solid $border;
     padding: 0.5rem 2rem 0.5rem 0.5rem;
     cursor: pointer;
     user-select: none;
@@ -138,16 +138,14 @@ header {
         font-size: 0.8rem;
     }
 
-    &.active::after {
-        transform: translateY(-50%);
-    }
+    &.active::after { transform: translateY(-50%); }
 }
 
 .accordion-content {
     max-height: 0;
     overflow: hidden;
-    transition: max-height $transition;
     list-style: none;
+    transition: max-height $transition;
 
     &.active { max-height: 31.25rem; }
 
@@ -199,7 +197,10 @@ header {
 }
 
 @include tablet {
-    header { padding: 0.75rem 1rem; height: $header-height-md; }
+    header {
+        padding: 0.75rem 1rem;
+        height: $header-height-md;
+    }
 
     .logo img { width: 2rem; height: 2rem; }
 
@@ -211,7 +212,10 @@ header {
 }
 
 @include mobile {
-    header { padding: 0.5rem 0.75rem; height: $header-height-sm; }
+    header {
+        padding: 0.5rem 0.75rem;
+        height: $header-height-sm;
+    }
 
     .side-menu {
         width: 90vw;

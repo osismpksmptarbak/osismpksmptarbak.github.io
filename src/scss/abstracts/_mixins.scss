@@ -1,41 +1,26 @@
 @use 'variables' as *;
 
 // --- Breakpoints ---
-@mixin wide {
-    @media (max-width: 68.75rem) { @content; }   // 1100px — nav compress
-}
+@mixin wide        { @media (max-width: 68.75rem) { @content; } }  // 1100px
+@mixin nav-collapse { @media (max-width: 59.375rem) { @content; } } // 950px
+@mixin desktop-md  { @media (max-width: 64rem)    { @content; } }  // 1024px
+@mixin tablet      { @media (max-width: 48rem)    { @content; } }  // 768px
+@mixin mobile      { @media (max-width: 30rem)    { @content; } }  // 480px
 
-@mixin nav-collapse {
-    @media (max-width: 59.375rem) { @content; }  // 950px — hide nav links
-}
-
-@mixin desktop-md {
-    @media (max-width: 64rem) { @content; }      // 1024px — layout stack
-}
-
-@mixin tablet {
-    @media (max-width: 48rem) { @content; }      // 768px
-}
-
-@mixin mobile {
-    @media (max-width: 30rem) { @content; }      // 480px
-}
-
-// --- Flex center ---
+// --- Flex ---
 @mixin flex-center {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-// --- Flex between ---
 @mixin flex-between {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-// --- Card base ---
+// --- Card ---
 @mixin card($border: true) {
     background: $bg-white;
     border-radius: $radius-lg;
@@ -47,13 +32,10 @@
 }
 
 // --- Hover lift ---
-@mixin hover-lift($y: -0.25rem, $shadow: $shadow-lg) {
+@mixin hover-lift($shadow: $shadow-lg) {
     transition: transform $transition, box-shadow $transition;
 
-    &:hover {
-        transform: translateY($y);
-        box-shadow: $shadow;
-    }
+    &:hover { box-shadow: $shadow; }
 }
 
 // --- Badge ---
@@ -67,8 +49,8 @@
     font-weight: 600;
 }
 
-// --- Carousel nav button ---
-@mixin carousel-nav-base {
+// --- Carousel / lightbox nav button ---
+@mixin nav-btn-base {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -95,4 +77,11 @@
         transform: translateY(-50%) scale(1.15);
         box-shadow: 0 0.375rem 1rem rgba(110, 195, 225, 0.6);
     }
+}
+
+// --- Section heading (shared h2 pattern) ---
+@mixin section-heading {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: $primary;
 }

@@ -13,7 +13,7 @@
     }
 }
 
-// --- Toggle tabs ---
+// ─── Toggle tabs ─────────────────────────────────────────────────────────────
 
 .structure-toggle-container {
     display: flex;
@@ -55,7 +55,7 @@
     }
 }
 
-// --- Main layout ---
+// ─── Main layout ─────────────────────────────────────────────────────────────
 
 .struktur-organisasi-container {
     display: inline-flex;
@@ -72,7 +72,7 @@
     margin: 0 auto;
 }
 
-// --- Description panel ---
+// ─── Description panel ───────────────────────────────────────────────────────
 
 .divisi-description {
     flex: 0 0 21.875rem;
@@ -131,7 +131,7 @@
     }
 }
 
-// --- Org tree layout ---
+// ─── Org tree layout ─────────────────────────────────────────────────────────
 
 .struktur-organisasi-vertical {
     display: inline-flex;
@@ -149,11 +149,11 @@
     width: fit-content;
 }
 
-// --- Member cards ---
+// ─── Member cards ─────────────────────────────────────────────────────────────
 
 .struktur-organisasi-card {
     background: $bg-white;
-    border-radius: 1.5rem;
+    border-radius: $radius-xl;
     border: 1px solid $border;
     overflow: hidden;
     width: 15rem;
@@ -201,7 +201,7 @@
     margin: 0;
 }
 
-// --- Proker panel ---
+// ─── Proker panel ─────────────────────────────────────────────────────────────
 
 .proker-row-wrapper {
     display: flex;
@@ -280,7 +280,7 @@
     margin: 0;
 }
 
-// --- Responsive ---
+// ─── Responsive ──────────────────────────────────────────────────────────────
 
 @include desktop-md {
     .struktur-organisasi-container {
@@ -312,10 +312,8 @@
 
 @include tablet {
     .struktur-organisasi-section h1 { font-size: 2rem; }
-
-    .struktur-organisasi-card { width: 13.75rem; }
-
-    .structure-toggle-tabs { max-width: 25rem; }
+    .struktur-organisasi-card       { width: 13.75rem; }
+    .structure-toggle-tabs          { max-width: 25rem; }
 
     .structure-toggle-tab {
         font-size: 0.9rem;
@@ -326,13 +324,10 @@
 }
 
 @include mobile {
-    .struktur-organisasi-section h1 { font-size: 1.75rem; letter-spacing: 0.0625rem; }
-
-    .struktur-organisasi-card { width: 100%; max-width: 17.5rem; }
-
-    .struktur-organisasi-horizontal { width: 100%; }
-
-    .structure-toggle-tabs { padding: 0.25rem; max-width: 100%; }
+    .struktur-organisasi-section h1  { font-size: 1.75rem; }
+    .struktur-organisasi-card        { width: 100%; max-width: 17.5rem; }
+    .struktur-organisasi-horizontal  { width: 100%; }
+    .structure-toggle-tabs           { padding: 0.25rem; max-width: 100%; }
 
     .structure-toggle-tab {
         font-size: 0.85rem;

@@ -5,7 +5,7 @@ Website ini merupakan bagian dari <strong>Proker Sekbid 8 (Teknologi, Informasi,
 
 ## Pengembang & Pengelola
 * **Developer:** Arslan (Sekbid 8)
-* **Status:** Active Maintenance / In Development
+* **Status:** In Development
 * **Organisasi:** OSIS/MPK SMP Taruna Bakti Periode 2025/2026
 
 ## Fitur

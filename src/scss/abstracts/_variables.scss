@@ -2,7 +2,7 @@
 $font-body:         'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 $font-heading:      'Archivo Black', sans-serif;
 
-// --- Text Colors ---
+// --- Text ---
 $text-black:        oklch(0.000 0.000 0);
 $text-dark:         oklch(0.440 0.003 265);
 $text-gray-900:     oklch(0.270 0.020 265);
@@ -11,19 +11,19 @@ $text-gray-600:     oklch(0.560 0.018 265);
 $text-gray-400:     oklch(0.700 0.015 265);
 $text-light:        oklch(0.780 0.004 265);
 
-// --- Background Colors ---
+// --- Backgrounds ---
 $bg-dark:           oklch(0.020 0.004 265);
 $bg-50:             oklch(0.970 0.004 265);
 $bg-100:            oklch(0.968 0.007 248);
 $bg-light:          oklch(0.985 0.004 265);
 $bg-white:          oklch(1.000 0.000 0);
 
-// --- Brand Colors ---
+// --- Brand ---
 $primary:           oklch(0.780 0.105 225);
 $primary-hover:     oklch(0.730 0.115 225);
 $primary-dark:      oklch(0.610 0.120 225);
 
-// --- UI Colors ---
+// --- UI ---
 $border:            oklch(0.900 0.002 265);
 $hover-bg:          oklch(0.940 0.002 265);
 $hover-bg-dark:     oklch(0 0 0 / 0.137);
@@ -34,7 +34,7 @@ $shadow-sm:         0 0.125rem 0.625rem oklch(0 0 0 / 0.10);
 $shadow-md:         0 0.25rem 1.25rem oklch(0 0 0 / 0.08);
 $shadow-lg:         0 0.5rem 1.25rem oklch(0 0 0 / 0.15);
 
-// --- Border Radius ---
+// --- Radius ---
 $radius-sm:         0.5rem;
 $radius-md:         0.75rem;
 $radius-lg:         1rem;

@@ -6,8 +6,7 @@
     <title>OSIS/MPK SMP Taruna Bakti</title>
     <link rel="shortcut icon" type="image/x-icon" href="public/favicon_io/favicon.ico">
 
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
@@ -105,21 +104,21 @@
     </section>
 
     <section id="visi" class="org-panel" data-org-panel="OSIS">
-        <div id="visi-card">
-            <h2>- VISI -</h2>
-            <div>
-                <p>Menjadikan OSIS SMP Taruna Bakti sebagai wadah kreatif, inovatif, dan kolaboratif untuk mengembangkan potensi siswa, menyalurkan aspirasi, serta menciptakan lingkungan sekolah yang berkarakter, berprestasi, dan harmonis.</p>
-            </div>
-        </div>
+        <div class="visi-shape visi-shape-1"></div>
+        <div class="visi-shape visi-shape-2"></div>
+        <div class="visi-shape visi-shape-3"></div>
+        <div class="visi-shape visi-shape-4"></div>
+        <h2>- VISI -</h2>
+        <p>Menjadikan OSIS SMP Taruna Bakti sebagai wadah kreatif, inovatif, dan kolaboratif untuk mengembangkan potensi siswa, menyalurkan aspirasi, serta menciptakan lingkungan sekolah yang berkarakter, berprestasi, dan harmonis.</p>
     </section>
 
     <section id="visi" class="org-panel hidden" data-org-panel="MPK">
-        <div id="visi-card">
-            <h2>- VISI -</h2>
-            <div>
-                <p>Menciptakan lingkungan organisasi yang disiplin, bertanggung jawab, serta memiliki rasa kebersamaan yang tinggi dalam melaksanakan fungsi organisasi untuk menjadikan lingkungan organisasi yang unggul dan berkarakter.</p>
-            </div>
-        </div>
+        <div class="visi-shape visi-shape-1"></div>
+        <div class="visi-shape visi-shape-2"></div>
+        <div class="visi-shape visi-shape-3"></div>
+        <div class="visi-shape visi-shape-4"></div>
+        <h2>- VISI -</h2>
+        <p>Menciptakan lingkungan organisasi yang disiplin, bertanggung jawab, serta memiliki rasa kebersamaan yang tinggi dalam melaksanakan fungsi organisasi untuk menjadikan lingkungan organisasi yang unggul dan berkarakter.</p>
     </section>
 
     <section id="misi">
@@ -168,7 +167,6 @@
         <h2>- PROGRAM KERJA -</h2>
 
         <div class="org-panel" data-org-panel="OSIS">
-            <p class="proker-intro">Program kerja OSIS SMP Taruna Bakti periode 2025-2026</p>
             <div class="proker-grid">
                 <div class="proker-card">
                     <div class="proker-image">
@@ -208,7 +206,6 @@
         </div>
 
         <div class="org-panel hidden" data-org-panel="MPK">
-            <p class="proker-intro">Program kerja MPK SMP Taruna Bakti periode 2025-2026</p>
             <div class="proker-grid">
                 <div class="proker-card">
                     <div class="proker-image">
@@ -259,17 +256,42 @@
 
     <footer class="footer">
         <div class="footer-container">
-            <img src="public/images/logo-osismpksmptarbak.png" alt="Logo OSISMPK SMP Taruna Bakti" class="footer-logo">
-            <h2>OSISMPK SMP Taruna Bakti</h2>
-            <div class="footer-divider"></div>
             <div class="footer-info">
-                <p class="footer-left">© 2026 OSIS/MPK SMP Taruna Bakti. All Rights Reserved.</p>
-                <p class="footer-right">Website By <strong>Sekbid 8</strong></p>
+                <div class="footer-logo-section">
+                    <img src="public/images/logo-osismpksmptarbak.png" alt="Logo OSISMPK SMP Taruna Bakti" class="footer-logo">
+                    <p><strong>OSIS/MPK<br>SMP Taruna Bakti</strong></p>
+                </div>
+
+                <div class="footer-navigation">
+                    <p><strong>Navigasi</strong></p>
+                    <p><a href="index.html">Beranda</a></p>
+                    <p><a href="#visi">Visi</a></p>
+                    <p><a href="#misi">Misi</a></p>
+                    <p><a href="#proker">Program Kerja</a></p>
+                    <p><a href="struktur-organisasi.html">Struktur Organisasi</a></p>
+                </div>
+
+                <div class="footer-contact">
+                    <p><strong>Kontak</strong></p>
+                    <p><i class="fa-solid fa-location-dot"></i>Jln. L.L.RE. Martadinata No. 52 Bandung 40115</p>
+                    <p><i class="fa-solid fa-envelope"></i> mpkosis.smptb@gmail.com</p>
+                </div>
+
+                <div class="footer-social">
+                    <p><strong>Ikuti Kami</strong></p>
+                    <a href="https://www.instagram.com/osismpk_smptarbak/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                <p class="footer-bottom-copyright">© 2026 OSIS/MPK SMP Taruna Bakti. All Rights Reserved.</p>
+                <p class="footer-bottom-credits">Website By <strong>Sekbid 8</strong></p>
             </div>
         </div>
     </footer>
 
     <script type="module" src="dist/js/main.js"></script>
+    <script type="module" src="dist/js/pages/header-scroll.js"></script>
     <script type="module" src="dist/js/pages/tab-switching.js"></script>
 </body>
 </html>

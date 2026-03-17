@@ -1,9 +1,8 @@
 @use '../abstracts/variables' as *;
 
-.hidden {
-    display: none !important;
-}
+.hidden { display: none !important; }
 
+// Decorative ambient gradient blobs
 .gradient-circle {
     position: fixed;
     width: 50rem;

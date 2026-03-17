@@ -1,11 +1,11 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as *;
 
-// --- Banner ---
+// ─── Banner ─────────────────────────────────────────────────────────────────
 
 .banner {
     position: relative;
-    min-height: 31.25rem;
+    height: 100vh;
     min-width: 100vw;
     display: flex;
     align-items: center;
@@ -64,7 +64,7 @@
     }
 }
 
-// --- Toggle tabs ---
+// ─── Toggle tabs ─────────────────────────────────────────────────────────────
 
 .beranda-toggle-tabs {
     display: flex;
@@ -92,15 +92,20 @@
     }
 }
 
-// --- Visi ---
+// ─── Visi ────────────────────────────────────────────────────────────────────
 
 #visi {
     background-color: $bg-100;
     min-width: 100vw;
-    margin-top: 0;
+    min-height: 45vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-
-    h2 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+    position: relative;
+    overflow: hidden;
+    margin-top: 0;
 
     p {
         font-size: 1.1rem;
@@ -108,24 +113,66 @@
         color: $text-dark;
         max-width: 43.75rem;
         margin: 0 auto;
+        position: relative;
+        z-index: 2;
+    }
+
+    h2 { position: relative; z-index: 2; }
+}
+
+.visi-shape {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+
+    &-1 {
+        bottom: -2.5rem;
+        left: 25%;
+        transform: translateX(50%);
+        width: 20rem;
+        height: 20rem;
+        background: rgba(74, 135, 232, 0.2);
+        border-radius: 50%;
+        filter: blur(100px);
+    }
+
+    &-2 {
+        top: -2.5rem;
+        right: 35%;
+        transform: translateX(50%);
+        width: 20rem;
+        height: 20rem;
+        background: rgba(74, 135, 232, 0.2);
+        border-radius: 50%;
+        filter: blur(64px);
+    }
+
+    &-3 {
+        bottom: 1rem;
+        right: 30%;
+        transform: translateX(50%);
+        width: 9rem;
+        height: 9rem;
+        background: rgba(74, 135, 232, 0.3);
+        border-radius: 64%;
+    }
+
+    &-4 {
+        top: 2.5rem;
+        left: 30%;
+        transform: translateX(-50%);
+        width: 6rem;
+        height: 6rem;
+        background: rgba(74, 135, 232, 0.3);
+        border-radius: 1rem;
     }
 }
 
-#visi-card {
-    @include card;
-    max-width: 49.75rem;
-    padding: 3rem 2.5rem;
-    margin: 0 auto;
-}
-
-// --- Misi ---
+// ─── Misi ────────────────────────────────────────────────────────────────────
 
 #misi {
     background: $bg-white;
-    padding: 3rem 2.5rem;
     text-align: center;
-
-    h2 { font-size: 2.5rem; margin-bottom: 2rem; }
 }
 
 .misi-list {
@@ -160,21 +207,12 @@
     color: $text-dark;
 }
 
-// --- Proker ---
+// ─── Proker ──────────────────────────────────────────────────────────────────
 
 #proker {
     background: $bg-white;
-    padding: 3rem 2.5rem;
     text-align: center;
-
-    h2 { font-size: 2.5rem; margin-bottom: 1rem; }
-}
-
-.proker-intro {
-    font-size: 1.05rem;
-    line-height: 1.9;
-    color: $text-dark;
-    margin-bottom: 2.5rem;
+    padding-bottom: 10rem;
 }
 
 .proker-grid {
@@ -189,9 +227,7 @@
     @include card;
     overflow: hidden;
     flex: 1 1 20rem;
-    @include hover-lift(-0.5rem);
-
-    &:hover { transform: translateY(-0.5rem) scale(1.05); }
+    @include hover-lift;
 }
 
 .proker-image {
@@ -241,7 +277,7 @@
     }
 }
 
-// --- Responsive ---
+// ─── Responsive ──────────────────────────────────────────────────────────────
 
 @include tablet {
     .banner {
@@ -253,7 +289,7 @@
             text-align: center;
         }
 
-        &-left { flex: none; width: 100%; }
+        &-left  { flex: none; width: 100%; }
         &-right { display: none; }
     }
 
@@ -262,19 +298,9 @@
         flex-wrap: wrap;
     }
 
-    #visi, #misi, #proker { padding: 2.5rem 1.5rem; }
+    #visi p { font-size: 1rem; }
 
-    #visi h2, #misi h2, #proker h2 { font-size: 2rem; }
-
-    #visi p, .proker-intro { font-size: 1rem; }
-
-    .misi-list { grid-template-columns: 1fr; }
-
-    .proker-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-
+    .proker-grid  { gap: 1.5rem; }
     .proker-image { height: 12.5rem; }
 
     .beranda-toggle-tabs { max-width: 25rem; }
@@ -304,12 +330,7 @@
         }
     }
 
-    #visi, #misi, #proker { padding: 2rem 1.25rem; }
-
-    #visi h2, #misi h2, #proker h2 { font-size: 1.75rem; }
-
-    .proker-grid { gap: 1.25rem; }
-
+    .proker-grid  { gap: 1.25rem; }
     .proker-image { height: 11.25rem; }
 
     .proker-content {
@@ -324,10 +345,7 @@
         font-size: 1.1rem;
     }
 
-    .beranda-toggle-tabs {
-        padding: 0.25rem;
-        max-width: 100%;
-    }
+    .beranda-toggle-tabs { max-width: 100%; }
 
     .beranda-toggle-tab {
         font-size: 0.85rem;

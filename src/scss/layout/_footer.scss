@@ -1,52 +1,167 @@
 @use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
 
 .footer {
     background: $bg-light;
-    padding: 3rem 2rem;
-    border-top: 1px solid $border;
+    padding: 4rem 2rem 2rem;
+    border-top: 2px solid $primary;
+    color: $text-dark;
 
     &-container {
         max-width: $max-width;
         margin: 0 auto;
-        text-align: center;
         display: flex;
         flex-direction: column;
-        align-items: center;
+        gap: 2rem;
+    }
+}
 
-        h2 {
+// --- Top info grid ---
+
+.footer-info {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.5rem;
+    padding-bottom: 2rem;
+
+    p {
+        margin: 0;
+        line-height: 1.6;
+        color: $text-gray-700;
+        font-size: 0.95rem;
+    }
+
+    // Column heading
+    .footer-col-title {
+        color: $text-black;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+    }
+
+    a {
+        color: $text-gray-700;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: color $transition, transform $transition;
+
+        &:hover {
             color: $primary;
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
+            transform: translateX(4px);
         }
     }
 
-    &-logo {
-        width: 12.5rem;
-        height: auto;
-        margin-bottom: 1rem;
+    i {
+        color: $primary;
+        min-width: 1.2rem;
     }
 
-    &-divider {
-        width: 100%;
-        height: 0.125rem;
+    @include desktop-md { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+    @include tablet     { grid-template-columns: 1fr; gap: 1.5rem; }
+}
+
+// --- Logo column ---
+
+.footer-logo-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+
+    p {
+        color: $text-black;
+        font-weight: 600;
+        font-size: 1rem;
+        line-height: 1.4;
+    }
+}
+
+.footer-logo {
+    width: 6rem;
+    height: 6rem;
+    object-fit: contain;
+    transition: transform $transition;
+
+    &:hover { transform: scale(1.05); }
+
+    @include mobile { width: 5rem; height: 5rem; }
+}
+
+// --- Navigation & contact columns ---
+
+.footer-navigation,
+.footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+// --- Social column ---
+
+.footer-social {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    i {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.5rem;
+        height: 2.5rem;
         background: $primary;
-        margin-bottom: 1.5rem;
-    }
+        color: $bg-white;
+        border-radius: $radius-md;
+        text-decoration: none;
+        font-size: 1.3rem;
+        transition: background $transition, transform $transition, box-shadow $transition;
 
-    &-info {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        gap: 2rem;
+        &:hover {
+            background: $primary-dark;
+            box-shadow: 0 0.375rem 0.75rem rgba(110, 195, 225, 0.3);
+        }
     }
+}
 
-    &-left,
-    &-right {
-        flex: 1;
-        color: $text-dark;
+// --- Divider ---
+
+.footer-divider {
+    width: 100%;
+    height: 1px;
+    background: $border;
+}
+
+// --- Bottom bar ---
+
+.footer-bottom {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    padding-top: 1rem;
+
+    p {
+        margin: 0;
         font-size: 0.9rem;
+        color: $text-gray-600;
+
+        strong {
+            color: $primary;
+            font-weight: 700;
+        }
     }
 
-    &-left  { text-align: left; }
-    &-right { text-align: right; }
+    &-credits {
+        text-align: right;
+    }
+
+    @include tablet {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
 }
