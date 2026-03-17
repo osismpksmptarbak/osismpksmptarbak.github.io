@@ -68,13 +68,12 @@
 
 .footer-logo-section {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    flex-direction: row;
     gap: 1rem;
 
     p {
-        color: $text-black;
+        text-align: left;
+        color: $text-dark;
         font-weight: 600;
         font-size: 1rem;
         line-height: 1.4;
@@ -82,8 +81,8 @@
 }
 
 .footer-logo {
-    width: 6rem;
-    height: 6rem;
+    width: 3rem;
+    height: 3rem;
     object-fit: contain;
     transition: transform $transition;
 
