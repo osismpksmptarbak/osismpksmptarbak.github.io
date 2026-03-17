@@ -377,16 +377,27 @@ header.header--transparent .nav-divider {
   color: oklch(78% 0.105 225deg);
   min-width: 1.2rem;
 }
+.footer-info .footer-social {
+  display: flex;
+  align-items: flex-end;
+}
 @media (max-width: 64rem) {
   .footer-info {
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
+  }
+  .footer-info .footer-navigation {
+    display: flex;
+    align-items: flex-end;
   }
 }
 @media (max-width: 48rem) {
   .footer-info {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+  }
+  .footer-info .footer-navigation, .footer-info .footer-social {
+    display: grid;
   }
 }
 
@@ -1032,7 +1043,7 @@ header.header--transparent .nav-divider {
 .banner {
   position: relative;
   height: 100vh;
-  min-width: 100vw;
+  min-width: 100%;
   display: flex;
   align-items: center;
 }
@@ -1112,7 +1123,7 @@ header.header--transparent .nav-divider {
 
 #visi {
   background-color: oklch(96.8% 0.007 248deg);
-  min-width: 100vw;
+  min-width: 100%;
   min-height: 45vh;
   display: flex;
   flex-direction: column;

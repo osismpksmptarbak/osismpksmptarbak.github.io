@@ -31,7 +31,6 @@
         font-size: 0.95rem;
     }
 
-    // Column heading
     .footer-col-title {
         color: $text-black;
         font-weight: 700;
@@ -60,8 +59,26 @@
         min-width: 1.2rem;
     }
 
-    @include desktop-md { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
-    @include tablet     { grid-template-columns: 1fr; gap: 1.5rem; }
+    .footer-social {
+        display: flex;
+        align-items: flex-end;
+    }
+
+    @include desktop-md { 
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 2rem;
+        .footer-navigation {
+            display: flex;
+            align-items: flex-end;
+        }
+    }
+    @include tablet     {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        .footer-navigation, .footer-social {
+            display: grid;
+        }
+    }
 }
 
 // --- Logo column ---
