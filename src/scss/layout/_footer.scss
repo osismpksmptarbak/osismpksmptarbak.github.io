@@ -1,6 +1,8 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as *;
 
+// ─── Footer ──────────────────────────────────────────────────────────────────
+
 .footer {
     background: $bg-light;
     padding: 4rem 2rem 2rem;
@@ -16,7 +18,7 @@
     }
 }
 
-// --- Top info grid ---
+// ─── Info grid ───────────────────────────────────────────────────────────────
 
 .footer-info {
     display: grid;
@@ -31,56 +33,24 @@
         font-size: 0.95rem;
     }
 
-    .footer-col-title {
-        color: $text-black;
-        font-weight: 700;
-        margin-bottom: 1rem;
-        font-size: 1.1rem;
-        text-transform: uppercase;
-        letter-spacing: 0.03em;
-    }
-
     a {
         color: $text-gray-700;
         text-decoration: none;
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
-        transition: color $transition, transform $transition;
+        transition: color $transition;
 
-        &:hover {
-            color: $primary;
-        }
+        &:hover { color: $primary; }
     }
 
     i {
         color: $primary;
         min-width: 1.2rem;
     }
-
-    .footer-social {
-        display: flex;
-        align-items: flex-end;
-    }
-
-    @include desktop-md { 
-        grid-template-columns: repeat(2, 1fr); 
-        gap: 2rem;
-        .footer-navigation {
-            display: flex;
-            align-items: flex-end;
-        }
-    }
-    @include tablet     {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-        .footer-navigation, .footer-social {
-            display: grid;
-        }
-    }
 }
 
-// --- Logo column ---
+// ─── Columns ─────────────────────────────────────────────────────────────────
 
 .footer-logo-section {
     display: flex;
@@ -107,24 +77,15 @@
     @include mobile { width: 5rem; height: 5rem; }
 }
 
-// --- Navigation & contact columns ---
-
 .footer-navigation,
-.footer-contact {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-}
-
-// --- Social column ---
-
+.footer-contact,
 .footer-social {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
 }
 
-// --- Divider ---
+// ─── Divider ─────────────────────────────────────────────────────────────────
 
 .footer-divider {
     width: 100%;
@@ -132,7 +93,7 @@
     background: $border;
 }
 
-// --- Bottom bar ---
+// ─── Bottom bar ──────────────────────────────────────────────────────────────
 
 .footer-bottom {
     display: grid;
@@ -151,13 +112,29 @@
         }
     }
 
-    &-credits {
-        text-align: right;
+    &-credits { text-align: right; }
+}
+
+// ─── Responsive ──────────────────────────────────────────────────────────────
+
+@include desktop-md {
+    .footer-info {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+}
+
+@include tablet {
+    .footer-info {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
 
-    @include tablet {
-        flex-direction: column;
+    .footer-bottom {
+        grid-template-columns: 1fr;
         text-align: center;
         gap: 1rem;
+
+        &-credits { text-align: center; }
     }
 }

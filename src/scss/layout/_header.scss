@@ -1,6 +1,8 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as *;
 
+// ─── Header ──────────────────────────────────────────────────────────────────
+
 header {
     position: fixed;
     top: 0;
@@ -11,6 +13,19 @@ header {
     padding: 1rem 2rem;
     box-shadow: $shadow-sm;
     z-index: 100;
+    transition: background-color 0.35s ease, box-shadow 0.35s ease;
+
+    &.header--transparent {
+        background-color: transparent;
+        box-shadow: none;
+
+        .nav-btn {
+            color: $bg-white;
+            &:hover { color: $primary; }
+        }
+
+        .nav-divider { background: oklch(1 0 0 / 0.35); }
+    }
 }
 
 .header-container {
@@ -27,7 +42,7 @@ header {
     height: 2.5rem;
 }
 
-// --- Nav ---
+// ─── Nav ─────────────────────────────────────────────────────────────────────
 
 .nav-buttons {
     display: flex;
@@ -57,19 +72,17 @@ header {
     background: $border;
 }
 
-.menu-toggle {
-    border: none;
-    padding: 0.75rem 1rem;
-    border-radius: $radius-sm;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background $transition;
-    white-space: nowrap;
+// ─── Banner scroll offset ─────────────────────────────────────────────────────
+// Pulls the full-bleed banner up behind the transparent header
 
-    &:hover { background: $hover-bg; }
+.banner {
+    margin-top: calc($header-height * -1);
+
+    @include tablet { margin-top: calc($header-height-md * -1); }
+    @include mobile { margin-top: calc($header-height-sm * -1); }
 }
 
-// --- Side menu ---
+// ─── Side menu ───────────────────────────────────────────────────────────────
 
 .side-menu {
     position: fixed;
@@ -113,7 +126,7 @@ header {
     margin-bottom: 1rem;
 }
 
-// --- Accordion ---
+// ─── Accordion ───────────────────────────────────────────────────────────────
 
 .accordion-header {
     color: $text-dark;
@@ -163,7 +176,7 @@ header {
     }
 }
 
-// --- Overlay ---
+// ─── Overlay ─────────────────────────────────────────────────────────────────
 
 .overlay {
     position: fixed;
@@ -180,7 +193,7 @@ header {
     }
 }
 
-// --- Responsive ---
+// ─── Responsive ──────────────────────────────────────────────────────────────
 
 @include wide {
     .nav-btn {

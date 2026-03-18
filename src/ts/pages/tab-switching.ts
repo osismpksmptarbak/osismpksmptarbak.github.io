@@ -3,30 +3,29 @@ import { StructureCarousel } from '../components/carousel.js';
 import { findById, getUrlParam } from '../utils/dom.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-    const isStructurePage = !!document.getElementById('osis-content');
-
-    if (isStructurePage) {
-        initStructurePage();
-    } else {
-        initBerandaPage();
-    }
+    initBerandaPage();
 });
 
-// ---- Struktur Organisasi page --------------------------------------------------
-
-function initStructurePage(): void {
-    const carousel = new StructureCarousel();
-
-    const initialIndex = parseInt(getUrlParam('index') ?? '0') || 0;
+function initBerandaPage(): void {
+    const hasStruktur = !!document.getElementById('osis-content');
+    let carousel: StructureCarousel | null = null;
     let isFirstLoad = true;
 
+    if (hasStruktur) {
+        carousel = new StructureCarousel();
+    }
+
+    const initialIndex = parseInt(getUrlParam('index') ?? '0') || 0;
+
     initTabs({
-        tabSelector: '.structure-toggle-tab',
-        panelAttr:   null,
-        paramKey:    'view',
+        tabSelector: '.beranda-toggle-tab',
+        panelAttr:   'data-org-panel',
+        paramKey:    'org',
         defaultTab:  'OSIS',
 
         onChange(type: string): void {
+            if (!hasStruktur) return;
+
             const isOSIS = type === 'OSIS';
 
             findById('osis-content')?.classList.toggle('hidden', !isOSIS);
@@ -37,11 +36,11 @@ function initStructurePage(): void {
             osisTrack?.classList.toggle('hidden', !isOSIS);
             mpkTrack?.classList.toggle('hidden',   isOSIS);
 
-            const sectionLogo = findById<HTMLImageElement>('sectionLogo');
-            if (sectionLogo) {
-                sectionLogo.src = isOSIS
-                    ? 'public/images/struktur-organisasi/OSIS/osis-logo.png'
-                    : 'public/images/struktur-organisasi/MPK/mpk-logo.png';
+            const prokerDescription = findById('proker-description');
+            if (prokerDescription) {
+                prokerDescription.textContent = isOSIS
+                    ? 'Berikut adalah beberapa program kerja unggulan OSIS SMP Taruna Bakti'
+                    : 'Berikut adalah beberapa program kerja unggulan MPK SMP Taruna Bakti';
             }
 
             const carouselTitle = findById('carouselTitle');
@@ -50,22 +49,11 @@ function initStructurePage(): void {
             }
 
             const activeTrack = isOSIS ? osisTrack : mpkTrack;
-            if (activeTrack) {
+            if (activeTrack && carousel) {
                 carousel.setTrack(activeTrack, isFirstLoad ? initialIndex : 0);
             }
 
             isFirstLoad = false;
         },
-    });
-}
-
-// ---- Beranda page --------------------------------------------------------------
-
-function initBerandaPage(): void {
-    initTabs({
-        tabSelector: '.beranda-toggle-tab',
-        panelAttr:   'data-org-panel',
-        paramKey:    'org',
-        defaultTab:  'OSIS',
     });
 }

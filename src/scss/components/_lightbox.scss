@@ -43,6 +43,8 @@
     &-next { right: 2rem; }
 }
 
+// ─── Responsive ──────────────────────────────────────────────────────────────
+
 @include tablet {
     .lightbox {
         &-nav   { width: 3.125rem; height: 3.125rem; font-size: 1.6rem; }

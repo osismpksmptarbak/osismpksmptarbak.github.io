@@ -2,24 +2,28 @@
 
 .hidden { display: none !important; }
 
-// Decorative ambient gradient blobs
+// ─── Decorative ambient gradient blobs ───────────────────────────────────────
+$_blob-color: rgba(74, 135, 232, 0.3);
+$_blob-size:  50rem;
+$_blob-offset: calc($_blob-size / -2);
+
 .gradient-circle {
     position: fixed;
-    width: 50rem;
-    height: 50rem;
+    width: $_blob-size;
+    height: $_blob-size;
+    border-radius: 50%;
     pointer-events: none;
     z-index: 2;
-    border-radius: 50%;
 }
 
 .gradient-top-left {
-    background: radial-gradient(circle, rgba(74, 135, 232, 0.3) 0%, transparent 70%);
-    top: -25rem;
-    left: -25rem;
+    background: radial-gradient(circle, $_blob-color 0%, transparent 70%);
+    top: $_blob-offset;
+    left: $_blob-offset;
 }
 
 .gradient-bottom-right {
-    background: radial-gradient(circle, rgba(74, 135, 232, 0.3) 0%, transparent 70%);
-    bottom: -25rem;
-    right: -25rem;
+    background: radial-gradient(circle, $_blob-color 0%, transparent 70%);
+    bottom: $_blob-offset;
+    right: $_blob-offset;
 }

@@ -1,13 +1,13 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as *;
 
-// ─── Kegiatan carousel ──────────────────────────────────────────────────────
+// ─── Gallery carousel ────────────────────────────────────────────────────────
 
 .carousel-container {
     position: relative;
     max-width: 62.5rem;
     margin: 2rem auto;
-    display: none; // toggled via JS; overridden in divisi context below
+    display: none;
 }
 
 .carousel-track-container {
@@ -62,7 +62,7 @@
     z-index: 5;
 }
 
-// --- Nav buttons ---
+// ─── Nav buttons ─────────────────────────────────────────────────────────────
 
 .carousel-nav {
     @include nav-btn-base;
@@ -71,7 +71,7 @@
 .carousel-prev { left: 1rem; }
 .carousel-next { right: 1rem; }
 
-// --- Dot indicators ---
+// ─── Dot indicators ──────────────────────────────────────────────────────────
 
 .carousel-indicators {
     display: flex;
@@ -139,7 +139,7 @@
     pointer-events: none;
 }
 
-// ─── Loading & error states ─────────────────────────────────────────────────
+// ─── Loading & error states ──────────────────────────────────────────────────
 
 .loading-state,
 .error-state {
@@ -173,26 +173,13 @@
     p { font-size: 1rem; text-align: center; }
 }
 
-// ─── Divisi (struktur-organisasi) carousel ──────────────────────────────────
+// ─── Divisi (org-chart) carousel ─────────────────────────────────────────────
 
 .divisi-carousel-section {
     padding: 4rem 0 6rem;
     position: relative;
     overflow: hidden;
-}
 
-.divisi-carousel-title {
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: 900;
-    color: $primary;
-    text-transform: uppercase;
-    letter-spacing: 0.125rem;
-    margin-bottom: 3rem;
-    padding: 0 2rem;
-}
-
-.divisi-carousel-section {
     .carousel-container {
         display: block;
         max-width: 100%;
@@ -218,6 +205,19 @@
         }
     }
 }
+
+.divisi-carousel-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: $primary;
+    text-transform: uppercase;
+    letter-spacing: 0.125rem;
+    margin-bottom: 2rem;
+    padding: 0 2rem;
+}
+
+// ─── Divisi cards ─────────────────────────────────────────────────────────────
 
 .divisi-card {
     background: $bg-white;
@@ -289,7 +289,7 @@
     }
 }
 
-// ─── Responsive ─────────────────────────────────────────────────────────────
+// ─── Responsive ──────────────────────────────────────────────────────────────
 
 @include tablet {
     .carousel-nav        { width: 3.125rem; height: 3.125rem; font-size: 1.6rem; }
@@ -304,10 +304,10 @@
         font-size: 0.95rem;
     }
 
-    .divisi-carousel-title                           { font-size: 2rem; }
-    .divisi-carousel-section .carousel-container    { padding: 2.5rem 3.75rem 3.75rem; }
-    .divisi-card                                     { width: 18.75rem; min-width: 18.75rem; }
-    .divisi-carousel-section .carousel-nav           { width: 3.125rem; height: 3.125rem; font-size: 1.6rem; }
+    .divisi-carousel-title                        { font-size: 2rem; }
+    .divisi-carousel-section .carousel-container  { padding: 2.5rem 3.75rem 3.75rem; }
+    .divisi-card                                  { width: 18.75rem; min-width: 18.75rem; }
+    .divisi-carousel-section .carousel-nav        { width: 3.125rem; height: 3.125rem; font-size: 1.6rem; }
 }
 
 @include mobile {
@@ -325,10 +325,10 @@
         border-radius: $radius-sm;
     }
 
-    .divisi-carousel-title                           { font-size: 1.75rem; letter-spacing: 0.0625rem; }
-    .divisi-carousel-section .carousel-container    { padding: 2.5rem 3.125rem 3.75rem; }
-    .divisi-card                                     { width: 17.5rem; min-width: 17.5rem; }
-    .divisi-card-image                               { height: 13.75rem; padding: 1.5rem 1.5rem 0; }
+    .divisi-carousel-title                        { font-size: 1.75rem; letter-spacing: 0.0625rem; }
+    .divisi-carousel-section .carousel-container  { padding: 2.5rem 3.125rem 3.75rem; }
+    .divisi-card                                  { width: 17.5rem; min-width: 17.5rem; }
+    .divisi-card-image                            { height: 13.75rem; padding: 1.5rem 1.5rem 0; }
 
     .divisi-carousel-section .carousel-nav {
         width: 2.875rem;

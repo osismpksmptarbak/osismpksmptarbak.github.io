@@ -1,6 +1,8 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as *;
 
+// ─── Section ─────────────────────────────────────────────────────────────────
+
 .struktur-organisasi-section {
     text-align: center;
     padding: 3.75rem 1.25rem;
@@ -9,50 +11,13 @@
         font-size: 2.5rem;
         font-weight: 700;
         color: $primary;
-        margin-bottom: 3rem;
+        margin-bottom: 2rem;
     }
 }
 
-// ─── Toggle tabs ─────────────────────────────────────────────────────────────
-
-.structure-toggle-container {
-    display: flex;
-    justify-content: center;
-    margin: 0 auto 3rem;
-    max-width: 37.5rem;
-}
-
-.structure-toggle-tabs {
-    display: flex;
-    background: $bg-100;
-    border-radius: $radius-md;
-    padding: 0.375rem;
-    box-shadow: $shadow-md;
-    width: 100%;
-    max-width: 31.25rem;
-}
-
-.structure-toggle-tab {
-    flex: 1;
-    background: transparent;
-    border: none;
-    color: $text-gray-600;
-    padding: 0.75rem 1.5rem;
-    border-radius: $radius-sm;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 0.03125rem;
-    transition: all $transition;
-
-    &:hover { color: $text-gray-700; }
-
-    &.active {
-        background: $primary;
-        color: $bg-white;
-        box-shadow: 0 0.125rem 0.5rem rgba(110, 195, 225, 0.4);
-    }
+.struktur-organisasi-description {
+    color: $text-dark;
+    margin-bottom: 2rem;
 }
 
 // ─── Main layout ─────────────────────────────────────────────────────────────
@@ -63,13 +28,6 @@
     max-width: $max-width;
     margin: 0 auto;
     align-items: flex-start;
-}
-
-.struktur-organisasi-logo {
-    width: 15rem;
-    height: 15rem;
-    display: block;
-    margin: 0 auto;
 }
 
 // ─── Description panel ───────────────────────────────────────────────────────
@@ -85,7 +43,8 @@
     .struktur-organisasi-logo {
         width: 12.5rem;
         height: 12.5rem;
-        margin-bottom: 1.5rem;
+        display: block;
+        margin: 0 auto 1.5rem auto;
     }
 
     h2 {
@@ -313,24 +272,11 @@
 @include tablet {
     .struktur-organisasi-section h1 { font-size: 2rem; }
     .struktur-organisasi-card       { width: 13.75rem; }
-    .structure-toggle-tabs          { max-width: 25rem; }
-
-    .structure-toggle-tab {
-        font-size: 0.9rem;
-        padding: 0.625rem 1.25rem;
-    }
-
-    .proker-panel { padding: 1.25rem 1.5rem; min-width: unset; }
+    .proker-panel                   { padding: 1.25rem 1.5rem; min-width: unset; }
 }
 
 @include mobile {
     .struktur-organisasi-section h1  { font-size: 1.75rem; }
     .struktur-organisasi-card        { width: 100%; max-width: 17.5rem; }
     .struktur-organisasi-horizontal  { width: 100%; }
-    .structure-toggle-tabs           { padding: 0.25rem; max-width: 100%; }
-
-    .structure-toggle-tab {
-        font-size: 0.85rem;
-        padding: 0.625rem 1rem;
-    }
 }
