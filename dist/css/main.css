@@ -1384,7 +1384,7 @@ header.header--transparent .nav-divider {
 }
 .visi-shape-2 {
   top: -2.5rem;
-  right: 35%;
+  right: 30%;
   transform: translateX(50%);
   width: 15rem;
   height: 15rem;
@@ -1394,10 +1394,10 @@ header.header--transparent .nav-divider {
 }
 .visi-shape-3 {
   bottom: 1rem;
-  right: 20%;
+  right: 25%;
   transform: translateX(50%);
-  width: 9rem;
-  height: 9rem;
+  width: 10rem;
+  height: 10rem;
   background: rgba(74, 135, 232, 0.3);
   border-radius: 64%;
 }
@@ -1405,8 +1405,8 @@ header.header--transparent .nav-divider {
   top: 2.5rem;
   left: 25%;
   transform: translateX(-50%);
-  width: 6rem;
-  height: 6rem;
+  width: 8rem;
+  height: 8rem;
   background: rgba(74, 135, 232, 0.3);
   border-radius: 1rem;
 }
@@ -1574,6 +1574,9 @@ header.header--transparent .nav-divider {
     width: 100%;
     text-align: center;
     padding: 0.75rem 1rem;
+  }
+  .visi-shape {
+    background: rgba(74, 135, 232, 0.2);
   }
   .proker-grid {
     gap: 1.25rem;
