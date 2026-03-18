@@ -34,12 +34,6 @@ function initStructurePage() {
                     ? 'public/images/struktur-organisasi/OSIS/osis-logo.png'
                     : 'public/images/struktur-organisasi/MPK/mpk-logo.png';
             }
-            const sectionTitle = findById('sectionTitle');
-            if (sectionTitle?.childNodes[2]) {
-                sectionTitle.childNodes[2].textContent = isOSIS
-                    ? ' STRUKTUR ORGANISASI OSIS'
-                    : ' STRUKTUR ORGANISASI MPK';
-            }
             const carouselTitle = findById('carouselTitle');
             if (carouselTitle) {
                 carouselTitle.textContent = isOSIS ? '- SEKBID -' : '- KOMISI -';
