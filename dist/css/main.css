@@ -1249,9 +1249,7 @@ header.header--transparent .nav-divider {
   }
   .struktur-organisasi-card {
     width: 100%;
-  }
-  .struktur-organisasi-horizontal {
-    width: 100%;
+    max-width: 17.5rem;
   }
 }
 .banner {
