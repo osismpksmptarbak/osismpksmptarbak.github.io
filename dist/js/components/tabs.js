@@ -1,31 +1,42 @@
 import { getUrlParam, setUrlParam } from '../utils/dom.js';
+/**
+ * Initialises a tab group: highlights the active tab, shows/hides its panel,
+ * persists the selection in the URL, and calls `onChange` on every switch.
+ *
+ * Each tab element must carry a `data-org` or `data-structure` attribute
+ * whose value is the tab's identifier (e.g. `"OSIS"`, `"MPK"`).
+ */
 export function initTabs(options) {
     const { tabSelector, panelAttr, paramKey, defaultTab, onChange } = options;
     const tabs = document.querySelectorAll(tabSelector);
     const panels = panelAttr
         ? document.querySelectorAll(`[${panelAttr}]`)
         : [];
+    function getTabValue(tab) {
+        return tab.dataset.org ?? tab.dataset.structure ?? '';
+    }
     function switchTab(value) {
+        // Update active state on tab buttons
         tabs.forEach(tab => {
-            const tabValue = tab.dataset.org ?? tab.dataset.structure ?? '';
-            tab.classList.toggle('active', tabValue === value);
+            tab.classList.toggle('active', getTabValue(tab) === value);
         });
+        // Show only the matching panel
         if (panelAttr) {
             panels.forEach(panel => {
-                panel.classList.toggle('hidden', panel.getAttribute(panelAttr) !== value);
+                const isActive = panel.getAttribute(panelAttr) === value;
+                panel.classList.toggle('hidden', !isActive);
             });
         }
         setUrlParam(paramKey, value.toLowerCase());
         onChange?.(value);
     }
+    // Wire up click handlers
     tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            const value = tab.dataset.org ?? tab.dataset.structure ?? '';
-            switchTab(value);
-        });
+        tab.addEventListener('click', () => switchTab(getTabValue(tab)));
     });
-    const paramValue = getUrlParam(paramKey);
-    switchTab(paramValue ? paramValue.toUpperCase() : defaultTab);
+    // Restore from URL, or fall back to the default
+    const savedValue = getUrlParam(paramKey);
+    switchTab(savedValue ? savedValue.toUpperCase() : defaultTab);
     return { switchTab };
 }
 //# sourceMappingURL=tabs.js.map

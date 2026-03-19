@@ -271,12 +271,11 @@
 
 @include tablet {
     .struktur-organisasi-section h1 { font-size: 2rem; }
-    .struktur-organisasi-card       { width: 13.75rem; }
     .proker-panel                   { padding: 1.25rem 1.5rem; min-width: unset; }
 }
 
 @include mobile {
     .struktur-organisasi-section h1  { font-size: 1.75rem; }
-    .struktur-organisasi-card        { width: 100%; max-width: 17.5rem; }
+    .struktur-organisasi-card        { width: 100%; }
     .struktur-organisasi-horizontal  { width: 100%; }
 }

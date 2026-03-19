@@ -1238,9 +1238,6 @@ header.header--transparent .nav-divider {
   .struktur-organisasi-section h1 {
     font-size: 2rem;
   }
-  .struktur-organisasi-card {
-    width: 13.75rem;
-  }
   .proker-panel {
     padding: 1.25rem 1.5rem;
     min-width: unset;
@@ -1252,7 +1249,6 @@ header.header--transparent .nav-divider {
   }
   .struktur-organisasi-card {
     width: 100%;
-    max-width: 17.5rem;
   }
   .struktur-organisasi-horizontal {
     width: 100%;

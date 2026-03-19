@@ -3,7 +3,7 @@ import { findById } from './utils/dom.js';
 
 // ---- Side menu -----------------------------------------------------------------
 
-const menuElements: MenuElements = {
+const menu: MenuElements = {
     toggle:  findById('menuToggle'),
     close:   findById('closeMenu'),
     menu:    findById('sideMenu'),
@@ -11,67 +11,81 @@ const menuElements: MenuElements = {
 };
 
 function openMenu(): void {
-    menuElements.menu?.classList.add('open');
-    menuElements.overlay?.classList.add('active');
+    menu.menu?.classList.add('open');
+    menu.overlay?.classList.add('active');
     document.body.style.overflow = 'hidden';
 }
 
 function closeMenu(): void {
-    menuElements.menu?.classList.remove('open');
-    menuElements.overlay?.classList.remove('active');
+    menu.menu?.classList.remove('open');
+    menu.overlay?.classList.remove('active');
     document.body.style.overflow = 'auto';
 }
 
-menuElements.toggle?.addEventListener('click', openMenu);
-menuElements.close?.addEventListener('click', closeMenu);
-menuElements.overlay?.addEventListener('click', closeMenu);
+menu.toggle?.addEventListener('click', openMenu);
+menu.close?.addEventListener('click', closeMenu);
+menu.overlay?.addEventListener('click', closeMenu);
 
+// Smooth-scroll all in-page anchor links and close the menu afterwards
 document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', (e: MouseEvent) => {
         e.preventDefault();
         const href = anchor.getAttribute('href');
-        if (!href) return;
-        const target = document.querySelector<HTMLElement>(href);
-        if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            closeMenu();
-        }
+        const target = href ? document.querySelector<HTMLElement>(href) : null;
+        target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        closeMenu();
     });
 });
 
 // ---- Accordion -----------------------------------------------------------------
 
+/**
+ * Wires up accordion behaviour for every `.accordion-header` element.
+ * Clicking a header toggles its own `active` class and its next sibling's.
+ * The first header is opened by default.
+ *
+ * NOTE: Each header is cloned before attaching a listener so that calling
+ * this function again (e.g. after dynamic content loads) doesn't stack
+ * duplicate listeners.
+ */
 export function initAccordion(): void {
     const headers = document.querySelectorAll<HTMLElement>('.accordion-header');
 
     headers.forEach((header, index) => {
-        const fresh = header.cloneNode(true) as HTMLElement;
-        header.parentNode?.replaceChild(fresh, header);
+        // Replace with a clone to strip any previously attached listeners
+        const clone = header.cloneNode(true) as HTMLElement;
+        header.parentNode?.replaceChild(clone, header);
 
-        fresh.addEventListener('click', function (this: HTMLElement) {
-            const content = this.nextElementSibling as HTMLElement | null;
+        clone.addEventListener('click', function (this: HTMLElement) {
             const isActive = this.classList.contains('active');
             this.classList.toggle('active', !isActive);
-            content?.classList.toggle('active', !isActive);
+            (this.nextElementSibling as HTMLElement | null)?.classList.toggle('active', !isActive);
         });
 
+        // Open the first item on initial render
         if (index === 0) {
-            fresh.classList.add('active');
-            (fresh.nextElementSibling as HTMLElement | null)?.classList.add('active');
+            clone.classList.add('active');
+            (clone.nextElementSibling as HTMLElement | null)?.classList.add('active');
         }
     });
 }
 
 // ---- Kegiatan OSIS loader ------------------------------------------------------
 
+/**
+ * Fetches `kegiatan.txt`, parses its pipe-delimited lines into activities,
+ * groups them by year, and renders accordion sections into `#kegiatan-osis`.
+ *
+ * File format (one activity per line):
+ *   YEAR | Title | https://link
+ */
 async function loadKegiatanOsis(): Promise<void> {
     const container = findById('kegiatan-osis');
     if (!container) return;
 
     try {
         const dataUrl = new URL('../../kegiatan-osis/kegiatan.txt', import.meta.url).href;
-        const response = await fetch(dataUrl);
-        const text = await response.text();
+        const text = await fetch(dataUrl).then(r => r.text());
 
         const activities: KegiatanActivity[] = text
             .trim()
@@ -87,30 +101,44 @@ async function loadKegiatanOsis(): Promise<void> {
             .filter((a): a is KegiatanActivity => Boolean(a.year && a.title && a.link))
             .sort((a, b) => a.title.localeCompare(b.title));
 
-        const grouped = activities.reduce<Record<string, KegiatanActivity[]>>((acc, act) => {
-            (acc[act.year] ??= []).push(act);
-            return acc;
-        }, {});
+        const grouped = groupByYear(activities);
 
         container.innerHTML = Object.keys(grouped)
             .sort()
-            .map(year => `
-                <div class="menu-section">
-                    <p class="accordion-header">Kegiatan OSIS ${year}</p>
-                    <ul class="accordion-content">
-                        ${(grouped[year] ?? [])
-                            .map(a => `<li><a href="${a.link}" target="_blank" rel="noopener noreferrer">${a.title}</a></li>`)
-                            .join('')}
-                    </ul>
-                </div>
-            `)
+            .map(year => renderYearSection(year, grouped[year] ?? []))
             .join('');
 
         initAccordion();
     } catch (error) {
         console.error('Error loading kegiatan:', error);
-        container.innerHTML = '<div class="menu-section"><p style="padding: 0.5rem; color: var(--text-light);">Tidak ada kegiatan tersedia</p></div>';
+        container.innerHTML = `
+            <div class="menu-section">
+                <p style="padding: 0.5rem; color: var(--text-light);">
+                    Tidak ada kegiatan tersedia
+                </p>
+            </div>`;
     }
+}
+
+/** Groups an array of activities into a Record keyed by year. */
+function groupByYear(activities: KegiatanActivity[]): Record<string, KegiatanActivity[]> {
+    return activities.reduce<Record<string, KegiatanActivity[]>>((acc, activity) => {
+        (acc[activity.year] ??= []).push(activity);
+        return acc;
+    }, {});
+}
+
+/** Renders a single accordion section for one year's activities. */
+function renderYearSection(year: string, activities: KegiatanActivity[]): string {
+    const items = activities
+        .map(a => `<li><a href="${a.link}" target="_blank" rel="noopener noreferrer">${a.title}</a></li>`)
+        .join('');
+
+    return `
+        <div class="menu-section">
+            <p class="accordion-header">Kegiatan OSIS ${year}</p>
+            <ul class="accordion-content">${items}</ul>
+        </div>`;
 }
 
 // ---- Init ----------------------------------------------------------------------

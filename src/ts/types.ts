@@ -1,3 +1,5 @@
+// ---- Gallery -------------------------------------------------------------------
+
 export interface GalleryImage {
     id: string;
     thumbnailUrl: string;
@@ -19,27 +21,38 @@ export interface GalleryElements {
     lightboxImage: HTMLImageElement;
 }
 
-export interface KegiatanActivity {
-    year: string;
-    title: string;
-    link: string;
-}
-
-export interface TabOptions {
-    tabSelector: string;
-    panelAttr: string | null;
-    paramKey: string;
-    defaultTab: string;
-    onChange?: (value: string) => void;
-}
-
-export interface TabController {
-    switchTab: (value: string) => void;
-}
+// ---- Menu / navigation ---------------------------------------------------------
 
 export interface MenuElements {
     toggle: HTMLElement | null;
     close: HTMLElement | null;
     menu: HTMLElement | null;
     overlay: HTMLElement | null;
+}
+
+// ---- Kegiatan ------------------------------------------------------------------
+
+export interface KegiatanActivity {
+    year: string;
+    title: string;
+    link: string;
+}
+
+// ---- Tabs ----------------------------------------------------------------------
+
+export interface TabOptions {
+    /** CSS selector for tab button elements. */
+    tabSelector: string;
+    /** Attribute name on panel elements (e.g. `"data-org-panel"`). Null = no panels. */
+    panelAttr: string | null;
+    /** URL query-param key used to persist the active tab. */
+    paramKey: string;
+    /** Tab value to activate when no query param is present. */
+    defaultTab: string;
+    /** Called every time the active tab changes. */
+    onChange?: (value: string) => void;
+}
+
+export interface TabController {
+    switchTab: (value: string) => void;
 }
