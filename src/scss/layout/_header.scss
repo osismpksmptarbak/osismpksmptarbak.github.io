@@ -21,7 +21,7 @@ header {
 
         .nav-btn {
             color: $bg-white;
-            &:hover { color: $primary; }
+            &:hover { color: var(--brand-primary); }
         }
 
         .nav-divider { background: oklch(1 0 0 / 0.35); }
@@ -62,7 +62,7 @@ header {
     transition: color $transition;
     white-space: nowrap;
 
-    &:hover { color: $primary; }
+    &:hover { color: var(--brand-primary); }
 }
 
 .nav-divider {
@@ -171,7 +171,7 @@ header {
 
         &:hover {
             background: $hover-bg;
-            color: $primary;
+            color: var(--brand-primary);
         }
     }
 }

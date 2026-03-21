@@ -18,10 +18,39 @@ $bg-100:   oklch(0.968 0.007 248);
 $bg-light: oklch(0.985 0.004 265);
 $bg-white: oklch(1.000 0.000 0);
 
-// ─── Colors: Brand ───────────────────────────────────────────────────────────
+// ─── Colors: Brand — OSIS / blue ─────────────────────────────────────────────
 $primary:       oklch(0.780 0.105 225);
 $primary-hover: oklch(0.730 0.115 225);
 $primary-dark:  oklch(0.610 0.120 225);
+
+// ─── Colors: Brand — MPK / maroon ──────────────────
+$red-primary:       oklch(0.550 0.170 22);
+$red-primary-hover: oklch(0.490 0.170 22);
+$red-primary-dark:  oklch(0.400 0.155 22);
+
+// ─── CSS custom properties — default theme (OSIS / blue) ─────────────────────
+:root {
+    --brand-primary:       #{$primary};
+    --brand-primary-hover: #{$primary-hover};
+    --brand-primary-dark:  #{$primary-dark};
+    --brand-blob-color:    rgba(74, 135, 232, 0.3);
+    --brand-visi-color:    rgba(74, 135, 232, 0.4);
+    --brand-nav-shadow:    rgba(110, 195, 225, 0.4);
+    --brand-nav-shadow-lg: rgba(110, 195, 225, 0.6);
+    --brand-dot-shadow:    rgba(110, 195, 225, 0.4);
+}
+
+// ─── MPK theme override ───────────────────────────────────────────────────────
+.theme-mpk {
+    --brand-primary:       #{$red-primary};
+    --brand-primary-hover: #{$red-primary-hover};
+    --brand-primary-dark:  #{$red-primary-dark};
+    --brand-blob-color:    #{oklch(0.550 0.170 22 / 0.30)};
+    --brand-visi-color:    #{oklch(0.550 0.170 22 / 0.40)};
+    --brand-nav-shadow:    #{oklch(0.550 0.170 22 / 0.40)};
+    --brand-nav-shadow-lg: #{oklch(0.550 0.170 22 / 0.55)};
+    --brand-dot-shadow:    #{oklch(0.550 0.170 22 / 0.40)};
+}
 
 // ─── Colors: UI ──────────────────────────────────────────────────────────────
 $border:        oklch(0.900 0.002 265);

@@ -12,16 +12,16 @@
     transition: all $transition;
 
     &-filled {
-        background: $primary;
+        background: var(--brand-primary);
         color: $bg-white;
 
-        &:hover { background: $primary-hover; }
+        &:hover { background: var(--brand-primary-hover); }
     }
 
     &-outline {
         background: transparent;
-        border: 1px solid $primary;
-        color: $primary;
+        border: 1px solid var(--brand-primary);
+        color: var(--brand-primary);
 
         &:hover { background: $hover-bg-dark; }
     }

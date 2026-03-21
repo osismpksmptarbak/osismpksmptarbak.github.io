@@ -6,7 +6,7 @@
 .footer {
     background: $bg-light;
     padding: 4rem 2rem 2rem;
-    border-top: 2px solid $primary;
+    border-top: 2px solid var(--brand-primary);
     color: $text-dark;
 
     &-container {
@@ -41,11 +41,11 @@
         gap: 0.5rem;
         transition: color $transition;
 
-        &:hover { color: $primary; }
+        &:hover { color: var(--brand-primary); }
     }
 
     i {
-        color: $primary;
+        color: var(--brand-primary);
         min-width: 1.2rem;
     }
 }
@@ -107,7 +107,7 @@
         color: $text-gray-600;
 
         strong {
-            color: $primary;
+            color: var(--brand-primary);
             font-weight: 700;
         }
     }

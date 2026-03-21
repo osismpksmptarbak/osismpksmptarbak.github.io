@@ -17,7 +17,7 @@ section {
     margin: 0 auto;
 
     h2 {
-        color: $primary;
+        color: var(--brand-primary);
         font-size: 2.5rem;
         margin-bottom: 1.5rem;
     }

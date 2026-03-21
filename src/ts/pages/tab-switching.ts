@@ -54,7 +54,13 @@ function handleTabChange(
     osisTrack?.classList.toggle('hidden', !isOSIS);
     mpkTrack?.classList.toggle('hidden',   isOSIS);
 
-    // Update text that names the active organisation
+    // Apply MPK colour theme — body covers shared elements (blobs, toggle tabs,
+    // banner h1, nav accents); mpk-content panel scopes section-level elements
+    document.body.classList.toggle('theme-mpk', !isOSIS);
+    const mpkContent = findById('mpk-content');
+    if (mpkContent) {
+        mpkContent.classList.toggle('theme-mpk', !isOSIS);
+    }
     const prokerDescription = findById('proker-description');
     if (prokerDescription) {
         prokerDescription.textContent = isOSIS

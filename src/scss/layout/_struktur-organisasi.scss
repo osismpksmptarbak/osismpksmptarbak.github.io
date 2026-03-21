@@ -10,7 +10,7 @@
     h1 {
         font-size: 2.5rem;
         font-weight: 700;
-        color: $primary;
+        color: var(--brand-primary);
         margin-bottom: 2rem;
     }
 }
@@ -49,7 +49,7 @@
 
     h2 {
         font-size: 1.75rem;
-        color: $primary;
+        color: var(--brand-primary);
         font-weight: 700;
         margin-bottom: 1rem;
     }
@@ -84,7 +84,7 @@
             content: '•';
             position: absolute;
             left: 0.5rem;
-            color: $primary;
+            color: var(--brand-primary);
             font-weight: bold;
         }
     }
@@ -172,7 +172,7 @@
 .proker-panel {
     background: $bg-white;
     border-radius: $radius-xl;
-    border: 1px solid $primary;
+    border: 1px solid var(--brand-primary);
     padding: 1.75rem 2rem;
     box-shadow: $shadow-md;
     min-width: 20rem;
@@ -185,12 +185,12 @@
     font-size: 1.1rem;
     font-weight: 700;
     font-family: $font-heading;
-    color: $primary;
+    color: var(--brand-primary);
     text-transform: uppercase;
     letter-spacing: 0.03125rem;
     margin-bottom: 1.25rem;
     padding-bottom: 0.75rem;
-    border-bottom: 0.125rem solid $primary;
+    border-bottom: 0.125rem solid var(--brand-primary);
 }
 
 .proker-list {
@@ -214,7 +214,7 @@
             top: 0.125rem;
             width: 1.5rem;
             height: 1.5rem;
-            background: $primary;
+            background: var(--brand-primary);
             color: $bg-white;
             border-radius: 50%;
             font-size: 0.75rem;

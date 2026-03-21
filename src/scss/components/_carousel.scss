@@ -105,10 +105,10 @@
     }
 
     &.active {
-        background: $primary;
+        background: var(--brand-primary);
         color: $bg-white;
-        border-color: $primary;
-        box-shadow: 0 0.25rem 1rem rgba(110, 195, 225, 0.4);
+        border-color: var(--brand-primary);
+        box-shadow: 0 0.25rem 1rem var(--brand-dot-shadow);
     }
 
     &:disabled {
@@ -123,9 +123,9 @@
     font-weight: 400;
 
     &:hover:not(:disabled) {
-        background: $primary;
+        background: var(--brand-primary);
         color: $bg-white;
-        border-color: $primary;
+        border-color: var(--brand-primary);
     }
 }
 
@@ -155,7 +155,7 @@
     width: 3.125rem;
     height: 3.125rem;
     border: 0.25rem solid $border;
-    border-top-color: $primary;
+    border-top-color: var(--brand-primary);
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
@@ -210,7 +210,7 @@
     text-align: center;
     font-size: 2.5rem;
     font-weight: 900;
-    color: $primary;
+    color: var(--brand-primary);
     text-transform: uppercase;
     letter-spacing: 0.125rem;
     margin-bottom: 2rem;
@@ -272,7 +272,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: $primary;
+    background: var(--brand-primary);
     color: $bg-white;
     padding: 0.75rem 1.5rem;
     border-radius: $radius-sm;
@@ -284,7 +284,7 @@
     &::after { content: '→'; font-size: 1.2rem; }
 
     &:hover {
-        background: $primary-hover;
+        background: var(--brand-primary-hover);
         transform: translateX(0.25rem);
     }
 }

@@ -3,7 +3,7 @@
 .hidden { display: none !important; }
 
 // ─── Decorative ambient gradient blobs ───────────────────────────────────────
-$_blob-color: rgba(74, 135, 232, 0.3);
+$_blob-color: var(--brand-blob-color);
 $_blob-size:  50rem;
 $_blob-offset: calc($_blob-size / -2);
 

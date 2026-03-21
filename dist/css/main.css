@@ -1,4 +1,26 @@
 @charset "UTF-8";
+:root {
+  --brand-primary: oklch(78% 0.105 225deg);
+  --brand-primary-hover: oklch(73% 0.115 225deg);
+  --brand-primary-dark: oklch(61% 0.12 225deg);
+  --brand-blob-color: rgba(74, 135, 232, 0.3);
+  --brand-visi-color: rgba(74, 135, 232, 0.4);
+  --brand-nav-shadow: rgba(110, 195, 225, 0.4);
+  --brand-nav-shadow-lg: rgba(110, 195, 225, 0.6);
+  --brand-dot-shadow: rgba(110, 195, 225, 0.4);
+}
+
+.theme-mpk {
+  --brand-primary: oklch(55% 0.17 22deg);
+  --brand-primary-hover: oklch(49% 0.17 22deg);
+  --brand-primary-dark: oklch(40% 0.155 22deg);
+  --brand-blob-color: oklch(55% 0.17 22deg / 0.3);
+  --brand-visi-color: oklch(55% 0.17 22deg / 0.4);
+  --brand-nav-shadow: oklch(55% 0.17 22deg / 0.4);
+  --brand-nav-shadow-lg: oklch(55% 0.17 22deg / 0.55);
+  --brand-dot-shadow: oklch(55% 0.17 22deg / 0.4);
+}
+
 *,
 *::before,
 *::after {
@@ -23,7 +45,7 @@ section {
   margin: 0 auto;
 }
 section h2 {
-  color: oklch(78% 0.105 225deg);
+  color: var(--brand-primary);
   font-size: 2.5rem;
   margin-bottom: 1.5rem;
 }
@@ -65,13 +87,13 @@ section p {
 }
 
 .gradient-top-left {
-  background: radial-gradient(circle, rgba(74, 135, 232, 0.3) 0%, transparent 70%);
+  background: radial-gradient(circle, var(--brand-blob-color) 0%, transparent 70%);
   top: -25rem;
   left: -25rem;
 }
 
 .gradient-bottom-right {
-  background: radial-gradient(circle, rgba(74, 135, 232, 0.3) 0%, transparent 70%);
+  background: radial-gradient(circle, var(--brand-blob-color) 0%, transparent 70%);
   bottom: -25rem;
   right: -25rem;
 }
@@ -88,16 +110,16 @@ section p {
   transition: all 0.3s ease;
 }
 .btn-filled {
-  background: oklch(78% 0.105 225deg);
+  background: var(--brand-primary);
   color: oklch(100% 0 0deg);
 }
 .btn-filled:hover {
-  background: oklch(73% 0.115 225deg);
+  background: var(--brand-primary-hover);
 }
 .btn-outline {
   background: transparent;
-  border: 1px solid oklch(78% 0.105 225deg);
-  color: oklch(78% 0.105 225deg);
+  border: 1px solid var(--brand-primary);
+  color: var(--brand-primary);
 }
 .btn-outline:hover {
   background: oklch(0% 0 0deg / 0.137);
@@ -170,8 +192,8 @@ section p {
   transform: translateY(-50%);
   width: 3.5rem;
   height: 3.5rem;
-  background: oklch(78% 0.105 225deg);
-  border: 0.125rem solid oklch(78% 0.105 225deg);
+  background: var(--brand-primary);
+  border: 0.125rem solid var(--brand-primary);
   border-radius: 50%;
   cursor: pointer;
   display: flex;
@@ -180,17 +202,17 @@ section p {
   font-size: 1.8rem;
   font-weight: bold;
   color: oklch(100% 0 0deg);
-  box-shadow: 0 0.25rem 0.75rem rgba(110, 195, 225, 0.4);
+  box-shadow: 0 0.25rem 0.75rem var(--brand-nav-shadow);
   transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   z-index: 10;
   user-select: none;
   padding: 0;
 }
 .carousel-nav:hover {
-  background: oklch(61% 0.12 225deg);
-  border-color: oklch(61% 0.12 225deg);
+  background: var(--brand-primary-dark);
+  border-color: var(--brand-primary-dark);
   transform: translateY(-50%) scale(1.15);
-  box-shadow: 0 0.375rem 1rem rgba(110, 195, 225, 0.6);
+  box-shadow: 0 0.375rem 1rem var(--brand-nav-shadow-lg);
 }
 
 .carousel-prev {
@@ -233,10 +255,10 @@ section p {
   box-shadow: 0 0.25rem 1.25rem oklch(0% 0 0deg / 0.08);
 }
 .carousel-dot.active {
-  background: oklch(78% 0.105 225deg);
+  background: var(--brand-primary);
   color: oklch(100% 0 0deg);
-  border-color: oklch(78% 0.105 225deg);
-  box-shadow: 0 0.25rem 1rem rgba(110, 195, 225, 0.4);
+  border-color: var(--brand-primary);
+  box-shadow: 0 0.25rem 1rem var(--brand-dot-shadow);
 }
 .carousel-dot:disabled {
   opacity: 0.4;
@@ -249,9 +271,9 @@ section p {
   font-weight: 400;
 }
 .carousel-nav-btn:hover:not(:disabled) {
-  background: oklch(78% 0.105 225deg);
+  background: var(--brand-primary);
   color: oklch(100% 0 0deg);
-  border-color: oklch(78% 0.105 225deg);
+  border-color: var(--brand-primary);
 }
 
 .carousel-ellipsis {
@@ -280,7 +302,7 @@ section p {
   width: 3.125rem;
   height: 3.125rem;
   border: 0.25rem solid oklch(90% 0.002 265deg);
-  border-top-color: oklch(78% 0.105 225deg);
+  border-top-color: var(--brand-primary);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -339,7 +361,7 @@ section p {
   text-align: center;
   font-size: 2.5rem;
   font-weight: 900;
-  color: oklch(78% 0.105 225deg);
+  color: var(--brand-primary);
   text-transform: uppercase;
   letter-spacing: 0.125rem;
   margin-bottom: 2rem;
@@ -391,7 +413,7 @@ section p {
 
 .divisi-badge {
   display: inline-block;
-  background: oklch(78% 0.105 225deg);
+  background: var(--brand-primary);
   color: oklch(100% 0 0deg);
   padding: 0.375rem 0.875rem;
   border-radius: 0.5rem;
@@ -406,7 +428,7 @@ section p {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: oklch(78% 0.105 225deg);
+  background: var(--brand-primary);
   color: oklch(100% 0 0deg);
   padding: 0.75rem 1.5rem;
   border-radius: 0.5rem;
@@ -420,7 +442,7 @@ section p {
   font-size: 1.2rem;
 }
 .divisi-btn:hover {
-  background: oklch(73% 0.115 225deg);
+  background: var(--brand-primary-hover);
   transform: translateX(0.25rem);
 }
 
@@ -559,8 +581,8 @@ section p {
   transform: translateY(-50%);
   width: 3.5rem;
   height: 3.5rem;
-  background: oklch(78% 0.105 225deg);
-  border: 0.125rem solid oklch(78% 0.105 225deg);
+  background: var(--brand-primary);
+  border: 0.125rem solid var(--brand-primary);
   border-radius: 50%;
   cursor: pointer;
   display: flex;
@@ -569,17 +591,17 @@ section p {
   font-size: 1.8rem;
   font-weight: bold;
   color: oklch(100% 0 0deg);
-  box-shadow: 0 0.25rem 0.75rem rgba(110, 195, 225, 0.4);
+  box-shadow: 0 0.25rem 0.75rem var(--brand-nav-shadow);
   transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   z-index: 10;
   user-select: none;
   padding: 0;
 }
 .lightbox-nav:hover {
-  background: oklch(61% 0.12 225deg);
-  border-color: oklch(61% 0.12 225deg);
+  background: var(--brand-primary-dark);
+  border-color: var(--brand-primary-dark);
   transform: translateY(-50%) scale(1.15);
-  box-shadow: 0 0.375rem 1rem rgba(110, 195, 225, 0.6);
+  box-shadow: 0 0.375rem 1rem var(--brand-nav-shadow-lg);
 }
 .lightbox-prev {
   left: 2rem;
@@ -643,7 +665,7 @@ header.header--transparent .nav-btn {
   color: oklch(100% 0 0deg);
 }
 header.header--transparent .nav-btn:hover {
-  color: oklch(78% 0.105 225deg);
+  color: var(--brand-primary);
 }
 header.header--transparent .nav-divider {
   background: oklch(100% 0 0deg / 0.35);
@@ -684,7 +706,7 @@ header.header--transparent .nav-divider {
   white-space: nowrap;
 }
 .nav-btn:hover {
-  color: oklch(78% 0.105 225deg);
+  color: var(--brand-primary);
 }
 
 .nav-divider {
@@ -797,7 +819,7 @@ header.header--transparent .nav-divider {
 }
 .accordion-content a:hover {
   background: oklch(94% 0.002 265deg);
-  color: oklch(78% 0.105 225deg);
+  color: var(--brand-primary);
 }
 
 .overlay {
@@ -861,7 +883,7 @@ header.header--transparent .nav-divider {
 .footer {
   background: oklch(98.5% 0.004 265deg);
   padding: 4rem 2rem 2rem;
-  border-top: 2px solid oklch(78% 0.105 225deg);
+  border-top: 2px solid var(--brand-primary);
   color: oklch(44% 0.003 265deg);
 }
 .footer-container {
@@ -893,10 +915,10 @@ header.header--transparent .nav-divider {
   transition: color 0.3s ease;
 }
 .footer-info a:hover {
-  color: oklch(78% 0.105 225deg);
+  color: var(--brand-primary);
 }
 .footer-info i {
-  color: oklch(78% 0.105 225deg);
+  color: var(--brand-primary);
   min-width: 1.2rem;
 }
 
@@ -955,7 +977,7 @@ header.header--transparent .nav-divider {
   color: oklch(56% 0.018 265deg);
 }
 .footer-bottom p strong {
-  color: oklch(78% 0.105 225deg);
+  color: var(--brand-primary);
   font-weight: 700;
 }
 .footer-bottom-credits {
@@ -989,7 +1011,7 @@ header.header--transparent .nav-divider {
 .struktur-organisasi-section h1 {
   font-size: 2.5rem;
   font-weight: 700;
-  color: oklch(78% 0.105 225deg);
+  color: var(--brand-primary);
   margin-bottom: 2rem;
 }
 
@@ -1011,7 +1033,7 @@ header.header--transparent .nav-divider {
   background: oklch(100% 0 0deg);
   border-radius: 1rem;
   box-shadow: 0 0.25rem 1.25rem oklch(0% 0 0deg / 0.08);
-  border: 1px solid oklch(78% 0.105 225deg);
+  border: 1px solid var(--brand-primary);
   padding: 2rem;
   text-align: left;
   position: sticky;
@@ -1025,7 +1047,7 @@ header.header--transparent .nav-divider {
 }
 .divisi-description h2 {
   font-size: 1.75rem;
-  color: oklch(78% 0.105 225deg);
+  color: var(--brand-primary);
   font-weight: 700;
   margin-bottom: 1rem;
 }
@@ -1056,7 +1078,7 @@ header.header--transparent .nav-divider {
   content: "•";
   position: absolute;
   left: 0.5rem;
-  color: oklch(78% 0.105 225deg);
+  color: var(--brand-primary);
   font-weight: bold;
 }
 
@@ -1109,7 +1131,7 @@ header.header--transparent .nav-divider {
 
 .struktur-organisasi-badge {
   display: inline-block;
-  background: oklch(78% 0.105 225deg);
+  background: var(--brand-primary);
   color: oklch(100% 0 0deg);
   padding: 0.375rem 0.875rem;
   border-radius: 0.5rem;
@@ -1142,7 +1164,7 @@ header.header--transparent .nav-divider {
 .proker-panel {
   background: oklch(100% 0 0deg);
   border-radius: 1.25rem;
-  border: 1px solid oklch(78% 0.105 225deg);
+  border: 1px solid var(--brand-primary);
   padding: 1.75rem 2rem;
   box-shadow: 0 0.25rem 1.25rem oklch(0% 0 0deg / 0.08);
   min-width: 20rem;
@@ -1155,12 +1177,12 @@ header.header--transparent .nav-divider {
   font-size: 1.1rem;
   font-weight: 700;
   font-family: "Archivo Black", sans-serif;
-  color: oklch(78% 0.105 225deg);
+  color: var(--brand-primary);
   text-transform: uppercase;
   letter-spacing: 0.03125rem;
   margin-bottom: 1.25rem;
   padding-bottom: 0.75rem;
-  border-bottom: 0.125rem solid oklch(78% 0.105 225deg);
+  border-bottom: 0.125rem solid var(--brand-primary);
 }
 
 .proker-list {
@@ -1184,7 +1206,7 @@ header.header--transparent .nav-divider {
   top: 0.125rem;
   width: 1.5rem;
   height: 1.5rem;
-  background: oklch(78% 0.105 225deg);
+  background: var(--brand-primary);
   color: oklch(100% 0 0deg);
   border-radius: 50%;
   font-size: 0.75rem;
@@ -1284,7 +1306,7 @@ header.header--transparent .nav-divider {
   color: oklch(100% 0 0deg);
 }
 .banner-left h1 {
-  color: oklch(78% 0.105 225deg);
+  color: var(--brand-primary);
   font-size: 3rem;
   margin-bottom: 0;
   line-height: 1.2;
@@ -1315,9 +1337,9 @@ header.header--transparent .nav-divider {
 
 .beranda-toggle-tab {
   flex: 1;
-  border: 1px solid oklch(78% 0.105 225deg);
+  border: 1px solid var(--brand-primary);
   background: rgba(0, 0, 0, 0.7);
-  color: oklch(78% 0.105 225deg);
+  color: var(--brand-primary);
   padding: 0.75rem 1.5rem;
   border-radius: 0.5rem;
   font-size: 1rem;
@@ -1329,7 +1351,7 @@ header.header--transparent .nav-divider {
   box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.7);
 }
 .beranda-toggle-tab.active {
-  background: oklch(78% 0.105 225deg);
+  background: var(--brand-primary);
   color: oklch(100% 0 0deg);
 }
 
@@ -1372,7 +1394,7 @@ header.header--transparent .nav-divider {
   transform: translateX(50%);
   width: 15rem;
   height: 15rem;
-  background: rgba(74, 135, 232, 0.4);
+  background: var(--brand-visi-color);
   border-radius: 50%;
   filter: blur(64px);
 }
@@ -1382,7 +1404,7 @@ header.header--transparent .nav-divider {
   transform: translateX(50%);
   width: 15rem;
   height: 15rem;
-  background: rgba(74, 135, 232, 0.4);
+  background: var(--brand-visi-color);
   border-radius: 50%;
   filter: blur(64px);
 }
@@ -1392,7 +1414,7 @@ header.header--transparent .nav-divider {
   transform: translateX(50%);
   width: 10rem;
   height: 10rem;
-  background: rgba(74, 135, 232, 0.3);
+  background: var(--brand-blob-color);
   border-radius: 64%;
 }
 .visi-shape-4 {
@@ -1401,7 +1423,7 @@ header.header--transparent .nav-divider {
   transform: translateX(-50%);
   width: 8rem;
   height: 8rem;
-  background: rgba(74, 135, 232, 0.3);
+  background: var(--brand-blob-color);
   border-radius: 1rem;
 }
 
@@ -1419,7 +1441,7 @@ header.header--transparent .nav-divider {
   justify-content: center;
 }
 .misi-list li {
-  border: 1px solid oklch(78% 0.105 225deg);
+  border: 1px solid var(--brand-primary);
   border-radius: 1rem;
   background: oklch(100% 0 0deg);
   box-shadow: 0 0.25rem 1.25rem oklch(0% 0 0deg / 0.08);
@@ -1432,7 +1454,7 @@ header.header--transparent .nav-divider {
 }
 
 .misi-card-title {
-  color: oklch(78% 0.105 225deg);
+  color: var(--brand-primary);
   font-weight: 700;
   font-size: 1.1rem;
   margin-bottom: 1rem;
@@ -1465,7 +1487,7 @@ header.header--transparent .nav-divider {
   background: oklch(100% 0 0deg);
   border-radius: 1rem;
   box-shadow: 0 0.25rem 1.25rem oklch(0% 0 0deg / 0.08);
-  border: 1px solid oklch(78% 0.105 225deg);
+  border: 1px solid var(--brand-primary);
   overflow: hidden;
   flex: 1 1 20rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -1479,7 +1501,7 @@ header.header--transparent .nav-divider {
   width: 100%;
   height: 13.75rem;
   overflow: hidden;
-  background: linear-gradient(135deg, oklch(78% 0.105 225deg) 0%, oklch(61% 0.12 225deg) 100%);
+  background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-primary-dark) 100%);
 }
 .proker-image img {
   width: 100%;
@@ -1492,7 +1514,7 @@ header.header--transparent .nav-divider {
   top: 1rem;
   right: 1rem;
   background: oklch(100% 0 0deg);
-  color: oklch(78% 0.105 225deg);
+  color: var(--brand-primary);
   width: 3.125rem;
   height: 3.125rem;
   border-radius: 50%;
@@ -1509,7 +1531,7 @@ header.header--transparent .nav-divider {
   padding: 1.75rem;
 }
 .proker-content h3 {
-  color: oklch(78% 0.105 225deg);
+  color: var(--brand-primary);
   font-size: 1.5rem;
   font-family: "Archivo Black", sans-serif;
   margin-bottom: 1rem;
@@ -1570,7 +1592,7 @@ header.header--transparent .nav-divider {
     padding: 0.75rem 1rem;
   }
   .visi-shape {
-    background: rgba(74, 135, 232, 0.2);
+    background: var(--brand-blob-color);
   }
   .proker-grid {
     gap: 1.25rem;
@@ -1628,7 +1650,7 @@ header.header--transparent .nav-divider {
   position: absolute;
   top: -0.75rem;
   left: -0.75rem;
-  background: oklch(78% 0.105 225deg);
+  background: var(--brand-primary);
   color: oklch(100% 0 0deg);
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
@@ -1646,7 +1668,7 @@ header.header--transparent .nav-divider {
   gap: 1.25rem;
 }
 .description-content h3 {
-  color: oklch(78% 0.105 225deg);
+  color: var(--brand-primary);
   font-size: 1.5rem;
   font-weight: 700;
   margin: 0;
@@ -1672,7 +1694,7 @@ header.header--transparent .nav-divider {
   font-size: 0.95rem;
 }
 .event-detail-item i {
-  color: oklch(78% 0.105 225deg);
+  color: var(--brand-primary);
   font-size: 1.1rem;
 }
 
@@ -1680,7 +1702,7 @@ header.header--transparent .nav-divider {
   background: oklch(97% 0.004 265deg);
   padding: 1.25rem;
   border-radius: 0.75rem;
-  border-left: 0.25rem solid oklch(78% 0.105 225deg);
+  border-left: 0.25rem solid var(--brand-primary);
 }
 .event-highlights h4 {
   color: oklch(44% 0.003 265deg);
@@ -1707,7 +1729,7 @@ header.header--transparent .nav-divider {
   content: "•";
   position: absolute;
   left: 0;
-  color: oklch(78% 0.105 225deg);
+  color: var(--brand-primary);
   font-weight: bold;
   font-size: 1.1rem;
 }
