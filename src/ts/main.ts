@@ -131,7 +131,7 @@ function groupByYear(activities: KegiatanActivity[]): Record<string, KegiatanAct
 /** Renders a single accordion section for one year's activities. */
 function renderYearSection(year: string, activities: KegiatanActivity[]): string {
     const items = activities
-        .map(a => `<li><a href="${a.link}" target="_blank" rel="noopener noreferrer">${a.title}</a></li>`)
+        .map(a => `<li><a href="${a.link}" rel="noopener noreferrer">${a.title}</a></li>`)
         .join('');
 
     return `

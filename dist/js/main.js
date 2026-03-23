@@ -113,7 +113,7 @@ function groupByYear(activities) {
 /** Renders a single accordion section for one year's activities. */
 function renderYearSection(year, activities) {
     const items = activities
-        .map(a => `<li><a href="${a.link}" target="_blank" rel="noopener noreferrer">${a.title}</a></li>`)
+        .map(a => `<li><a href="${a.link}" rel="noopener noreferrer">${a.title}</a></li>`)
         .join('');
     return `
         <div class="menu-section">
