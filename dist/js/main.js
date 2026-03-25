@@ -71,7 +71,11 @@ async function loadKegiatanOsis() {
         return;
     try {
         const dataUrl = new URL('../../kegiatan-osis/kegiatan.txt', import.meta.url).href;
-        const text = await fetch(dataUrl).then(r => r.text());
+        const response = await fetch(dataUrl);
+        if (!response.ok) {
+            throw new Error(`Failed to load kegiatan.txt — HTTP ${response.status}`);
+        }
+        const text = await response.text();
         const activities = text
             .trim()
             .split('\n')

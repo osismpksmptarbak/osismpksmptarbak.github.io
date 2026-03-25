@@ -170,11 +170,10 @@
 }
 
 .proker-panel {
-    background: $bg-white;
-    border-radius: $radius-xl;
-    border: 1px solid var(--brand-primary);
+    // Reuse the shared card mixin — it sets bg, border-radius, box-shadow, and
+    // the brand-primary border, which replaces the manual duplication below.
+    @include card;
     padding: 1.75rem 2rem;
-    box-shadow: $shadow-md;
     min-width: 20rem;
     max-width: 26.25rem;
     text-align: left;

@@ -7,6 +7,9 @@ import { getUrlParam, setUrlParam } from '../utils/dom.js';
  *
  * Each tab element must carry a `data-org` or `data-structure` attribute
  * whose value is the tab's identifier (e.g. `"OSIS"`, `"MPK"`).
+ *
+ * Returns a controller with `switchTab` and `destroy`. Call `destroy` before
+ * calling `initTabs` again on the same elements to prevent stacked listeners.
  */
 export function initTabs(options: TabOptions): TabController {
     const { tabSelector, panelAttr, paramKey, defaultTab, onChange } = options;
@@ -15,6 +18,10 @@ export function initTabs(options: TabOptions): TabController {
     const panels = panelAttr
         ? document.querySelectorAll<HTMLElement>(`[${panelAttr}]`)
         : ([] as HTMLElement[]);
+
+    // AbortController lets us remove all tab listeners in one shot
+    const abortController = new AbortController();
+    const { signal } = abortController;
 
     function getTabValue(tab: HTMLElement): string {
         return tab.dataset.org ?? tab.dataset.structure ?? '';
@@ -38,14 +45,18 @@ export function initTabs(options: TabOptions): TabController {
         onChange?.(value);
     }
 
-    // Wire up click handlers
+    // Wire up click handlers — all removed together via the AbortController
     tabs.forEach(tab => {
-        tab.addEventListener('click', () => switchTab(getTabValue(tab)));
+        tab.addEventListener('click', () => switchTab(getTabValue(tab)), { signal });
     });
 
     // Restore from URL, or fall back to the default
     const savedValue = getUrlParam(paramKey);
     switchTab(savedValue ? savedValue.toUpperCase() : defaultTab);
 
-    return { switchTab };
+    function destroy(): void {
+        abortController.abort();
+    }
+
+    return { switchTab, destroy };
 }

@@ -39,7 +39,8 @@
             font-size: 3rem;
             margin-bottom: 0;
             line-height: 1.2;
-            text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5);
+            // Use the shared shadow variable instead of a raw rgba literal
+            text-shadow: 0.125rem 0.125rem 0.25rem $hover-bg-dark;
         }
 
         h2 {
@@ -47,7 +48,7 @@
             font-size: 1.5rem;
             font-weight: 300;
             margin-bottom: 2rem;
-            text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5);
+            text-shadow: 0.125rem 0.125rem 0.25rem $hover-bg-dark;
         }
     }
 
@@ -74,7 +75,8 @@
 .beranda-toggle-tab {
     flex: 1;
     border: 1px solid var(--brand-primary);
-    background: rgba(0, 0, 0, 0.7);
+    // Use the shared $overlay variable instead of a raw rgba literal
+    background: $overlay;
     color: var(--brand-primary);
     padding: 0.75rem 1.5rem;
     border-radius: $radius-sm;
@@ -84,7 +86,7 @@
     text-transform: uppercase;
     letter-spacing: 0.03125rem;
     transition: all $transition;
-    box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.7);
+    box-shadow: 0 0.25rem 1rem $overlay;
 
     &.active {
         background: var(--brand-primary);
@@ -231,6 +233,7 @@
 }
 
 .proker-card {
+    // Reuse the shared card mixin instead of repeating bg/radius/shadow manually
     @include card;
     overflow: hidden;
     flex: 1 1 20rem;

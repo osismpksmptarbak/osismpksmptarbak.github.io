@@ -1,6 +1,15 @@
 import type { CarouselOptions, GalleryImage, GalleryElements } from '../types.js';
 import { findById, clamp, setUrlParam, getUrlParam } from '../utils/dom.js';
 
+// ---- Constants -----------------------------------------------------------------
+
+/** Inline SVG shown when a thumbnail fails to load. */
+const FALLBACK_SVG =
+    'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22600%22%3E' +
+    '%3Crect fill=%22%23f0f0f0%22 width=%22800%22 height=%22600%22/%3E' +
+    '%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2224%22 text-anchor=%22middle%22 fill=%22%23999%22%3E' +
+    'Image not available%3C/text%3E%3C/svg%3E';
+
 // ---- Structure carousel --------------------------------------------------------
 
 /**
@@ -23,6 +32,10 @@ export class StructureCarousel {
     private touchStartX = 0;
     private touchStartY = 0;
     private isDragging  = false;
+
+    // Keep a reference to the bound swipe handler so we can remove it before
+    // re-binding when the track changes, preventing duplicate listeners.
+    private swipeAbortController: AbortController | null = null;
 
     constructor() {
         this.prevBtn = findById<HTMLButtonElement>('prevBtn');
@@ -110,6 +123,9 @@ export class StructureCarousel {
     /**
      * Points the carousel at a new track element and optionally seeks to an index.
      * Call this whenever the user switches between OSIS and MPK.
+     *
+     * Any previous swipe listeners on the old track are removed before the new
+     * ones are attached, preventing duplicate handlers from accumulating.
      */
     setTrack(trackEl: HTMLElement, index = 0): void {
         this.activeTrack  = trackEl;
@@ -121,11 +137,16 @@ export class StructureCarousel {
     // ---- Touch / swipe ---------------------------------------------------------
 
     private bindSwipe(trackEl: HTMLElement): void {
+        // Remove listeners from the previous track (or the same track on re-bind)
+        this.swipeAbortController?.abort();
+        this.swipeAbortController = new AbortController();
+        const { signal } = this.swipeAbortController;
+
         trackEl.addEventListener('touchstart', (e: TouchEvent) => {
             this.touchStartX = e.changedTouches[0]?.screenX ?? 0;
             this.touchStartY = e.changedTouches[0]?.screenY ?? 0;
             this.isDragging  = false;
-        }, { passive: true });
+        }, { passive: true, signal });
 
         trackEl.addEventListener('touchmove', (e: TouchEvent) => {
             const dx = (e.changedTouches[0]?.screenX ?? 0) - this.touchStartX;
@@ -142,7 +163,7 @@ export class StructureCarousel {
             // Apply rubber-band resistance at the edges
             const drag = atEdge ? dx * 0.25 : dx;
             this.setTranslate(baseOffset + drag, false);
-        }, { passive: true });
+        }, { passive: true, signal });
 
         trackEl.addEventListener('touchend', (e: TouchEvent) => {
             const dx = this.touchStartX - (e.changedTouches[0]?.screenX ?? 0);
@@ -152,7 +173,7 @@ export class StructureCarousel {
                 dx > 0 ? this.next() : this.prev();
             }
             this.isDragging = false;
-        }, { passive: true });
+        }, { passive: true, signal });
     }
 }
 
@@ -170,7 +191,16 @@ export class StructureCarousel {
  */
 export class GalleryCarousel {
     private images:       GalleryImage[] = [];
-    private currentIndex  = 0;
+
+    /** Index of the currently visible slide in the main carousel. */
+    private currentIndex = 0;
+
+    /**
+     * Index of the image shown in the lightbox.
+     * Kept separate from `currentIndex` so that lightbox navigation
+     * does not silently shift the main gallery position while it is open.
+     */
+    private lightboxIndex = 0;
 
     private readonly imageIds:   string[];
     private readonly altPrefix:  string;
@@ -210,8 +240,7 @@ export class GalleryCarousel {
 
         // Keyboard navigation
         document.addEventListener('keydown', (e: KeyboardEvent) => {
-            const lightboxOpen = this.els.lightbox?.classList.contains('active');
-            if (lightboxOpen) {
+            if (!this.els.lightbox.classList.contains('hidden')) {
                 if (e.key === 'Escape')     this.closeLightbox();
                 if (e.key === 'ArrowRight') this.lightboxNext();
                 if (e.key === 'ArrowLeft')  this.lightboxPrev();
@@ -366,34 +395,31 @@ export class GalleryCarousel {
     // ---- Lightbox --------------------------------------------------------------
 
     private openLightbox(index: number): void {
-        this.currentIndex = index;
-        const src = this.getSlideImageSrc(index);
-
-        this.els.lightboxImage.src          = src;
-        this.els.lightboxImage.style.opacity = '1';
+        this.lightboxIndex = index;
+        this.syncLightboxImage();
         this.els.lightbox.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
     }
 
     private closeLightbox(): void {
+        // Sync the main gallery to wherever the user ended up in the lightbox
+        this.goToSlide(this.lightboxIndex);
         this.els.lightbox.classList.add('hidden');
         document.body.style.overflow = 'auto';
     }
 
     private lightboxNext(): void {
-        this.currentIndex = (this.currentIndex + 1) % this.images.length;
+        this.lightboxIndex = (this.lightboxIndex + 1) % this.images.length;
         this.syncLightboxImage();
-        this.goToSlide(this.currentIndex);
     }
 
     private lightboxPrev(): void {
-        this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
+        this.lightboxIndex = (this.lightboxIndex - 1 + this.images.length) % this.images.length;
         this.syncLightboxImage();
-        this.goToSlide(this.currentIndex);
     }
 
     private syncLightboxImage(): void {
-        const src = this.getSlideImageSrc(this.currentIndex);
+        const src = this.getSlideImageSrc(this.lightboxIndex);
         if (!src) return;
         this.els.lightboxImage.src          = src;
         this.els.lightboxImage.style.opacity = '1';
@@ -404,15 +430,6 @@ export class GalleryCarousel {
         return slides[index]?.querySelector('img')?.src ?? '';
     }
 }
-
-// ---- Constants -----------------------------------------------------------------
-
-/** Inline SVG shown when a thumbnail fails to load. */
-const FALLBACK_SVG =
-    'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22600%22%3E' +
-    '%3Crect fill=%22%23f0f0f0%22 width=%22800%22 height=%22600%22/%3E' +
-    '%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2224%22 text-anchor=%22middle%22 fill=%22%23999%22%3E' +
-    'Image not available%3C/text%3E%3C/svg%3E';
 
 // ---- Auto-init on DOMContentLoaded ---------------------------------------------
 

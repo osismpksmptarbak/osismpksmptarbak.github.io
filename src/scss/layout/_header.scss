@@ -73,7 +73,9 @@ header {
 }
 
 // ─── Banner scroll offset ─────────────────────────────────────────────────────
-// Pulls the full-bleed banner up behind the transparent header
+// Pulls the full-bleed banner up behind the transparent header.
+// Kept here (rather than in _beranda.scss) because the offset values are
+// derived from header height variables that live in this partial's domain.
 
 .banner {
     margin-top: calc($header-height * -1);
@@ -91,7 +93,7 @@ header {
     width: 21.875rem;
     height: 100vh;
     background: $bg-white;
-    box-shadow: -0.125rem 0 0.625rem rgba(0, 0, 0, 0.2);
+    box-shadow: -0.125rem 0 0.625rem $hover-bg-dark;
     transition: right $transition;
     z-index: 200;
     overflow-y: auto;

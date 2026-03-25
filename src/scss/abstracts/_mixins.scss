@@ -30,10 +30,15 @@
 }
 
 // ─── Hover lift ───────────────────────────────────────────────────────────────
+// Adds a subtle upward translation on hover in addition to the shadow change,
+// so the "lift" effect is visible even without a shadow contrast difference.
 @mixin hover-lift($shadow: $shadow-lg) {
     transition: transform $transition, box-shadow $transition;
 
-    &:hover { box-shadow: $shadow; }
+    &:hover {
+        transform: translateY(-0.25rem);
+        box-shadow: $shadow;
+    }
 }
 
 // ─── Badge ────────────────────────────────────────────────────────────────────

@@ -1,13 +1,13 @@
 @charset "UTF-8";
 :root {
-  --brand-primary: oklch(78% 0.105 225deg);
-  --brand-primary-hover: oklch(73% 0.115 225deg);
-  --brand-primary-dark: oklch(61% 0.12 225deg);
-  --brand-blob-color: rgba(74, 135, 232, 0.3);
-  --brand-visi-color: rgba(74, 135, 232, 0.4);
-  --brand-nav-shadow: rgba(110, 195, 225, 0.4);
-  --brand-nav-shadow-lg: rgba(110, 195, 225, 0.6);
-  --brand-dot-shadow: rgba(110, 195, 225, 0.4);
+  --brand-primary: oklch(55% 0.13 264deg);
+  --brand-primary-hover: oklch(50% 0.135 264deg);
+  --brand-primary-dark: oklch(42% 0.125 264deg);
+  --brand-blob-color: rgba(110, 114, 190, 0.3);
+  --brand-visi-color: rgba(110, 114, 190, 0.4);
+  --brand-nav-shadow: rgba(130, 134, 205, 0.4);
+  --brand-nav-shadow-lg: rgba(130, 134, 205, 0.6);
+  --brand-dot-shadow: rgba(130, 134, 205, 0.4);
 }
 
 .theme-mpk {
@@ -380,6 +380,7 @@ section p {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .divisi-card:hover {
+  transform: translateY(-0.25rem);
   box-shadow: 0 0.5rem 1.25rem oklch(0% 0 0deg / 0.15);
 }
 .divisi-card-image {
@@ -716,10 +717,6 @@ header.header--transparent .nav-divider {
   background: oklch(90% 0.002 265deg);
 }
 
-.menu-toggle-icon {
-  max-width: 1rem;
-}
-
 .banner {
   margin-top: -5rem;
 }
@@ -741,7 +738,7 @@ header.header--transparent .nav-divider {
   width: 21.875rem;
   height: 100vh;
   background: oklch(100% 0 0deg);
-  box-shadow: -0.125rem 0 0.625rem rgba(0, 0, 0, 0.2);
+  box-shadow: -0.125rem 0 0.625rem oklch(0% 0 0deg / 0.137);
   transition: right 0.3s ease;
   z-index: 200;
   overflow-y: auto;
@@ -1114,6 +1111,7 @@ header.header--transparent .nav-divider {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .struktur-organisasi-card:hover {
+  transform: translateY(-0.25rem);
   box-shadow: 0 0.5rem 1.25rem oklch(0% 0 0deg / 0.15);
 }
 .struktur-organisasi-card-header {
@@ -1167,10 +1165,10 @@ header.header--transparent .nav-divider {
 
 .proker-panel {
   background: oklch(100% 0 0deg);
-  border-radius: 1.25rem;
+  border-radius: 1rem;
+  box-shadow: 0 0.25rem 1.25rem oklch(0% 0 0deg / 0.08);
   border: 1px solid var(--brand-primary);
   padding: 1.75rem 2rem;
-  box-shadow: 0 0.25rem 1.25rem oklch(0% 0 0deg / 0.08);
   min-width: 20rem;
   max-width: 26.25rem;
   text-align: left;
@@ -1313,14 +1311,14 @@ header.header--transparent .nav-divider {
   font-size: 3rem;
   margin-bottom: 0;
   line-height: 1.2;
-  text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5);
+  text-shadow: 0.125rem 0.125rem 0.25rem oklch(0% 0 0deg / 0.137);
 }
 .banner-left h2 {
   color: oklch(100% 0 0deg);
   font-size: 1.5rem;
   font-weight: 300;
   margin-bottom: 2rem;
-  text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5);
+  text-shadow: 0.125rem 0.125rem 0.25rem oklch(0% 0 0deg / 0.137);
 }
 .banner-right {
   flex: 1;
@@ -1341,7 +1339,7 @@ header.header--transparent .nav-divider {
 .beranda-toggle-tab {
   flex: 1;
   border: 1px solid var(--brand-primary);
-  background: rgba(0, 0, 0, 0.7);
+  background: oklch(0% 0 0deg / 0.5);
   color: var(--brand-primary);
   padding: 0.75rem 1.5rem;
   border-radius: 0.5rem;
@@ -1351,7 +1349,7 @@ header.header--transparent .nav-divider {
   text-transform: uppercase;
   letter-spacing: 0.03125rem;
   transition: all 0.3s ease;
-  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0.25rem 1rem oklch(0% 0 0deg / 0.5);
 }
 .beranda-toggle-tab.active {
   background: var(--brand-primary);
@@ -1453,6 +1451,7 @@ header.header--transparent .nav-divider {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .misi-list li:hover {
+  transform: translateY(-0.25rem);
   box-shadow: 0 0.5rem 1.25rem oklch(0% 0 0deg / 0.15);
 }
 
@@ -1496,6 +1495,7 @@ header.header--transparent .nav-divider {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .proker-card:hover {
+  transform: translateY(-0.25rem);
   box-shadow: 0 0.5rem 1.25rem oklch(0% 0 0deg / 0.15);
 }
 

@@ -55,4 +55,6 @@ export interface TabOptions {
 
 export interface TabController {
     switchTab: (value: string) => void;
+    /** Removes all event listeners attached by `initTabs`. */
+    destroy: () => void;
 }

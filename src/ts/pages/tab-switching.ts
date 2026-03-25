@@ -13,7 +13,10 @@ function initBerandaPage(): void {
     // The carousel is only created when the structure section is present
     const carousel = hasStruktur ? new StructureCarousel() : null;
 
-    // Track whether this is the first tab switch so we can restore the saved index
+    // `isFirstSwitch` must be captured *inside* the closure so that it reflects
+    // state at the time onChange fires, not at the time initTabs returns.
+    // initTabs fires onChange synchronously during initialisation, so setting
+    // the flag to false *after* calling initTabs would be too late.
     let isFirstSwitch = true;
 
     initTabs({
@@ -21,11 +24,12 @@ function initBerandaPage(): void {
         panelAttr:   'data-org-panel',
         paramKey:    'org',
         defaultTab:  'OSIS',
-        onChange:    (type) => handleTabChange(type, carousel, initialIndex, isFirstSwitch),
+        onChange: (type) => {
+            handleTabChange(type, carousel, initialIndex, isFirstSwitch);
+            // Mark the first switch as handled only after onChange has run
+            isFirstSwitch = false;
+        },
     });
-
-    // After initTabs fires its first onChange, subsequent ones are no longer "first"
-    isFirstSwitch = false;
 }
 
 // ---- Tab change handler --------------------------------------------------------
@@ -61,6 +65,7 @@ function handleTabChange(
     if (mpkContent) {
         mpkContent.classList.toggle('theme-mpk', !isOSIS);
     }
+
     const prokerDescription = findById('proker-description');
     if (prokerDescription) {
         prokerDescription.textContent = isOSIS
