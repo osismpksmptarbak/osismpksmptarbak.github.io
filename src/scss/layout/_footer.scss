@@ -109,7 +109,8 @@
         font-size: 0.9rem;
         color: $text-gray-600;
 
-        strong {
+        a {
+            text-decoration: none;
             color: var(--brand-primary);
             font-weight: 700;
         }

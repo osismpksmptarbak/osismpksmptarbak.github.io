@@ -976,7 +976,8 @@ header.header--transparent .nav-divider {
   font-size: 0.9rem;
   color: oklch(56% 0.018 265deg);
 }
-.footer-bottom p strong {
+.footer-bottom p a {
+  text-decoration: none;
   color: var(--brand-primary);
   font-weight: 700;
 }
