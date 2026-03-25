@@ -716,6 +716,10 @@ header.header--transparent .nav-divider {
   background: oklch(90% 0.002 265deg);
 }
 
+.menu-toggle-icon {
+  max-width: 1rem;
+}
+
 .banner {
   margin-top: -5rem;
 }
@@ -1271,7 +1275,6 @@ header.header--transparent .nav-divider {
   }
   .struktur-organisasi-card {
     width: 100%;
-    max-width: 17.5rem;
   }
 }
 .banner {
