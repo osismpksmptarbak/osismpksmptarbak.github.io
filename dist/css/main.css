@@ -1,13 +1,13 @@
 @charset "UTF-8";
 :root {
-  --brand-primary: oklch(78% 0.105 225deg);
-  --brand-primary-hover: oklch(73% 0.115 225deg);
-  --brand-primary-dark: oklch(61% 0.12 225deg);
-  --brand-blob-color: rgba(74, 135, 232, 0.3);
-  --brand-visi-color: rgba(74, 135, 232, 0.4);
-  --brand-nav-shadow: rgba(110, 195, 225, 0.4);
-  --brand-nav-shadow-lg: rgba(110, 195, 225, 0.6);
-  --brand-dot-shadow: rgba(110, 195, 225, 0.4);
+  --brand-primary: oklch(55% 0.13 264deg);
+  --brand-primary-hover: oklch(50% 0.135 264deg);
+  --brand-primary-dark: oklch(42% 0.125 264deg);
+  --brand-blob-color: rgba(110, 114, 190, 0.3);
+  --brand-visi-color: rgba(110, 114, 190, 0.4);
+  --brand-nav-shadow: rgba(130, 134, 205, 0.4);
+  --brand-nav-shadow-lg: rgba(130, 134, 205, 0.6);
+  --brand-dot-shadow: rgba(130, 134, 205, 0.4);
 }
 
 .theme-mpk {
@@ -714,10 +714,6 @@ header.header--transparent .nav-divider {
   height: 1.5rem;
   margin-right: 1rem;
   background: oklch(90% 0.002 265deg);
-}
-
-.menu-toggle-icon {
-  max-width: 1rem;
 }
 
 .banner {
@@ -1593,9 +1589,6 @@ header.header--transparent .nav-divider {
     width: 100%;
     text-align: center;
     padding: 0.75rem 1rem;
-  }
-  .visi-shape {
-    background: var(--brand-blob-color);
   }
   .proker-grid {
     gap: 1.25rem;
