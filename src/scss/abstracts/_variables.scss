@@ -19,9 +19,9 @@ $bg-light: oklch(0.985 0.004 265);
 $bg-white: oklch(1.000 0.000 0);
 
 // ─── Colors: Brand — OSIS / blue ─────────────────────────────────────────────
-$primary:       oklch(0.550 0.130 264);
-$primary-hover: oklch(0.500 0.135 264);
-$primary-dark:  oklch(0.420 0.125 264);
+$primary:       oklch(0.780 0.105 225);
+$primary-hover: oklch(0.730 0.115 225);
+$primary-dark:  oklch(0.610 0.120 225);
 
 // ─── Colors: Brand — MPK / maroon ──────────────────
 $red-primary:       oklch(0.550 0.170 22);
@@ -33,11 +33,11 @@ $red-primary-dark:  oklch(0.400 0.155 22);
     --brand-primary:       #{$primary};
     --brand-primary-hover: #{$primary-hover};
     --brand-primary-dark:  #{$primary-dark};
-    --brand-blob-color:    rgba(110, 114, 190, 0.3);
-    --brand-visi-color:    rgba(110, 114, 190, 0.4);
-    --brand-nav-shadow:    rgba(130, 134, 205, 0.4);
-    --brand-nav-shadow-lg: rgba(130, 134, 205, 0.6);
-    --brand-dot-shadow:    rgba(130, 134, 205, 0.4);
+    --brand-blob-color:    rgba(74, 135, 232, 0.3);
+    --brand-visi-color:    rgba(74, 135, 232, 0.4);
+    --brand-nav-shadow:    rgba(110, 195, 225, 0.4);
+    --brand-nav-shadow-lg: rgba(110, 195, 225, 0.6);
+    --brand-dot-shadow:    rgba(110, 195, 225, 0.4);
 }
 
 // ─── MPK theme override ───────────────────────────────────────────────────────
