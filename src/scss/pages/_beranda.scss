@@ -26,8 +26,8 @@
         width: 100%;
         max-width: $max-width;
         margin: 0 auto;
-        padding: 2rem;
-        gap: 2rem;
+        padding: $space-8;         // 32px — matches section horizontal gutter
+        gap: $space-8;             // 32px — between left copy and right logo
     }
 
     &-left {
@@ -36,18 +36,17 @@
 
         h1 {
             color: var(--brand-primary);
-            font-size: 3rem;
+            font-size: $text-5xl;  // 48px — hero display
             margin-bottom: 0;
             line-height: 1.2;
-            // Use the shared shadow variable instead of a raw rgba literal
             text-shadow: 0.125rem 0.125rem 0.25rem $hover-bg-dark;
         }
 
         h2 {
             color: $bg-white;
-            font-size: 1.5rem;
+            font-size: $text-xl;   // 24px — subtitle under hero
             font-weight: 300;
-            margin-bottom: 2rem;
+            margin-bottom: $space-8;   // 32px — space before CTA buttons
             text-shadow: 0.125rem 0.125rem 0.25rem $hover-bg-dark;
         }
     }
@@ -59,6 +58,7 @@
     }
 
     &-logo {
+        // 300px — intentional fixed size for the logo lockup in the hero
         max-width: 18.75rem;
         height: auto;
         filter: drop-shadow($shadow-md);
@@ -69,24 +69,23 @@
 
 .beranda-toggle-tabs {
     display: flex;
-    gap: 1rem;
+    gap: $space-4;     // 16px — gap between OSIS / MPK tabs
 }
 
 .beranda-toggle-tab {
     flex: 1;
     border: 1px solid var(--brand-primary);
-    // Use the shared $overlay variable instead of a raw rgba literal
     background: $overlay;
     color: var(--brand-primary);
-    padding: 0.75rem 1.5rem;
+    padding: $space-3 $space-6;    // 12px 24px — same as .btn for consistency
     border-radius: $radius-sm;
-    font-size: 1rem;
+    font-size: $text-base;
     font-weight: 600;
     cursor: pointer;
     text-transform: uppercase;
-    letter-spacing: 0.03125rem;
+    letter-spacing: $space-1;     // 4px — subtle tracking on uppercase labels
     transition: all $transition;
-    box-shadow: 0 0.25rem 1rem $overlay;
+    box-shadow: 0 $space-1 $space-4 $overlay;
 
     &.active {
         background: var(--brand-primary);
@@ -111,18 +110,17 @@
     h2 {
         position: relative;
         z-index: 2;
-        margin-top: 2rem;
+        margin-top: $space-8;  // 32px — pushes heading off top edge of section
     }
 
     p {
-        font-size: 1.1rem;
+        font-size: $text-md;   // 18px — slightly larger for vision statement legibility
         line-height: 1.8;
         color: $text-dark;
-        max-width: 43.75rem;
-        margin: 0 auto;
+        max-width: 43.75rem;   // ~700px — optimal line length for long-form text
+        margin: 0 auto $space-8;   // 32px bottom — space before next element
         position: relative;
         z-index: 2;
-        margin-bottom: 2rem;
     }
 }
 
@@ -131,8 +129,10 @@
     z-index: 1;
     pointer-events: none;
 
+    // Blob positions use percentage-based offsets + raw pixel sizes —
+    // these are decorative values, not layout spacing.
     &-1 {
-        bottom: -2.5rem;
+        bottom: -$space-10;    // -40px
         left: 20%;
         transform: translateX(50%);
         width: 15rem;
@@ -143,7 +143,7 @@
     }
 
     &-2 {
-        top: -2.5rem;
+        top: -$space-10;       // -40px
         right: 30%;
         transform: translateX(50%);
         width: 15rem;
@@ -154,7 +154,7 @@
     }
 
     &-3 {
-        bottom: 1rem;
+        bottom: $space-4;      // 16px
         right: 25%;
         transform: translateX(50%);
         width: 10rem;
@@ -164,13 +164,13 @@
     }
 
     &-4 {
-        top: 2.5rem;
+        top: $space-10;        // 40px
         left: 25%;
         transform: translateX(-50%);
         width: 8rem;
         height: 8rem;
         background: var(--brand-blob-color);
-        border-radius: 1rem;
+        border-radius: $radius-lg;
     }
 }
 
@@ -186,7 +186,7 @@
     padding: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: 1.25rem;
+    gap: $space-5;             // 20px — card grid gap
     justify-content: center;
 
     li {
@@ -194,8 +194,8 @@
         border-radius: $radius-lg;
         background: $bg-white;
         box-shadow: $shadow-md;
-        flex: 1 1 18.75rem;
-        padding: 1.5rem;
+        flex: 1 1 18.75rem;    // ~300px min — readable card width
+        padding: $space-6;     // 24px — standard card interior
         @include hover-lift;
     }
 }
@@ -203,12 +203,12 @@
 .misi-card-title {
     color: var(--brand-primary);
     font-weight: 700;
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
+    font-size: $text-md;       // 18px
+    margin-bottom: $space-4;   // 16px — between title and body
 }
 
 .misi-card-content {
-    font-size: 1rem;
+    font-size: $text-base;
     line-height: 1.7;
     color: $text-dark;
 }
@@ -227,23 +227,22 @@
 .proker-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 2rem;
-    margin-top: 2rem;
+    gap: $space-8;             // 32px — generous card grid spacing
+    margin-top: $space-8;      // 32px — below heading/description
     justify-content: center;
 }
 
 .proker-card {
-    // Reuse the shared card mixin instead of repeating bg/radius/shadow manually
     @include card;
     overflow: hidden;
-    flex: 1 1 20rem;
+    flex: 1 1 20rem;           // ~320px min
     @include hover-lift;
 }
 
 .proker-image {
     position: relative;
     width: 100%;
-    height: 13.75rem;
+    height: 13.75rem;          // 220px — fixed image area, not a spacing value
     overflow: hidden;
     background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-primary-dark) 100%);
 
@@ -256,107 +255,218 @@
 
 .proker-number {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    top: $space-4;             // 16px — from top-right corner of image
+    right: $space-4;
     background: $bg-white;
     color: var(--brand-primary);
-    width: 3.125rem;
+    width: 3.125rem;           // 50px — fixed circle badge
     height: 3.125rem;
     border-radius: 50%;
     @include flex-center;
-    font-size: 1.25rem;
+    font-size: $text-lg;       // 20px
     font-weight: 700;
     font-family: $font-heading;
     box-shadow: $shadow-md;
 }
 
 .proker-content {
-    padding: 1.75rem;
+    padding: $space-7;         // 28px — slightly more than card default for larger cards
 
     h3 {
         color: var(--brand-primary);
-        font-size: 1.5rem;
+        font-size: $text-xl;   // 24px
         font-family: $font-heading;
-        margin-bottom: 1rem;
+        margin-bottom: $space-4;   // 16px
     }
 
     p {
         color: $text-dark;
         line-height: 1.7;
-        font-size: 1rem;
+        font-size: $text-base;
     }
+}
+
+// ─── Kegiatan cards ─────────────────────────────────────────────────────────
+
+.kegiatan-cards-section {
+    padding: $space-16 $space-8 $space-20; // 64px 32px 80px — extra bottom for visual breathing room
+    text-align: center;
+    position: relative;
+}
+
+.kegiatan-cards-title {
+    position: relative;
+    z-index: 2;
+    font-size: $text-4xl;      // 40px
+    font-weight: 900;
+    color: var(--brand-primary);
+    text-transform: uppercase;
+    letter-spacing: $space-1;  // 4px — tracked uppercase heading
+    margin-bottom: $space-3;   // 12px — tight gap to subtitle
+}
+
+.kegiatan-cards-subtitle {
+    position: relative;
+    z-index: 2;
+    color: $text-gray-600;
+    font-size: $text-base;
+    margin-bottom: $space-10;  // 40px — generous gap before the grid
+}
+
+.kegiatan-cards-empty {
+    color: $text-light;
+    font-size: $text-base;
+    padding: $space-8 0;       // 32px vertical — centers message in empty grid
+}
+
+.kegiatan-cards-grid {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+    gap: $space-5;             // 20px — card grid gap
+    max-width: $max-width;
+    margin: 0 auto;
+}
+
+.kegiatan-card {
+    display: flex;
+    align-items: center;
+    gap: $space-4;             // 16px — between year badge, title, arrow
+    background: $bg-white;
+    border: 1px solid $border;
+    border-radius: $radius-lg;
+    padding: $space-5 $space-6;    // 20px 24px — compact but not cramped
+    box-shadow: $shadow-sm;
+    text-decoration: none;
+    transition: border-color $transition, box-shadow $transition,
+                transform $transition;
+
+    &:hover {
+        border-color: var(--brand-primary);
+        box-shadow: $shadow-md;
+        transform: translateY(-$space-1);  // -4px lift
+
+        .kegiatan-card-arrow {
+            transform: translateX($space-1);   // 4px nudge right
+            color: var(--brand-primary);
+        }
+    }
+}
+
+.kegiatan-card-year {
+    flex-shrink: 0;
+    background: var(--brand-primary);
+    color: $bg-white;
+    font-size: $text-xs;       // 12px — small label
+    font-weight: 700;
+    padding: $space-1 $space-2;    // 4px 8px — tight pill
+    border-radius: $radius-sm;
+    letter-spacing: 0.03rem;
+}
+
+.kegiatan-card-title {
+    flex: 1;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: $text-dark;
+    text-align: left;
+    line-height: 1.4;
+}
+
+.kegiatan-card-arrow {
+    flex-shrink: 0;
+    font-size: $text-md;       // 18px — slightly larger than body for visual hierarchy
+    color: $text-gray-400;
+    transition: transform $transition, color $transition;
 }
 
 // ─── Responsive ──────────────────────────────────────────────────────────────
 
 @include tablet {
     .banner {
-        min-height: 25rem;
+        min-height: 25rem;     // 400px — minimum usable hero height on tablet
 
         &-content {
             flex-direction: column;
-            padding: 1.5rem 1rem;
+            padding: $space-6 $space-4;    // 24px 16px
         }
 
         &-left  { flex: none; width: 100%; }
         &-right { display: none; }
     }
 
-    #visi p { font-size: 1rem; }
-
-    .proker-grid  { gap: 1.5rem; }
-    .proker-image { height: 12.5rem; }
-
     .beranda-toggle-tabs { max-width: 25rem; }
 
     .beranda-toggle-tab {
         font-size: 0.9rem;
-        padding: 0.625rem 1.25rem;
+        padding: $space-2 $space-5;    // 8px 20px
+    }
+
+    #visi p { font-size: $text-base; }
+
+    .proker-grid  { gap: $space-6; }       // 24px
+    .proker-image { height: 12.5rem; }     // 200px
+
+    .kegiatan-cards-title { font-size: $text-3xl; }
+
+    .kegiatan-cards-grid {
+        grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+        gap: $space-4;         // 16px
     }
 }
 
 @include mobile {
     .banner {
-        min-height: 21.875rem;
+        min-height: 21.875rem; // 350px — minimum viable mobile hero
 
-        &-content { padding: 1rem 0.75rem; }
+        &-content { padding: $space-4 $space-3; }  // 16px 12px
     }
 
     .banner-buttons {
         flex-direction: column;
-        gap: 0.75rem;
+        gap: $space-3;         // 12px — between stacked buttons
         width: 100%;
 
         .btn {
             width: 100%;
             text-align: center;
-            padding: 0.75rem 1rem;
+            padding: $space-3 $space-4;    // 12px 16px
         }
+    }
+
+    .beranda-toggle-tabs { max-width: 100%; }
+
+    .beranda-toggle-tab {
+        font-size: $text-sm;   // 14px
+        padding: $space-2 $space-4;    // 8px 16px
     }
 
     .visi-shape {
         background: var(--brand-blob-color);
     }
 
-    .proker-grid  { gap: 1.25rem; }
-    .proker-image { height: 11.25rem; }
+    .proker-grid  { gap: $space-5; }       // 20px
+    .proker-image { height: 11.25rem; }    // 180px
 
     .proker-content {
-        padding: 1.5rem;
+        padding: $space-6;     // 24px
 
-        h3 { font-size: 1.25rem; }
+        h3 { font-size: $text-lg; }   // 20px
     }
 
     .proker-number {
-        width: 2.8125rem;
+        width: 2.8125rem;      // ~45px — slightly smaller on mobile
         height: 2.8125rem;
-        font-size: 1.1rem;
+        font-size: $text-md;   // 18px
     }
 
-    .beranda-toggle-tabs { max-width: 100%; }
+    .kegiatan-cards-section { padding: $space-12 $space-4 $space-16; }  // 48px 16px 64px
 
-    .beranda-toggle-tab {
-        font-size: 0.85rem;
-        padding: 0.625rem 1rem;
-    }
+    .kegiatan-cards-title    { font-size: $text-2xl; letter-spacing: $space-1; }
+    .kegiatan-cards-subtitle { font-size: 0.9rem; }
+
+    .kegiatan-cards-grid { grid-template-columns: 1fr; }
+
+    .kegiatan-card { padding: $space-4 $space-5; }   // 16px 20px
 }

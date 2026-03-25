@@ -69,11 +69,54 @@ $radius-md: 0.75rem;
 $radius-lg: 1rem;
 $radius-xl: 1.25rem;
 
+// ─── Spacing scale ───────────────────────────────────────────────────────────
+// Base unit: 0.25rem (4px). Each step is a multiple of this base
+$space-1:  0.25rem;   //  4px  — hairline gap (icon nudges, tight inline spacing)
+$space-2:  0.5rem;    //  8px  — compact spacing (small gaps, tight padding)
+$space-3:  0.75rem;   // 12px  — inline padding (badges, small buttons, list item inset)
+$space-4:  1rem;      // 16px  — base unit (default gap, standard padding)
+$space-5:  1.25rem;   // 20px  — card inner spacing (light padding, grid gaps)
+$space-6:  1.5rem;    // 24px  — card padding (standard card/panel interior)
+$space-7:  1.75rem;   // 28px  — card padding variant
+$space-8:  2rem;      // 32px  — between heading and body copy
+$space-10: 2.5rem;    // 40px  — section interior spacing
+$space-12: 3rem;      // 48px  — generous section breathing room
+$space-14: 3.5rem;    // 56px  — large section padding
+$space-16: 4rem;      // 64px  — page-level vertical rhythm
+$space-20: 5rem;      // 80px  — extra-large section padding
+$space-32: 8rem;      // 128px — decorative / blob offset (not layout spacing)
+
+// ─── Font sizes ──────────────────────────────────────────────────────────────
+$text-xs:   0.75rem;   // 12px — labels, fine print
+$text-sm:   0.875rem;  // 14px — secondary text, captions
+$text-base: 1rem;      // 16px — body copy
+$text-md:   1.125rem;  // 18px — slightly elevated body
+$text-lg:   1.25rem;   // 20px — sub-headings
+$text-xl:   1.5rem;    // 24px — card headings, h3
+$text-2xl:  1.75rem;   // 28px — section sub-headings, h2 on mobile
+$text-3xl:  2rem;      // 32px — section headings on tablet
+$text-4xl:  2.5rem;    // 40px — section headings on desktop
+$text-5xl:  3rem;      // 48px — hero / display
+
 // ─── Layout ──────────────────────────────────────────────────────────────────
 $max-width:        75rem;
 $header-height:    5rem;
 $header-height-md: 3.75rem;
 $header-height-sm: 3.5rem;
+
+// ─── Component sizes ─────────────────────────────────────────────────────────
+// Nav button (carousel & lightbox arrows)
+$nav-btn-size:    3.5rem;   // default
+$nav-btn-size-md: 3.125rem; // tablet
+$nav-btn-size-sm: 2.875rem; // mobile
+
+// Carousel dot / page indicator
+$dot-size:    3rem;
+$dot-size-md: 2.75rem;
+$dot-size-sm: 2.5rem;
+
+// Spinner
+$spinner-size: 3.125rem; // 50px — loading indicator
 
 // ─── Animation ───────────────────────────────────────────────────────────────
 $transition: 0.3s ease;

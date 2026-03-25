@@ -95,6 +95,7 @@ async function loadKegiatanOsis() {
             .map(year => renderYearSection(year, grouped[year] ?? []))
             .join('');
         initAccordion();
+        renderKegiatanCards(activities);
     }
     catch (error) {
         console.error('Error loading kegiatan:', error);
@@ -124,6 +125,35 @@ function renderYearSection(year, activities) {
             <p class="accordion-header">Kegiatan OSIS ${year}</p>
             <ul class="accordion-content">${items}</ul>
         </div>`;
+}
+// ---- Kegiatan cards ------------------------------------------------------------
+/**
+ * Renders kegiatan activities as visual cards into `#kegiatan-cards-grid`.
+ * Activities are grouped by year and displayed newest-year-first.
+ * Each card links to the activity URL and shows the year as a badge.
+ */
+function renderKegiatanCards(activities) {
+    const grid = findById('kegiatan-cards-grid');
+    if (!grid)
+        return;
+    if (!activities.length) {
+        grid.innerHTML = `<p class="kegiatan-cards-empty">Belum ada kegiatan tersedia.</p>`;
+        return;
+    }
+    const grouped = groupByYear(activities);
+    grid.innerHTML = Object.keys(grouped)
+        .sort((a, b) => Number(b) - Number(a)) // newest year first
+        .flatMap(year => (grouped[year] ?? []).map(a => renderKegiatanCard(a, year)))
+        .join('');
+}
+/** Renders a single kegiatan card. */
+function renderKegiatanCard(activity, year) {
+    return `
+        <a class="kegiatan-card" href="${activity.link}" rel="noopener noreferrer">
+            <span class="kegiatan-card-year">${year}</span>
+            <span class="kegiatan-card-title">${activity.title}</span>
+            <span class="kegiatan-card-arrow">→</span>
+        </a>`;
 }
 // ---- Init ----------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', () => {

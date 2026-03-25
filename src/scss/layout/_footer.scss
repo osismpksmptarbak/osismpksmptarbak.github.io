@@ -5,7 +5,7 @@
 
 .footer {
     background: $bg-light;
-    padding: 4rem 2rem 2rem;
+    padding: $space-16 $space-8 $space-8;  // 64px 32px 32px — top matches section rhythm, bottom breathes
     border-top: 2px solid var(--brand-primary);
     color: $text-dark;
 
@@ -14,7 +14,7 @@
         margin: 0 auto;
         display: flex;
         flex-direction: column;
-        gap: 2rem;
+        gap: $space-8;     // 32px — between info grid, divider, and bottom bar
     }
 }
 
@@ -23,8 +23,8 @@
 .footer-info {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 2.5rem;
-    padding-bottom: 2rem;
+    gap: $space-10;        // 40px — clear column separation
+    padding-bottom: $space-8;  // 32px — space above divider
 
     p {
         margin: 0;
@@ -38,7 +38,7 @@
         text-decoration: none;
         display: inline-flex;
         align-items: center;
-        gap: 0.5rem;
+        gap: $space-2;     // 8px — icon-to-label spacing
         transition: color $transition;
 
         &:hover { color: var(--brand-primary); }
@@ -46,7 +46,7 @@
 
     i {
         color: var(--brand-primary);
-        min-width: 1.2rem;
+        min-width: $space-5;   // 20px — aligns icons in contact list
     }
 }
 
@@ -55,26 +55,29 @@
 .footer-logo-section {
     display: flex;
     flex-direction: row;
-    gap: 1rem;
+    gap: $space-4;     // 16px — logo to org name
 
     p {
         text-align: left;
         color: $text-dark;
         font-weight: 600;
-        font-size: 1rem;
+        font-size: $text-base;
         line-height: 1.4;
     }
 }
 
 .footer-logo {
-    width: 3rem;
-    height: 3rem;
+    width: $space-12;      // 48px — consistent with other logo sizes
+    height: $space-12;
     object-fit: contain;
     transition: transform $transition;
 
     &:hover { transform: scale(1.05); }
 
-    @include mobile { width: 5rem; height: 5rem; }
+    @include mobile {
+        width: $space-20;  // 80px — larger on mobile since it's the primary brand anchor
+        height: $space-20;
+    }
 }
 
 .footer-navigation,
@@ -82,7 +85,7 @@
 .footer-social {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: $space-3;     // 12px — between footer links
 }
 
 // ─── Divider ─────────────────────────────────────────────────────────────────
@@ -99,7 +102,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     align-items: center;
-    padding-top: 1rem;
+    padding-top: $space-4;     // 16px — sits just below the divider
 
     p {
         margin: 0;
@@ -120,20 +123,24 @@
 @include desktop-md {
     .footer-info {
         grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
+        gap: $space-8;     // 32px
     }
 }
 
 @include tablet {
+    .footer {
+        padding: $space-12 $space-6 $space-6;  // 48px 24px 24px
+    }
+
     .footer-info {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
+        gap: $space-6;     // 24px
     }
 
     .footer-bottom {
         grid-template-columns: 1fr;
         text-align: center;
-        gap: 1rem;
+        gap: $space-4;     // 16px
 
         &-credits { text-align: center; }
     }

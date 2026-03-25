@@ -6,10 +6,10 @@
 .kegiatan-description-and-video {
     display: flex;
     align-items: flex-start;
-    gap: 2.5rem;
-    margin: 0 auto 3rem;
-    max-width: 62.5rem;
-    padding: 2rem;
+    gap: $space-10;            // 40px — clear separation between video and text
+    margin: 0 auto $space-12;  // 48px bottom — space before gallery section
+    max-width: 62.5rem;        // ~1000px — narrower than full max-width for readability
+    padding: $space-8;         // 32px — card interior padding
     background: $bg-white;
     border-radius: $radius-xl;
     border: 1px solid $border;
@@ -24,7 +24,7 @@
     align-self: center;
 
     video {
-        width: 17.5rem;
+        width: 17.5rem;        // 280px — fixed video column width
         height: auto;
         display: block;
         border-radius: $radius-lg;
@@ -35,16 +35,16 @@
 
 .video-badge {
     position: absolute;
-    top: -0.75rem;
-    left: -0.75rem;
+    top: -$space-3;            // -12px — pops badge above video card edge
+    left: -$space-3;
     background: var(--brand-primary);
     color: $bg-white;
-    padding: 0.5rem 1rem;
+    padding: $space-2 $space-4;    // 8px 16px — label pill
     border-radius: $radius-sm;
-    font-size: 0.85rem;
+    font-size: $text-sm;       // 14px
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.03125rem;
+    letter-spacing: $space-1;  // 4px
     box-shadow: $shadow-md;
 }
 
@@ -54,18 +54,18 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: $space-5;             // 20px — between description sub-elements
 
     h3 {
         color: var(--brand-primary);
-        font-size: 1.5rem;
+        font-size: $text-xl;   // 24px
         font-weight: 700;
         margin: 0;
     }
 
     p {
         color: $text-dark;
-        font-size: 1rem;
+        font-size: $text-base;
         line-height: 1.7;
         margin: 0;
     }
@@ -74,33 +74,33 @@
 .event-details {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: $space-4;             // 16px — between date/location/etc chips
 }
 
 .event-detail-item {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: $space-2;             // 8px — icon to label
     color: $text-gray-600;
     font-size: 0.95rem;
 
     i {
         color: var(--brand-primary);
-        font-size: 1.1rem;
+        font-size: $text-md;   // 18px — slightly larger icon
     }
 }
 
 .event-highlights {
     background: $bg-50;
-    padding: 1.25rem;
+    padding: $space-5;         // 20px — comfortable interior
     border-radius: $radius-md;
-    border-left: 0.25rem solid var(--brand-primary);
+    border-left: $space-1 solid var(--brand-primary); // 4px accent stripe
 
     h4 {
         color: $text-dark;
-        font-size: 1.1rem;
+        font-size: $text-md;   // 18px
         font-weight: 600;
-        margin: 0 0 0.75rem;
+        margin: 0 0 $space-3;  // 12px below heading
     }
 
     ul {
@@ -109,12 +109,12 @@
         margin: 0;
         display: flex;
         flex-direction: column;
-        gap: 0.5rem;
+        gap: $space-2;         // 8px between bullet items
     }
 
     li {
         position: relative;
-        padding-left: 1.5rem;
+        padding-left: $space-6;    // 24px — indent past bullet
         color: $text-gray-600;
         font-size: 0.95rem;
         line-height: 1.5;
@@ -125,7 +125,7 @@
             left: 0;
             color: var(--brand-primary);
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: $text-md;   // 18px — chunky bullet
         }
     }
 }
@@ -140,7 +140,7 @@
     & > p {
         text-align: center;
         color: $text-gray-600;
-        margin-bottom: 3rem;
+        margin-bottom: $space-12; // 48px — space between intro and gallery grid
     }
 }
 
@@ -149,15 +149,15 @@
 @include tablet {
     .kegiatan-description-and-video {
         flex-direction: column;
-        padding: 1.5rem;
-        gap: 1.5rem;
+        padding: $space-6;     // 24px
+        gap: $space-6;         // 24px
     }
 
     .video-wrapper {
         width: 100%;
         display: flex;
         justify-content: center;
-        margin: 1rem 0;
+        margin: $space-4 0;    // 16px — vertical breathing room
 
         video {
             width: 100%;
@@ -166,25 +166,25 @@
     }
 
     .description-content h3 { font-size: 1.3rem; }
-    .event-details          { gap: 0.75rem; }
+    .event-details          { gap: $space-3; }     // 12px
 }
 
 @include mobile {
-    .kegiatan-description-and-video { padding: 1.25rem; gap: 1.25rem; }
+    .kegiatan-description-and-video { padding: $space-5; gap: $space-5; }  // 20px
 
     .description-content {
-        h3 { font-size: 1.2rem; }
+        h3 { font-size: $text-lg; }   // 20px
         p  { font-size: 0.95rem; }
     }
 
     .event-detail-item { font-size: 0.9rem; }
 
     .event-highlights {
-        padding: 1rem;
+        padding: $space-4;     // 16px
 
-        h4 { font-size: 1rem; }
+        h4 { font-size: $text-base; }
         li  { font-size: 0.9rem; }
     }
 
-    .gallery-section > p { font-size: 0.9rem; margin-bottom: 2rem; }
+    .gallery-section > p { font-size: 0.9rem; margin-bottom: $space-8; }  // 32px
 }

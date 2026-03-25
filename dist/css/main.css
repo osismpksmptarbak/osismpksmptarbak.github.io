@@ -212,7 +212,7 @@ section p {
   background: var(--brand-primary-dark);
   border-color: var(--brand-primary-dark);
   transform: translateY(-50%) scale(1.15);
-  box-shadow: 0 0.375rem 1rem var(--brand-nav-shadow-lg);
+  box-shadow: 0 0.5rem 1rem var(--brand-nav-shadow-lg);
 }
 
 .carousel-prev {
@@ -251,7 +251,7 @@ section p {
 .carousel-dot:hover:not(:disabled) {
   background: oklch(94% 0.002 265deg);
   border-color: oklch(70% 0.015 265deg);
-  transform: translateY(-0.125rem);
+  transform: translateY(-0.25rem);
   box-shadow: 0 0.25rem 1.25rem oklch(0% 0 0deg / 0.08);
 }
 .carousel-dot.active {
@@ -329,7 +329,7 @@ section p {
 }
 
 .divisi-carousel-section {
-  padding: 4rem 0 6rem;
+  padding: 4rem 0;
   position: relative;
   overflow: hidden;
 }
@@ -337,7 +337,6 @@ section p {
   display: block;
   max-width: 100%;
   margin: 0;
-  padding: 2.5rem 4.375rem 3.75rem;
 }
 .divisi-carousel-section .carousel-track {
   gap: 1.5rem;
@@ -345,10 +344,10 @@ section p {
   height: auto;
 }
 .divisi-carousel-section .carousel-nav.prev {
-  left: 0.625rem;
+  left: 0.75rem;
 }
 .divisi-carousel-section .carousel-nav.next {
-  right: 0.625rem;
+  right: 0.75rem;
 }
 .divisi-carousel-section .carousel-nav:disabled {
   opacity: 0.4;
@@ -363,7 +362,7 @@ section p {
   font-weight: 900;
   color: var(--brand-primary);
   text-transform: uppercase;
-  letter-spacing: 0.125rem;
+  letter-spacing: 0.25rem;
   margin-bottom: 2rem;
   padding: 0 2rem;
 }
@@ -416,9 +415,9 @@ section p {
   display: inline-block;
   background: var(--brand-primary);
   color: oklch(100% 0 0deg);
-  padding: 0.375rem 0.875rem;
+  padding: 0.25rem 0.75rem;
   border-radius: 0.5rem;
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   font-weight: 600;
   font-weight: 700;
   text-transform: uppercase;
@@ -440,7 +439,7 @@ section p {
 }
 .divisi-btn::after {
   content: "→";
-  font-size: 1.2rem;
+  font-size: 1.25rem;
 }
 .divisi-btn:hover {
   background: var(--brand-primary-hover);
@@ -473,7 +472,7 @@ section p {
     font-size: 2rem;
   }
   .divisi-carousel-section .carousel-container {
-    padding: 2.5rem 3.75rem 3.75rem;
+    padding: 2.5rem 3.5rem;
   }
   .divisi-card {
     width: 18.75rem;
@@ -512,10 +511,10 @@ section p {
   }
   .divisi-carousel-title {
     font-size: 1.75rem;
-    letter-spacing: 0.0625rem;
+    letter-spacing: 0.25rem;
   }
   .divisi-carousel-section .carousel-container {
-    padding: 2.5rem 3.125rem 3.75rem;
+    padding: 2.5rem 3rem;
   }
   .divisi-card {
     width: 17.5rem;
@@ -531,10 +530,10 @@ section p {
     font-size: 1.4rem;
   }
   .divisi-carousel-section .carousel-nav.prev {
-    left: 0.3125rem;
+    left: 0.25rem;
   }
   .divisi-carousel-section .carousel-nav.next {
-    right: 0.3125rem;
+    right: 0.25rem;
   }
 }
 .lightbox {
@@ -602,7 +601,7 @@ section p {
   background: var(--brand-primary-dark);
   border-color: var(--brand-primary-dark);
   transform: translateY(-50%) scale(1.15);
-  box-shadow: 0 0.375rem 1rem var(--brand-nav-shadow-lg);
+  box-shadow: 0 0.5rem 1rem var(--brand-nav-shadow-lg);
 }
 .lightbox-prev {
   left: 2rem;
@@ -738,7 +737,7 @@ header.header--transparent .nav-divider {
   width: 21.875rem;
   height: 100vh;
   background: oklch(100% 0 0deg);
-  box-shadow: -0.125rem 0 0.625rem oklch(0% 0 0deg / 0.137);
+  box-shadow: -0.125rem 0 0.75rem oklch(0% 0 0deg / 0.137);
   transition: right 0.3s ease;
   z-index: 200;
   overflow-y: auto;
@@ -796,7 +795,7 @@ header.header--transparent .nav-divider {
   top: 50%;
   transform: translateY(-50%) rotate(180deg);
   transition: transform 0.3s ease;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
 }
 .accordion-header.active::after {
   transform: translateY(-50%);
@@ -920,7 +919,7 @@ header.header--transparent .nav-divider {
 }
 .footer-info i {
   color: var(--brand-primary);
-  min-width: 1.2rem;
+  min-width: 1.25rem;
 }
 
 .footer-logo-section {
@@ -992,6 +991,9 @@ header.header--transparent .nav-divider {
   }
 }
 @media (max-width: 48rem) {
+  .footer {
+    padding: 3rem 1.5rem 1.5rem;
+  }
   .footer-info {
     grid-template-columns: 1fr;
     gap: 1.5rem;
@@ -1007,7 +1009,7 @@ header.header--transparent .nav-divider {
 }
 .struktur-organisasi-section {
   text-align: center;
-  padding: 3.75rem 1.25rem;
+  padding: 4rem 1.25rem;
 }
 .struktur-organisasi-section h1 {
   font-size: 2.5rem;
@@ -1044,7 +1046,7 @@ header.header--transparent .nav-divider {
   width: 12.5rem;
   height: 12.5rem;
   display: block;
-  margin: 0 auto 1.5rem auto;
+  margin: 0 auto 1.5rem;
 }
 .divisi-description h2 {
   font-size: 1.75rem;
@@ -1059,7 +1061,7 @@ header.header--transparent .nav-divider {
   margin-bottom: 1.5rem;
 }
 .divisi-description h3 {
-  font-size: 1.1rem;
+  font-size: 1.125rem;
   color: oklch(44% 0.003 265deg);
   font-weight: 600;
   margin-bottom: 0.75rem;
@@ -1135,11 +1137,11 @@ header.header--transparent .nav-divider {
   display: inline-block;
   background: var(--brand-primary);
   color: oklch(100% 0 0deg);
-  padding: 0.375rem 0.875rem;
+  padding: 0.25rem 0.75rem;
   border-radius: 0.5rem;
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   font-weight: 600;
-  margin-bottom: 0.625rem;
+  margin-bottom: 0.5rem;
 }
 
 .struktur-organisasi-name {
@@ -1176,12 +1178,12 @@ header.header--transparent .nav-divider {
 }
 
 .proker-panel-title {
-  font-size: 1.1rem;
+  font-size: 1.125rem;
   font-weight: 700;
   font-family: "Archivo Black", sans-serif;
   color: var(--brand-primary);
   text-transform: uppercase;
-  letter-spacing: 0.03125rem;
+  letter-spacing: 0.25rem;
   margin-bottom: 1.25rem;
   padding-bottom: 0.75rem;
   border-bottom: 0.125rem solid var(--brand-primary);
@@ -1205,7 +1207,7 @@ header.header--transparent .nav-divider {
   content: counter(proker-counter);
   position: absolute;
   left: 0;
-  top: 0.125rem;
+  top: 0.25rem;
   width: 1.5rem;
   height: 1.5rem;
   background: var(--brand-primary);
@@ -1227,7 +1229,7 @@ header.header--transparent .nav-divider {
 }
 
 .proker-desc {
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   color: oklch(56% 0.018 265deg);
   line-height: 1.6;
   margin: 0;
@@ -1347,7 +1349,7 @@ header.header--transparent .nav-divider {
   font-weight: 600;
   cursor: pointer;
   text-transform: uppercase;
-  letter-spacing: 0.03125rem;
+  letter-spacing: 0.25rem;
   transition: all 0.3s ease;
   box-shadow: 0 0.25rem 1rem oklch(0% 0 0deg / 0.5);
 }
@@ -1374,14 +1376,13 @@ header.header--transparent .nav-divider {
   margin-top: 2rem;
 }
 #visi p {
-  font-size: 1.1rem;
+  font-size: 1.125rem;
   line-height: 1.8;
   color: oklch(44% 0.003 265deg);
   max-width: 43.75rem;
-  margin: 0 auto;
+  margin: 0 auto 2rem;
   position: relative;
   z-index: 2;
-  margin-bottom: 2rem;
 }
 
 .visi-shape {
@@ -1458,7 +1459,7 @@ header.header--transparent .nav-divider {
 .misi-card-title {
   color: var(--brand-primary);
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1.125rem;
   margin-bottom: 1rem;
 }
 
@@ -1545,6 +1546,96 @@ header.header--transparent .nav-divider {
   font-size: 1rem;
 }
 
+.kegiatan-cards-section {
+  padding: 4rem 2rem 5rem;
+  text-align: center;
+  position: relative;
+}
+
+.kegiatan-cards-title {
+  position: relative;
+  z-index: 2;
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--brand-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.kegiatan-cards-subtitle {
+  position: relative;
+  z-index: 2;
+  color: oklch(56% 0.018 265deg);
+  font-size: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.kegiatan-cards-empty {
+  color: oklch(78% 0.004 265deg);
+  font-size: 1rem;
+  padding: 2rem 0;
+}
+
+.kegiatan-cards-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  gap: 1.25rem;
+  max-width: 75rem;
+  margin: 0 auto;
+}
+
+.kegiatan-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: oklch(100% 0 0deg);
+  border: 1px solid oklch(90% 0.002 265deg);
+  border-radius: 1rem;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 0.125rem 0.625rem oklch(0% 0 0deg / 0.1);
+  text-decoration: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+.kegiatan-card:hover {
+  border-color: var(--brand-primary);
+  box-shadow: 0 0.25rem 1.25rem oklch(0% 0 0deg / 0.08);
+  transform: translateY(-0.25rem);
+}
+.kegiatan-card:hover .kegiatan-card-arrow {
+  transform: translateX(0.25rem);
+  color: var(--brand-primary);
+}
+
+.kegiatan-card-year {
+  flex-shrink: 0;
+  background: var(--brand-primary);
+  color: oklch(100% 0 0deg);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  letter-spacing: 0.03rem;
+}
+
+.kegiatan-card-title {
+  flex: 1;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: oklch(44% 0.003 265deg);
+  text-align: left;
+  line-height: 1.4;
+}
+
+.kegiatan-card-arrow {
+  flex-shrink: 0;
+  font-size: 1.125rem;
+  color: oklch(70% 0.015 265deg);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
 @media (max-width: 48rem) {
   .banner {
     min-height: 25rem;
@@ -1560,6 +1651,13 @@ header.header--transparent .nav-divider {
   .banner-right {
     display: none;
   }
+  .beranda-toggle-tabs {
+    max-width: 25rem;
+  }
+  .beranda-toggle-tab {
+    font-size: 0.9rem;
+    padding: 0.5rem 1.25rem;
+  }
   #visi p {
     font-size: 1rem;
   }
@@ -1569,12 +1667,12 @@ header.header--transparent .nav-divider {
   .proker-image {
     height: 12.5rem;
   }
-  .beranda-toggle-tabs {
-    max-width: 25rem;
+  .kegiatan-cards-title {
+    font-size: 2rem;
   }
-  .beranda-toggle-tab {
-    font-size: 0.9rem;
-    padding: 0.625rem 1.25rem;
+  .kegiatan-cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    gap: 1rem;
   }
 }
 @media (max-width: 30rem) {
@@ -1594,6 +1692,13 @@ header.header--transparent .nav-divider {
     text-align: center;
     padding: 0.75rem 1rem;
   }
+  .beranda-toggle-tabs {
+    max-width: 100%;
+  }
+  .beranda-toggle-tab {
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+  }
   .visi-shape {
     background: var(--brand-blob-color);
   }
@@ -1612,14 +1717,23 @@ header.header--transparent .nav-divider {
   .proker-number {
     width: 2.8125rem;
     height: 2.8125rem;
-    font-size: 1.1rem;
+    font-size: 1.125rem;
   }
-  .beranda-toggle-tabs {
-    max-width: 100%;
+  .kegiatan-cards-section {
+    padding: 3rem 1rem 4rem;
   }
-  .beranda-toggle-tab {
-    font-size: 0.85rem;
-    padding: 0.625rem 1rem;
+  .kegiatan-cards-title {
+    font-size: 1.75rem;
+    letter-spacing: 0.25rem;
+  }
+  .kegiatan-cards-subtitle {
+    font-size: 0.9rem;
+  }
+  .kegiatan-cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .kegiatan-card {
+    padding: 1rem 1.25rem;
   }
 }
 .kegiatan-description-and-video {
@@ -1657,10 +1771,10 @@ header.header--transparent .nav-divider {
   color: oklch(100% 0 0deg);
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.03125rem;
+  letter-spacing: 0.25rem;
   box-shadow: 0 0.25rem 1.25rem oklch(0% 0 0deg / 0.08);
 }
 
@@ -1698,7 +1812,7 @@ header.header--transparent .nav-divider {
 }
 .event-detail-item i {
   color: var(--brand-primary);
-  font-size: 1.1rem;
+  font-size: 1.125rem;
 }
 
 .event-highlights {
@@ -1709,7 +1823,7 @@ header.header--transparent .nav-divider {
 }
 .event-highlights h4 {
   color: oklch(44% 0.003 265deg);
-  font-size: 1.1rem;
+  font-size: 1.125rem;
   font-weight: 600;
   margin: 0 0 0.75rem;
 }
@@ -1734,7 +1848,7 @@ header.header--transparent .nav-divider {
   left: 0;
   color: var(--brand-primary);
   font-weight: bold;
-  font-size: 1.1rem;
+  font-size: 1.125rem;
 }
 
 .gallery-section {
@@ -1778,7 +1892,7 @@ header.header--transparent .nav-divider {
     gap: 1.25rem;
   }
   .description-content h3 {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
   }
   .description-content p {
     font-size: 0.95rem;

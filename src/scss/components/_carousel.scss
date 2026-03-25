@@ -5,8 +5,8 @@
 
 .carousel-container {
     position: relative;
-    max-width: 62.5rem;
-    margin: 2rem auto;
+    max-width: 62.5rem;            // ~1000px — narrower than full width for focused gallery
+    margin: $space-8 auto;         // 32px top/bottom
     display: none;
 }
 
@@ -15,7 +15,7 @@
     border-radius: $radius-lg;
     background: $bg-50;
     box-shadow: $shadow-md;
-    height: 25rem;
+    height: 25rem;                 // 400px — fixed image viewport
     @include flex-center;
 }
 
@@ -68,8 +68,8 @@
     @include nav-btn-base;
 }
 
-.carousel-prev { left: 1rem; }
-.carousel-next { right: 1rem; }
+.carousel-prev { left: $space-4; }    // 16px from edge
+.carousel-next { right: $space-4; }
 
 // ─── Dot indicators ──────────────────────────────────────────────────────────
 
@@ -77,19 +77,19 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1.5rem;
-    padding: 0 1rem;
+    gap: $space-2;                 // 8px — between page dots
+    margin-top: $space-6;          // 24px — below carousel viewport
+    padding: 0 $space-4;           // 16px horizontal — prevents edge clipping
 }
 
 .carousel-dot {
-    min-width: 3rem;
-    height: 3rem;
+    min-width: $dot-size;          // 48px
+    height: $dot-size;
     border-radius: $radius-md;
     background: $bg-white;
     border: 0.125rem solid $border;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: $text-base;
     font-weight: 600;
     color: $text-dark;
     @include flex-center;
@@ -100,7 +100,7 @@
     &:hover:not(:disabled) {
         background: $hover-bg;
         border-color: $text-gray-400;
-        transform: translateY(-0.125rem);
+        transform: translateY(-$space-1);  // 4px lift
         box-shadow: $shadow-md;
     }
 
@@ -108,7 +108,7 @@
         background: var(--brand-primary);
         color: $bg-white;
         border-color: var(--brand-primary);
-        box-shadow: 0 0.25rem 1rem var(--brand-dot-shadow);
+        box-shadow: 0 $space-1 $space-4 var(--brand-dot-shadow);
     }
 
     &:disabled {
@@ -130,10 +130,10 @@
 }
 
 .carousel-ellipsis {
-    min-width: 3rem;
-    height: 3rem;
+    min-width: $dot-size;          // matches .carousel-dot for alignment
+    height: $dot-size;
     @include flex-center;
-    font-size: 1rem;
+    font-size: $text-base;
     font-weight: 600;
     color: $text-gray-600;
     pointer-events: none;
@@ -147,14 +147,14 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 4rem 2rem;
-    gap: 1rem;
+    padding: $space-16 $space-8;   // 64px 32px — centered in empty gallery space
+    gap: $space-4;                 // 16px — between spinner and message
 }
 
 .spinner {
-    width: 3.125rem;
-    height: 3.125rem;
-    border: 0.25rem solid $border;
+    width: $spinner-size;          // 50px
+    height: $spinner-size;
+    border: $space-1 solid $border;    // 4px ring
     border-top-color: var(--brand-primary);
     border-radius: 50%;
     animation: spin 1s linear infinite;
@@ -164,19 +164,19 @@
     to { transform: rotate(360deg); }
 }
 
-.loading-state p { color: $text-gray-600; font-size: 1rem; }
+.loading-state p { color: $text-gray-600; font-size: $text-base; }
 
 .error-state {
     color: #e74c3c;
 
-    i { font-size: 3rem; }
-    p { font-size: 1rem; text-align: center; }
+    i { font-size: $space-12; }    // 48px — large error icon
+    p { font-size: $text-base; text-align: center; }
 }
 
 // ─── Divisi (org-chart) carousel ─────────────────────────────────────────────
 
 .divisi-carousel-section {
-    padding: 4rem 0 6rem;
+    padding: $space-16 0;          // 64px vertical, flush horizontal for full-bleed feel
     position: relative;
     overflow: hidden;
 
@@ -184,18 +184,17 @@
         display: block;
         max-width: 100%;
         margin: 0;
-        padding: 2.5rem 4.375rem 3.75rem;
     }
 
     .carousel-track {
-        gap: 1.5rem;
+        gap: $space-6;             // 24px — between divisi cards
         transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         height: auto;
     }
 
     .carousel-nav {
-        &.prev { left: 0.625rem; }
-        &.next { right: 0.625rem; }
+        &.prev { left: $space-2 + $space-1; }  // 12px — tucked near edge
+        &.next { right: $space-2 + $space-1; }
 
         &:disabled {
             opacity: 0.4;
@@ -208,13 +207,13 @@
 
 .divisi-carousel-title {
     text-align: center;
-    font-size: 2.5rem;
+    font-size: $text-4xl;          // 40px
     font-weight: 900;
     color: var(--brand-primary);
     text-transform: uppercase;
-    letter-spacing: 0.125rem;
-    margin-bottom: 2rem;
-    padding: 0 2rem;
+    letter-spacing: $space-1;      // 4px
+    margin-bottom: $space-8;       // 32px — before carousel
+    padding: 0 $space-8;           // 32px horizontal — matches section gutter
 }
 
 // ─── Divisi cards ─────────────────────────────────────────────────────────────
@@ -225,16 +224,16 @@
     border: 1px solid $border;
     box-shadow: $shadow-md;
     overflow: hidden;
-    width: 21.875rem;
+    width: 21.875rem;              // 350px — fixed card width for carousel alignment
     min-width: 21.875rem;
     flex-shrink: 0;
     @include hover-lift;
 
     &-image {
         width: 100%;
-        height: 17.5rem;
+        height: 17.5rem;           // 280px — logo display area
         @include flex-center;
-        padding: 2rem 2rem 0;
+        padding: $space-8 $space-8 0;  // 32px top/sides, flush bottom
         background: $bg-white;
 
         img {
@@ -245,19 +244,19 @@
     }
 
     &-content {
-        padding: 1.5rem 2rem 2rem;
+        padding: $space-6 $space-8 $space-8;   // 24px top, 32px sides/bottom
         text-align: left;
     }
 
     &-title {
-        font-size: 1.25rem;
+        font-size: $text-lg;       // 20px
         font-weight: 700;
         color: $text-dark;
         line-height: 1.4;
-        min-height: 4.375rem;
+        min-height: 4.375rem;      // ~70px — fixed height keeps buttons aligned across cards
         display: flex;
         align-items: center;
-        margin-bottom: 1.5rem;
+        margin-bottom: $space-6;   // 24px — before CTA button
     }
 }
 
@@ -265,77 +264,77 @@
     @include badge;
     font-weight: 700;
     text-transform: uppercase;
-    margin-bottom: 0.75rem;
+    margin-bottom: $space-3;       // 12px — between badge and title
 }
 
 .divisi-btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: $space-2;                 // 8px — between label and arrow
     background: var(--brand-primary);
     color: $bg-white;
-    padding: 0.75rem 1.5rem;
+    padding: $space-3 $space-6;    // 12px 24px — same as .btn for consistency
     border-radius: $radius-sm;
     text-decoration: none;
     font-weight: 700;
     font-size: 0.95rem;
     transition: background $transition, transform $transition;
 
-    &::after { content: '→'; font-size: 1.2rem; }
+    &::after { content: '→'; font-size: $text-lg; }   // 20px arrow
 
     &:hover {
         background: var(--brand-primary-hover);
-        transform: translateX(0.25rem);
+        transform: translateX($space-1);   // 4px nudge right on hover
     }
 }
 
 // ─── Responsive ──────────────────────────────────────────────────────────────
 
 @include tablet {
-    .carousel-nav        { width: 3.125rem; height: 3.125rem; font-size: 1.6rem; }
-    .carousel-prev       { left: 0.5rem; }
-    .carousel-next       { right: 0.5rem; }
-    .carousel-indicators { margin-top: 1rem; gap: 0.25rem; }
+    .carousel-nav        { width: $nav-btn-size-md; height: $nav-btn-size-md; font-size: 1.6rem; }
+    .carousel-prev       { left: $space-2; }
+    .carousel-next       { right: $space-2; }
+    .carousel-indicators { margin-top: $space-4; gap: $space-1; }   // 16px, 4px
 
     .carousel-dot,
     .carousel-ellipsis {
-        min-width: 2.75rem;
-        height: 2.75rem;
+        min-width: $dot-size-md;   // 44px
+        height: $dot-size-md;
         font-size: 0.95rem;
     }
 
-    .divisi-carousel-title                        { font-size: 2rem; }
-    .divisi-carousel-section .carousel-container  { padding: 2.5rem 3.75rem 3.75rem; }
+    .divisi-carousel-title                        { font-size: $text-3xl; }
+    .divisi-carousel-section .carousel-container  { padding: $space-10 $space-14; }    // 40px 56px
     .divisi-card                                  { width: 18.75rem; min-width: 18.75rem; }
-    .divisi-carousel-section .carousel-nav        { width: 3.125rem; height: 3.125rem; font-size: 1.6rem; }
+    .divisi-carousel-section .carousel-nav        { width: $nav-btn-size-md; height: $nav-btn-size-md; font-size: 1.6rem; }
 }
 
 @include mobile {
-    .carousel-track-container { height: 18.75rem; }
-    .carousel-nav             { width: 2.875rem; height: 2.875rem; font-size: 1.4rem; }
-    .carousel-prev            { left: 0.25rem; }
-    .carousel-next            { right: 0.25rem; }
-    .carousel-indicators      { gap: 0.1875rem; }
+    .carousel-track-container { height: 18.75rem; }   // 300px — shorter on mobile
+    .carousel-nav             { width: $nav-btn-size-sm; height: $nav-btn-size-sm; font-size: 1.4rem; }
+    .carousel-prev            { left: $space-1; }      // 4px — nearly flush
+    .carousel-next            { right: $space-1; }
+    .carousel-indicators      { gap: $space-1 - 0.0625rem; }  // ~3px — tightest gap
 
     .carousel-dot,
     .carousel-ellipsis {
-        min-width: 2.5rem;
-        height: 2.5rem;
+        min-width: $dot-size-sm;   // 40px
+        height: $dot-size-sm;
         font-size: 0.9rem;
         border-radius: $radius-sm;
     }
 
-    .divisi-carousel-title                        { font-size: 1.75rem; letter-spacing: 0.0625rem; }
-    .divisi-carousel-section .carousel-container  { padding: 2.5rem 3.125rem 3.75rem; }
+    .divisi-carousel-title                        { font-size: $text-2xl; letter-spacing: $space-1; }
+    .divisi-carousel-section .carousel-container  { padding: $space-10 $space-12; }    // 40px 48px
     .divisi-card                                  { width: 17.5rem; min-width: 17.5rem; }
-    .divisi-card-image                            { height: 13.75rem; padding: 1.5rem 1.5rem 0; }
+    .divisi-card-image                            { height: 13.75rem; padding: $space-6 $space-6 0; }  // 24px
 
     .divisi-carousel-section .carousel-nav {
-        width: 2.875rem;
-        height: 2.875rem;
+        width: $nav-btn-size-sm;
+        height: $nav-btn-size-sm;
         font-size: 1.4rem;
 
-        &.prev { left: 0.3125rem; }
-        &.next { right: 0.3125rem; }
+        &.prev { left: $space-1; }
+        &.next { right: $space-1; }
     }
 }

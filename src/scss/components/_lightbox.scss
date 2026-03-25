@@ -21,44 +21,44 @@
 
     &-close {
         position: absolute;
-        top: 1.5rem;
-        right: 2rem;
+        top: $space-6;             // 24px — comfortable distance from corner
+        right: $space-8;           // 32px — matches section horizontal gutter
         background: transparent;
         border: none;
         color: $bg-white;
-        font-size: 3rem;
+        font-size: $space-12;      // 48px — large tap target
         cursor: pointer;
         z-index: 1001;
         line-height: 1;
         padding: 0;
-        width: 2.5rem;
-        height: 2.5rem;
+        width: $space-10;          // 40px — hit area
+        height: $space-10;
         transition: transform 0.2s ease;
 
         &:hover { transform: scale(1.1); }
     }
 
     &-nav  { @include nav-btn-base; }
-    &-prev { left: 2rem; }
-    &-next { right: 2rem; }
+    &-prev { left: $space-8; }     // 32px — clear of image edge
+    &-next { right: $space-8; }
 }
 
 // ─── Responsive ──────────────────────────────────────────────────────────────
 
 @include tablet {
     .lightbox {
-        &-nav   { width: 3.125rem; height: 3.125rem; font-size: 1.6rem; }
-        &-prev  { left: 1rem; }
-        &-next  { right: 1rem; }
+        &-nav   { width: $nav-btn-size-md; height: $nav-btn-size-md; font-size: 1.6rem; }
+        &-prev  { left: $space-4; }    // 16px
+        &-next  { right: $space-4; }
         &-image { max-width: 95%; max-height: 85vh; }
-        &-close { top: 1rem; right: 1rem; font-size: 2.5rem; }
+        &-close { top: $space-4; right: $space-4; font-size: $space-10; }  // 40px icon
     }
 }
 
 @include mobile {
     .lightbox {
-        &-nav  { width: 2.875rem; height: 2.875rem; font-size: 1.4rem; }
-        &-prev { left: 0.5rem; }
-        &-next { right: 0.5rem; }
+        &-nav  { width: $nav-btn-size-sm; height: $nav-btn-size-sm; font-size: 1.4rem; }
+        &-prev { left: $space-2; }     // 8px — nearly flush on small screens
+        &-next { right: $space-2; }
     }
 }

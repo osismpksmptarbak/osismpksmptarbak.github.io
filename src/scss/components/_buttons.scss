@@ -2,10 +2,10 @@
 
 .btn {
     display: inline-block;
-    padding: 0.75rem 1.5rem;
+    padding: $space-3 $space-6;    // 12px 24px — comfortable click target
     border: none;
     border-radius: $radius-sm;
-    font-size: 1rem;
+    font-size: $text-base;
     font-weight: 600;
     text-decoration: none;
     cursor: pointer;

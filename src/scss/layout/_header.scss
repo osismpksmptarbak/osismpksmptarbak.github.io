@@ -10,7 +10,7 @@ header {
     right: 0;
     height: $header-height;
     background: $bg-white;
-    padding: 1rem 2rem;
+    padding: $space-4 $space-8;    // 16px 32px — vertically snug, horizontally matches section padding
     box-shadow: $shadow-sm;
     z-index: 100;
     transition: background-color 0.35s ease, box-shadow 0.35s ease;
@@ -33,13 +33,13 @@ header {
     width: 100%;
     margin: 0 auto;
     @include flex-between;
-    gap: 1rem;
+    gap: $space-4;     // 16px — space between logo and nav
     height: 100%;
 }
 
 .logo img {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: $space-10;  // 40px — logo mark, matches header breathing room
+    height: $space-10;
 }
 
 // ─── Nav ─────────────────────────────────────────────────────────────────────
@@ -47,7 +47,7 @@ header {
 .nav-buttons {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: $space-2;     // 8px — tight grouping between nav items
 }
 
 .nav-btn {
@@ -55,8 +55,8 @@ header {
     border: none;
     border-radius: $radius-sm;
     color: $text-dark;
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
+    padding: $space-3 $space-4;    // 12px 16px — comfortable tap target
+    font-size: $text-base;
     text-decoration: none;
     cursor: pointer;
     transition: color $transition;
@@ -67,15 +67,13 @@ header {
 
 .nav-divider {
     width: 1px;
-    height: 1.5rem;
-    margin-right: 1rem;
+    height: $space-6;  // 24px — visually aligns with text cap height
+    margin-right: $space-4;    // 16px — separates divider from CTA button
     background: $border;
 }
 
 // ─── Banner scroll offset ─────────────────────────────────────────────────────
 // Pulls the full-bleed banner up behind the transparent header.
-// Kept here (rather than in _beranda.scss) because the offset values are
-// derived from header height variables that live in this partial's domain.
 
 .banner {
     margin-top: calc($header-height * -1);
@@ -86,14 +84,18 @@ header {
 
 // ─── Side menu ───────────────────────────────────────────────────────────────
 
+// Side menu width is intentionally a raw value — it's a viewport-specific
+// design decision (350px = ~22rem) that doesn't map cleanly to the spacing scale.
+$_side-menu-width: 21.875rem;
+
 .side-menu {
     position: fixed;
     top: 0;
-    right: -21.875rem;
-    width: 21.875rem;
+    right: calc($_side-menu-width * -1);
+    width: $_side-menu-width;
     height: 100vh;
     background: $bg-white;
-    box-shadow: -0.125rem 0 0.625rem $hover-bg-dark;
+    box-shadow: -0.125rem 0 $space-3 $hover-bg-dark;
     transition: right $transition;
     z-index: 200;
     overflow-y: auto;
@@ -102,11 +104,11 @@ header {
 }
 
 .menu-header {
-    padding: 1.5rem;
+    padding: $space-6;     // 24px — matches card padding rhythm
     @include flex-between;
 
     h2 {
-        font-size: 1rem;
+        font-size: $text-base;
         font-weight: 400;
     }
 }
@@ -115,17 +117,17 @@ header {
     background: transparent;
     border: none;
     color: $text-dark;
-    font-size: 1.5rem;
+    font-size: $text-xl;   // 24px — large enough to tap comfortably
     cursor: pointer;
     line-height: 1;
 }
 
 .menu-content {
-    padding: 2rem 1.5rem;
+    padding: $space-8 $space-6;    // 32px 24px — generous interior, matches card rhythm
 }
 
 .menu-section {
-    margin-bottom: 1rem;
+    margin-bottom: $space-4;   // 16px — breathing room between nav groups
 }
 
 // ─── Accordion ───────────────────────────────────────────────────────────────
@@ -133,9 +135,10 @@ header {
 .accordion-header {
     color: $text-dark;
     font-weight: 400;
-    font-size: 1rem;
+    font-size: $text-base;
     border-bottom: 1px solid $border;
-    padding: 0.5rem 2rem 0.5rem 0.5rem;
+    // top/bottom: $space-2 (8px) — tight row; right: $space-8 (32px) — room for arrow
+    padding: $space-2 $space-8 $space-2 $space-2;
     cursor: pointer;
     user-select: none;
     position: relative;
@@ -146,11 +149,11 @@ header {
     &::after {
         content: '▼';
         position: absolute;
-        right: 0.5rem;
+        right: $space-2;
         top: 50%;
         transform: translateY(-50%) rotate(180deg);
         transition: transform $transition;
-        font-size: 0.8rem;
+        font-size: $text-xs;   // 12px — small decorative caret
     }
 
     &.active::after { transform: translateY(-50%); }
@@ -162,13 +165,14 @@ header {
     list-style: none;
     transition: max-height $transition;
 
+    // 500px max-height — large enough to never clip menu items, not a layout value
     &.active { max-height: 31.25rem; }
 
     a {
         color: $text-dark;
         text-decoration: none;
         display: block;
-        padding: 0.5rem;
+        padding: $space-2;     // 8px — compact list item tap target
         transition: background $transition, color $transition;
 
         &:hover {
@@ -199,7 +203,7 @@ header {
 
 @include wide {
     .nav-btn {
-        padding: 0.5rem 0.75rem;
+        padding: $space-2 $space-3;    // 8px 12px — tighter on mid-width screens
         font-size: 0.9rem;
     }
 }
@@ -213,22 +217,22 @@ header {
 
 @include tablet {
     header {
-        padding: 0.75rem 1rem;
+        padding: $space-3 $space-4;    // 12px 16px
         height: $header-height-md;
     }
 
-    .logo img { width: 2rem; height: 2rem; }
+    .logo img { width: $space-8; height: $space-8; }    // 32px
 
     .side-menu {
         width: 85vw;
-        max-width: 21.875rem;
+        max-width: $_side-menu-width;
         right: calc(-85vw);
     }
 }
 
 @include mobile {
     header {
-        padding: 0.5rem 0.75rem;
+        padding: $space-2 $space-3;    // 8px 12px — minimal on small screens
         height: $header-height-sm;
     }
 
@@ -237,10 +241,10 @@ header {
         right: calc(-90vw);
     }
 
-    .menu-content { padding: 1.5rem 1rem; }
+    .menu-content { padding: $space-6 $space-4; }    // 24px 16px
 
     .accordion-header {
         font-size: 0.95rem;
-        padding: 0.5rem 1.5rem 0.5rem 0.5rem;
+        padding: $space-2 $space-6 $space-2 $space-2;  // right: 24px — smaller arrow clearance
     }
 }

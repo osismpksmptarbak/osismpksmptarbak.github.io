@@ -36,6 +36,7 @@ export interface KegiatanActivity {
     year: string;
     title: string;
     link: string;
+    imageUrl?: string;
 }
 
 // ---- Tabs ----------------------------------------------------------------------
