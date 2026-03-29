@@ -19,12 +19,11 @@ function closeMenu() {
 menu.toggle?.addEventListener('click', openMenu);
 menu.close?.addEventListener('click', closeMenu);
 menu.overlay?.addEventListener('click', closeMenu);
-// Smooth-scroll all in-page anchor links and close the menu afterwards
+// Smooth-scroll in-page anchor links and close the menu afterwards
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', (e) => {
         e.preventDefault();
-        const href = anchor.getAttribute('href');
-        const target = href ? document.querySelector(href) : null;
+        const target = document.querySelector(anchor.getAttribute('href') ?? '');
         target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
         closeMenu();
     });
@@ -32,23 +31,21 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // ---- Accordion -----------------------------------------------------------------
 /**
  * Wires up accordion behaviour for every `.accordion-header` element.
- * Clicking a header toggles its own `active` class and its next sibling's.
+ * Clicking a header toggles its own `active` class and the next sibling's.
  * The first header is opened by default.
  *
- * NOTE: Each header is cloned before attaching a listener so that calling
- * this function again (e.g. after dynamic content loads) doesn't stack
- * duplicate listeners.
+ * Each header is cloned before attaching a listener so that calling this
+ * function again (e.g. after dynamic content loads) doesn't stack duplicates.
  */
 export function initAccordion() {
-    const headers = document.querySelectorAll('.accordion-header');
-    headers.forEach((header, index) => {
-        // Replace with a clone to strip any previously attached listeners
+    document.querySelectorAll('.accordion-header').forEach((header, index) => {
+        // Swap in a clone to strip any previously attached listeners
         const clone = header.cloneNode(true);
         header.parentNode?.replaceChild(clone, header);
         clone.addEventListener('click', function () {
-            const isActive = this.classList.contains('active');
-            this.classList.toggle('active', !isActive);
-            this.nextElementSibling?.classList.toggle('active', !isActive);
+            const nowActive = !this.classList.contains('active');
+            this.classList.toggle('active', nowActive);
+            this.nextElementSibling?.classList.toggle('active', nowActive);
         });
         // Open the first item on initial render
         if (index === 0) {
@@ -75,20 +72,7 @@ async function loadKegiatanOsis() {
         if (!response.ok) {
             throw new Error(`Failed to load kegiatan.txt — HTTP ${response.status}`);
         }
-        const text = await response.text();
-        const activities = text
-            .trim()
-            .split('\n')
-            .map(line => {
-            const [year, title, link] = line.split('|');
-            return {
-                year: year?.trim() ?? '',
-                title: title?.trim() ?? '',
-                link: link?.trim() ?? '',
-            };
-        })
-            .filter((a) => Boolean(a.year && a.title && a.link))
-            .sort((a, b) => a.title.localeCompare(b.title));
+        const activities = parseActivities(await response.text());
         const grouped = groupByYear(activities);
         container.innerHTML = Object.keys(grouped)
             .sort()
@@ -107,6 +91,22 @@ async function loadKegiatanOsis() {
             </div>`;
     }
 }
+/** Parses the raw text from `kegiatan.txt` into a sorted array of activities. */
+function parseActivities(text) {
+    return text
+        .trim()
+        .split('\n')
+        .map(line => {
+        const [year, title, link] = line.split('|');
+        return {
+            year: year?.trim() ?? '',
+            title: title?.trim() ?? '',
+            link: link?.trim() ?? '',
+        };
+    })
+        .filter((a) => Boolean(a.year && a.title && a.link))
+        .sort((a, b) => a.title.localeCompare(b.title));
+}
 /** Groups an array of activities into a Record keyed by year. */
 function groupByYear(activities) {
     return activities.reduce((acc, activity) => {
@@ -115,6 +115,7 @@ function groupByYear(activities) {
         return acc;
     }, {});
 }
+// ---- Kegiatan rendering --------------------------------------------------------
 /** Renders a single accordion section for one year's activities. */
 function renderYearSection(year, activities) {
     const items = activities
@@ -126,11 +127,9 @@ function renderYearSection(year, activities) {
             <ul class="accordion-content">${items}</ul>
         </div>`;
 }
-// ---- Kegiatan cards ------------------------------------------------------------
 /**
  * Renders kegiatan activities as visual cards into `#kegiatan-cards-grid`.
- * Activities are grouped by year and displayed newest-year-first.
- * Each card links to the activity URL and shows the year as a badge.
+ * Grouped by year, newest year first.
  */
 function renderKegiatanCards(activities) {
     const grid = findById('kegiatan-cards-grid');

@@ -1,13 +1,13 @@
 // ---- DOM helpers ---------------------------------------------------------------
 
-/** Returns an element by ID. Throws if not found. */
+/** Returns an element by ID, throwing if it doesn't exist. */
 export function getById<T extends HTMLElement>(id: string): T {
     const el = document.getElementById(id);
     if (!el) throw new Error(`Element #${id} not found`);
     return el as T;
 }
 
-/** Returns an element by ID, or null if not found. */
+/** Returns an element by ID, or null if it doesn't exist. */
 export function findById<T extends HTMLElement>(id: string): T | null {
     return document.getElementById(id) as T | null;
 }
@@ -28,7 +28,7 @@ export function setUrlParam(key: string, value: string): void {
     window.history.replaceState({}, '', url);
 }
 
-/** Reads a query param from the current URL. Returns null if absent. */
+/** Reads a query param from the current URL, or null if absent. */
 export function getUrlParam(key: string): string | null {
     return new URLSearchParams(window.location.search).get(key);
 }

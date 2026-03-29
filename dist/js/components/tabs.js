@@ -6,8 +6,9 @@ import { getUrlParam, setUrlParam } from '../utils/dom.js';
  * Each tab element must carry a `data-org` or `data-structure` attribute
  * whose value is the tab's identifier (e.g. `"OSIS"`, `"MPK"`).
  *
- * Returns a controller with `switchTab` and `destroy`. Call `destroy` before
- * calling `initTabs` again on the same elements to prevent stacked listeners.
+ * Returns a controller with `switchTab` and `destroy`.
+ * Call `destroy` before calling `initTabs` again on the same elements
+ * to prevent stacked listeners.
  */
 export function initTabs(options) {
     const { tabSelector, panelAttr, paramKey, defaultTab, onChange } = options;
@@ -15,37 +16,32 @@ export function initTabs(options) {
     const panels = panelAttr
         ? document.querySelectorAll(`[${panelAttr}]`)
         : [];
-    // AbortController lets us remove all tab listeners in one shot
-    const abortController = new AbortController();
-    const { signal } = abortController;
+    // One AbortController lets us remove all tab listeners in a single call
+    const tabListeners = new AbortController();
     function getTabValue(tab) {
         return tab.dataset.org ?? tab.dataset.structure ?? '';
     }
     function switchTab(value) {
-        // Update active state on tab buttons
         tabs.forEach(tab => {
             tab.classList.toggle('active', getTabValue(tab) === value);
         });
-        // Show only the matching panel
         if (panelAttr) {
             panels.forEach(panel => {
-                const isActive = panel.getAttribute(panelAttr) === value;
-                panel.classList.toggle('hidden', !isActive);
+                panel.classList.toggle('hidden', panel.getAttribute(panelAttr) !== value);
             });
         }
         setUrlParam(paramKey, value.toLowerCase());
         onChange?.(value);
     }
-    // Wire up click handlers — all removed together via the AbortController
     tabs.forEach(tab => {
-        tab.addEventListener('click', () => switchTab(getTabValue(tab)), { signal });
+        tab.addEventListener('click', () => switchTab(getTabValue(tab)), { signal: tabListeners.signal });
     });
-    // Restore from URL, or fall back to the default
+    // Restore from URL, or fall back to the default tab
     const savedValue = getUrlParam(paramKey);
     switchTab(savedValue ? savedValue.toUpperCase() : defaultTab);
-    function destroy() {
-        abortController.abort();
-    }
-    return { switchTab, destroy };
+    return {
+        switchTab,
+        destroy: () => tabListeners.abort(),
+    };
 }
 //# sourceMappingURL=tabs.js.map

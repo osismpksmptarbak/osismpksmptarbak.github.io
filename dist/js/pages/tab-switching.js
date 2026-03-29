@@ -6,21 +6,19 @@ document.addEventListener('DOMContentLoaded', initBerandaPage);
 function initBerandaPage() {
     const hasStruktur = !!document.getElementById('osis-content');
     const initialIndex = parseInt(getUrlParam('index') ?? '0') || 0;
-    // The carousel is only created when the structure section is present
+    // The carousel is only mounted when the structure section exists
     const carousel = hasStruktur ? new StructureCarousel() : null;
-    // `isFirstSwitch` must be captured *inside* the closure so that it reflects
-    // state at the time onChange fires, not at the time initTabs returns.
-    // initTabs fires onChange synchronously during initialisation, so setting
-    // the flag to false *after* calling initTabs would be too late.
+    // `isFirstSwitch` must be declared before calling `initTabs`, because
+    // initTabs fires `onChange` synchronously during initialisation —
+    // setting the flag to false *after* would miss that first call.
     let isFirstSwitch = true;
     initTabs({
         tabSelector: '.beranda-toggle-tab',
         panelAttr: 'data-org-panel',
         paramKey: 'org',
         defaultTab: 'OSIS',
-        onChange: (type) => {
+        onChange(type) {
             handleTabChange(type, carousel, initialIndex, isFirstSwitch);
-            // Mark the first switch as handled only after onChange has run
             isFirstSwitch = false;
         },
     });
@@ -28,27 +26,26 @@ function initBerandaPage() {
 // ---- Tab change handler --------------------------------------------------------
 /**
  * Responds to OSIS / MPK tab changes:
- * - Toggles content visibility
- * - Updates copy that references the active organisation
+ * - Toggles the visibility of content sections and carousel tracks
+ * - Applies the MPK colour theme when appropriate
+ * - Updates labels that reference the active organisation
  * - Hands the correct carousel track to the StructureCarousel instance
  */
 function handleTabChange(type, carousel, initialIndex, isFirstSwitch) {
     const isOSIS = type === 'OSIS';
-    // Show/hide main content sections
+    // Content sections
     findById('osis-content')?.classList.toggle('hidden', !isOSIS);
     findById('mpk-content')?.classList.toggle('hidden', isOSIS);
-    // Show/hide carousel tracks
+    // Carousel tracks
     const osisTrack = findById('osis-carousel-track');
     const mpkTrack = findById('mpk-carousel-track');
     osisTrack?.classList.toggle('hidden', !isOSIS);
     mpkTrack?.classList.toggle('hidden', isOSIS);
-    // Apply MPK colour theme — body covers shared elements (blobs, toggle tabs,
-    // banner h1, nav accents); mpk-content panel scopes section-level elements
+    // MPK colour theme — body covers shared elements (blobs, toggle tabs, nav
+    // accents); mpk-content scopes section-level elements
     document.body.classList.toggle('theme-mpk', !isOSIS);
-    const mpkContent = findById('mpk-content');
-    if (mpkContent) {
-        mpkContent.classList.toggle('theme-mpk', !isOSIS);
-    }
+    findById('mpk-content')?.classList.toggle('theme-mpk', !isOSIS);
+    // Dynamic copy
     const prokerDescription = findById('proker-description');
     if (prokerDescription) {
         prokerDescription.textContent = isOSIS
@@ -59,10 +56,10 @@ function handleTabChange(type, carousel, initialIndex, isFirstSwitch) {
     if (carouselTitle) {
         carouselTitle.textContent = isOSIS ? 'SEKBID' : 'KOMISI';
     }
-    // Point the carousel at the newly visible track
+    // Point the carousel at the newly visible track.
+    // On first load, restore the index from the URL; otherwise reset to 0.
     const activeTrack = isOSIS ? osisTrack : mpkTrack;
     if (activeTrack && carousel) {
-        // On first load, restore the index from the URL; otherwise reset to 0
         carousel.setTrack(activeTrack, isFirstSwitch ? initialIndex : 0);
     }
 }

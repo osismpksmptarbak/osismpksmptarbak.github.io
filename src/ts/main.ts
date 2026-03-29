@@ -26,12 +26,11 @@ menu.toggle?.addEventListener('click', openMenu);
 menu.close?.addEventListener('click', closeMenu);
 menu.overlay?.addEventListener('click', closeMenu);
 
-// Smooth-scroll all in-page anchor links and close the menu afterwards
+// Smooth-scroll in-page anchor links and close the menu afterwards
 document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', (e: MouseEvent) => {
         e.preventDefault();
-        const href = anchor.getAttribute('href');
-        const target = href ? document.querySelector<HTMLElement>(href) : null;
+        const target = document.querySelector<HTMLElement>(anchor.getAttribute('href') ?? '');
         target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
         closeMenu();
     });
@@ -41,25 +40,22 @@ document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach(anchor => {
 
 /**
  * Wires up accordion behaviour for every `.accordion-header` element.
- * Clicking a header toggles its own `active` class and its next sibling's.
+ * Clicking a header toggles its own `active` class and the next sibling's.
  * The first header is opened by default.
  *
- * NOTE: Each header is cloned before attaching a listener so that calling
- * this function again (e.g. after dynamic content loads) doesn't stack
- * duplicate listeners.
+ * Each header is cloned before attaching a listener so that calling this
+ * function again (e.g. after dynamic content loads) doesn't stack duplicates.
  */
 export function initAccordion(): void {
-    const headers = document.querySelectorAll<HTMLElement>('.accordion-header');
-
-    headers.forEach((header, index) => {
-        // Replace with a clone to strip any previously attached listeners
+    document.querySelectorAll<HTMLElement>('.accordion-header').forEach((header, index) => {
+        // Swap in a clone to strip any previously attached listeners
         const clone = header.cloneNode(true) as HTMLElement;
         header.parentNode?.replaceChild(clone, header);
 
         clone.addEventListener('click', function (this: HTMLElement) {
-            const isActive = this.classList.contains('active');
-            this.classList.toggle('active', !isActive);
-            (this.nextElementSibling as HTMLElement | null)?.classList.toggle('active', !isActive);
+            const nowActive = !this.classList.contains('active');
+            this.classList.toggle('active', nowActive);
+            (this.nextElementSibling as HTMLElement | null)?.classList.toggle('active', nowActive);
         });
 
         // Open the first item on initial render
@@ -84,30 +80,15 @@ async function loadKegiatanOsis(): Promise<void> {
     if (!container) return;
 
     try {
-        const dataUrl = new URL('../../kegiatan-osis/kegiatan.txt', import.meta.url).href;
+        const dataUrl  = new URL('../../kegiatan-osis/kegiatan.txt', import.meta.url).href;
         const response = await fetch(dataUrl);
 
         if (!response.ok) {
             throw new Error(`Failed to load kegiatan.txt — HTTP ${response.status}`);
         }
 
-        const text = await response.text();
-
-        const activities: KegiatanActivity[] = text
-            .trim()
-            .split('\n')
-            .map(line => {
-                const [year, title, link] = line.split('|');
-                return {
-                    year:  year?.trim()  ?? '',
-                    title: title?.trim() ?? '',
-                    link:  link?.trim()  ?? '',
-                };
-            })
-            .filter((a): a is KegiatanActivity => Boolean(a.year && a.title && a.link))
-            .sort((a, b) => a.title.localeCompare(b.title));
-
-        const grouped = groupByYear(activities);
+        const activities = parseActivities(await response.text());
+        const grouped    = groupByYear(activities);
 
         container.innerHTML = Object.keys(grouped)
             .sort()
@@ -127,6 +108,23 @@ async function loadKegiatanOsis(): Promise<void> {
     }
 }
 
+/** Parses the raw text from `kegiatan.txt` into a sorted array of activities. */
+function parseActivities(text: string): KegiatanActivity[] {
+    return text
+        .trim()
+        .split('\n')
+        .map(line => {
+            const [year, title, link] = line.split('|');
+            return {
+                year:  year?.trim()  ?? '',
+                title: title?.trim() ?? '',
+                link:  link?.trim()  ?? '',
+            };
+        })
+        .filter((a): a is KegiatanActivity => Boolean(a.year && a.title && a.link))
+        .sort((a, b) => a.title.localeCompare(b.title));
+}
+
 /** Groups an array of activities into a Record keyed by year. */
 function groupByYear(activities: KegiatanActivity[]): Record<string, KegiatanActivity[]> {
     return activities.reduce<Record<string, KegiatanActivity[]>>((acc, activity) => {
@@ -134,6 +132,8 @@ function groupByYear(activities: KegiatanActivity[]): Record<string, KegiatanAct
         return acc;
     }, {});
 }
+
+// ---- Kegiatan rendering --------------------------------------------------------
 
 /** Renders a single accordion section for one year's activities. */
 function renderYearSection(year: string, activities: KegiatanActivity[]): string {
@@ -148,12 +148,9 @@ function renderYearSection(year: string, activities: KegiatanActivity[]): string
         </div>`;
 }
 
-// ---- Kegiatan cards ------------------------------------------------------------
-
 /**
  * Renders kegiatan activities as visual cards into `#kegiatan-cards-grid`.
- * Activities are grouped by year and displayed newest-year-first.
- * Each card links to the activity URL and shows the year as a badge.
+ * Grouped by year, newest year first.
  */
 function renderKegiatanCards(activities: KegiatanActivity[]): void {
     const grid = findById('kegiatan-cards-grid');
@@ -168,9 +165,7 @@ function renderKegiatanCards(activities: KegiatanActivity[]): void {
 
     grid.innerHTML = Object.keys(grouped)
         .sort((a, b) => Number(b) - Number(a)) // newest year first
-        .flatMap(year =>
-            (grouped[year] ?? []).map(a => renderKegiatanCard(a, year))
-        )
+        .flatMap(year => (grouped[year] ?? []).map(a => renderKegiatanCard(a, year)))
         .join('');
 }
 

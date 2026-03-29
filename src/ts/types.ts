@@ -8,7 +8,6 @@ export interface GalleryImage {
 export interface CarouselOptions {
     mode: 'gallery' | 'structure';
     imageIds?: string[];
-    altPrefix?: string;
 }
 
 export interface GalleryElements {
@@ -44,11 +43,11 @@ export interface KegiatanActivity {
 export interface TabOptions {
     /** CSS selector for tab button elements. */
     tabSelector: string;
-    /** Attribute name on panel elements (e.g. `"data-org-panel"`). Null = no panels. */
+    /** Attribute name on panel elements (e.g. `"data-org-panel"`). Pass null if no panels. */
     panelAttr: string | null;
     /** URL query-param key used to persist the active tab. */
     paramKey: string;
-    /** Tab value to activate when no query param is present. */
+    /** Tab value to activate when no URL param is present. */
     defaultTab: string;
     /** Called every time the active tab changes. */
     onChange?: (value: string) => void;

@@ -1,9 +1,9 @@
-import type { CarouselOptions, GalleryImage, GalleryElements } from '../types.js';
+import type { CarouselOptions, GalleryElements } from '../types.js';
 import { findById, clamp, setUrlParam, getUrlParam } from '../utils/dom.js';
 
 // ---- Constants -----------------------------------------------------------------
 
-/** Inline SVG shown when a thumbnail fails to load. */
+/** Inline SVG placeholder shown when a thumbnail fails to load. */
 const FALLBACK_SVG =
     'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22600%22%3E' +
     '%3Crect fill=%22%23f0f0f0%22 width=%22800%22 height=%22600%22/%3E' +
@@ -17,25 +17,24 @@ const FALLBACK_SVG =
  *
  * Supports:
  * - Previous / next buttons
- * - Touch/swipe navigation with rubber-band resistance at the edges
- * - Responsive card widths and visible-card counts
+ * - Touch/swipe with rubber-band resistance at the edges
+ * - Responsive visible-card counts
  * - Switching between OSIS and MPK tracks without recreating the instance
  */
 export class StructureCarousel {
     private prevBtn: HTMLButtonElement | null;
     private nextBtn: HTMLButtonElement | null;
 
-    private activeTrack: HTMLElement | null = null;
-    private currentIndex = 0;
+    private activeTrack:  HTMLElement | null = null;
+    private currentIndex  = 0;
 
-    // Touch tracking
-    private touchStartX = 0;
-    private touchStartY = 0;
-    private isDragging  = false;
+    // Touch state
+    private touchStartX  = 0;
+    private touchStartY  = 0;
+    private isDragging   = false;
 
-    // Keep a reference to the bound swipe handler so we can remove it before
-    // re-binding when the track changes, preventing duplicate listeners.
-    private swipeAbortController: AbortController | null = null;
+    // Stored so we can cleanly re-bind swipe listeners when the track changes
+    private swipeListeners: AbortController | null = null;
 
     constructor() {
         this.prevBtn = findById<HTMLButtonElement>('prevBtn');
@@ -49,25 +48,20 @@ export class StructureCarousel {
     // ---- Layout helpers --------------------------------------------------------
 
     /**
-     * Returns the true per-step scroll distance by measuring the distance
-     * between the left edges of the first two cards.
-     *
-     * This naturally includes the card width *plus* any gap/margin, so the
-     * carousel always snaps to exactly where the next card starts regardless
-     * of CSS values. Falls back to the container width when fewer than two
-     * cards are present.
+     * Returns the per-step scroll distance by measuring the gap between the
+     * left edges of the first two cards. This naturally includes card width
+     * plus any gap/margin, so snapping is always accurate regardless of CSS.
+     * Falls back to the container width when fewer than two cards exist.
      */
     private getCardWidth(): number {
         if (!this.activeTrack) return 0;
 
         const cards = this.activeTrack.querySelectorAll<HTMLElement>('.divisi-card');
         if (cards.length >= 2) {
-            const first  = cards[0]!.getBoundingClientRect();
-            const second = cards[1]!.getBoundingClientRect();
-            return second.left - first.left;
+            return cards[1]!.getBoundingClientRect().left
+                 - cards[0]!.getBoundingClientRect().left;
         }
 
-        // Fallback: treat the whole track as one step
         return this.activeTrack.getBoundingClientRect().width;
     }
 
@@ -94,11 +88,11 @@ export class StructureCarousel {
 
     // ---- Public API ------------------------------------------------------------
 
-    /** Re-renders position and updates button disabled states. */
+    /** Re-renders the carousel position and updates button disabled states. */
     update(): void {
         if (!this.activeTrack) return;
 
-        const maxIndex = this.getMaxIndex();
+        const maxIndex   = this.getMaxIndex();
         this.currentIndex = clamp(this.currentIndex, 0, maxIndex);
         this.setTranslate(-this.currentIndex * this.getCardWidth(), true);
 
@@ -123,24 +117,21 @@ export class StructureCarousel {
     /**
      * Points the carousel at a new track element and optionally seeks to an index.
      * Call this whenever the user switches between OSIS and MPK.
-     *
-     * Any previous swipe listeners on the old track are removed before the new
-     * ones are attached, preventing duplicate handlers from accumulating.
+     * Previous swipe listeners are removed before the new ones are attached.
      */
     setTrack(trackEl: HTMLElement, index = 0): void {
         this.activeTrack  = trackEl;
         this.currentIndex = index;
-        this.bindSwipe(trackEl);
+        this.bindSwipeListeners(trackEl);
         this.update();
     }
 
     // ---- Touch / swipe ---------------------------------------------------------
 
-    private bindSwipe(trackEl: HTMLElement): void {
-        // Remove listeners from the previous track (or the same track on re-bind)
-        this.swipeAbortController?.abort();
-        this.swipeAbortController = new AbortController();
-        const { signal } = this.swipeAbortController;
+    private bindSwipeListeners(trackEl: HTMLElement): void {
+        this.swipeListeners?.abort();
+        this.swipeListeners = new AbortController();
+        const { signal } = this.swipeListeners;
 
         trackEl.addEventListener('touchstart', (e: TouchEvent) => {
             this.touchStartX = e.changedTouches[0]?.screenX ?? 0;
@@ -152,7 +143,7 @@ export class StructureCarousel {
             const dx = (e.changedTouches[0]?.screenX ?? 0) - this.touchStartX;
             const dy = (e.changedTouches[0]?.screenY ?? 0) - this.touchStartY;
 
-            // Let vertical swipes scroll the page
+            // Let vertical swipes scroll the page normally
             if (!this.isDragging && Math.abs(dx) < Math.abs(dy)) return;
             this.isDragging = true;
 
@@ -160,9 +151,7 @@ export class StructureCarousel {
             const atEdge     = (dx > 0 && this.currentIndex === 0)
                             || (dx < 0 && this.currentIndex >= this.getMaxIndex());
 
-            // Apply rubber-band resistance at the edges
-            const drag = atEdge ? dx * 0.25 : dx;
-            this.setTranslate(baseOffset + drag, false);
+            this.setTranslate(baseOffset + (atEdge ? dx * 0.25 : dx), false);
         }, { passive: true, signal });
 
         trackEl.addEventListener('touchend', (e: TouchEvent) => {
@@ -179,36 +168,16 @@ export class StructureCarousel {
 
 // ---- Gallery carousel ----------------------------------------------------------
 
-/**
- * Full-featured image gallery carousel backed by Google Drive thumbnails.
- *
- * Features:
- * - Lazy-loaded slides with per-image spinners
- * - Paginated dot indicators with ellipsis for large galleries
- * - Lightbox with keyboard navigation (←, →, Esc) and click-outside-to-close
- * - Touch swipe support
- * - Preloads all thumbnails in the background after initial render
- */
 export class GalleryCarousel {
-    private images:       GalleryImage[] = [];
-
-    /** Index of the currently visible slide in the main carousel. */
     private currentIndex = 0;
+    private imgEls:   HTMLImageElement[] = [];
+    private slideEls: HTMLElement[]      = [];
 
-    /**
-     * Index of the image shown in the lightbox.
-     * Kept separate from `currentIndex` so that lightbox navigation
-     * does not silently shift the main gallery position while it is open.
-     */
-    private lightboxIndex = 0;
+    private readonly imageIds:  string[];
+    private readonly els:       GalleryElements;
 
-    private readonly imageIds:   string[];
-    private readonly altPrefix:  string;
-    private readonly els:        GalleryElements;
-
-    constructor(options: Required<Pick<CarouselOptions, 'imageIds' | 'altPrefix'>>) {
-        this.imageIds  = options.imageIds;
-        this.altPrefix = options.altPrefix;
+    constructor(options: Pick<CarouselOptions, 'imageIds'>) {
+        this.imageIds = options.imageIds ?? [];
 
         this.els = {
             loading:       findById('loading')!,
@@ -227,37 +196,32 @@ export class GalleryCarousel {
     // ---- Events ----------------------------------------------------------------
 
     private bindEvents(): void {
-        findById('carouselNext')?.addEventListener('click', () => this.galleryNext());
-        findById('carouselPrev')?.addEventListener('click', () => this.galleryPrev());
+        findById('carouselNext')?.addEventListener('click',  () => this.next());
+        findById('carouselPrev')?.addEventListener('click',  () => this.prev());
         findById('closeLightbox')?.addEventListener('click', () => this.closeLightbox());
-        findById('nextImage')?.addEventListener('click',  () => this.lightboxNext());
-        findById('prevImage')?.addEventListener('click',  () => this.lightboxPrev());
+        findById('nextImage')?.addEventListener('click',     () => this.next());
+        findById('prevImage')?.addEventListener('click',     () => this.prev());
 
-        // Close lightbox when clicking the backdrop
-        this.els.lightbox?.addEventListener('click', (e: MouseEvent) => {
+        // Close lightbox on backdrop click
+        this.els.lightbox.addEventListener('click', (e: MouseEvent) => {
             if ((e.target as HTMLElement).id === 'lightbox') this.closeLightbox();
         });
 
         // Keyboard navigation
         document.addEventListener('keydown', (e: KeyboardEvent) => {
-            if (!this.els.lightbox.classList.contains('hidden')) {
-                if (e.key === 'Escape')     this.closeLightbox();
-                if (e.key === 'ArrowRight') this.lightboxNext();
-                if (e.key === 'ArrowLeft')  this.lightboxPrev();
-            } else {
-                if (e.key === 'ArrowRight') this.galleryNext();
-                if (e.key === 'ArrowLeft')  this.galleryPrev();
-            }
+            if (e.key === 'Escape'     && this.isLightboxOpen()) this.closeLightbox();
+            if (e.key === 'ArrowRight') this.next();
+            if (e.key === 'ArrowLeft')  this.prev();
         });
 
         // Touch swipe on the carousel container
         let touchStartX = 0;
-        this.els.container?.addEventListener('touchstart', (e: TouchEvent) => {
+        this.els.container.addEventListener('touchstart', (e: TouchEvent) => {
             touchStartX = e.changedTouches[0]?.screenX ?? 0;
         }, { passive: true });
-        this.els.container?.addEventListener('touchend', (e: TouchEvent) => {
+        this.els.container.addEventListener('touchend', (e: TouchEvent) => {
             const dx = touchStartX - (e.changedTouches[0]?.screenX ?? 0);
-            if (Math.abs(dx) > 50) dx > 0 ? this.galleryNext() : this.galleryPrev();
+            if (Math.abs(dx) > 50) dx > 0 ? this.next() : this.prev();
         }, { passive: true });
     }
 
@@ -273,15 +237,21 @@ export class GalleryCarousel {
         this.els.error.style.display     = 'none';
         this.els.container.style.display = 'none';
 
-        this.images = this.imageIds.map(id => ({
-            id,
-            thumbnailUrl: `https://drive.google.com/thumbnail?id=${id}&sz=w800`,
-        }));
-
+        this.imgEls = this.buildImageElements();
         this.renderSlides();
 
         this.els.loading.style.display   = 'none';
         this.els.container.style.display = 'block';
+    }
+
+    private buildImageElements(): HTMLImageElement[] {
+        return this.imageIds.map((id, index) => {
+            const img   = document.createElement('img');
+            img.alt     = `documentation number ${index + 1}`;
+            img.src     = `https://drive.google.com/thumbnail?id=${id}&sz=w800`;
+            img.onerror = () => { img.src = FALLBACK_SVG; };
+            return img;
+        });
     }
 
     private showError(message: string): void {
@@ -296,49 +266,34 @@ export class GalleryCarousel {
 
     private renderSlides(): void {
         this.els.track.innerHTML = '';
-
-        this.images.forEach((image, index) => {
-            const slide = this.createSlide(image, index);
+        this.slideEls = this.imgEls.map((img, index) => {
+            const slide = this.createSlide(img, index);
             this.els.track.appendChild(slide);
+            return slide;
         });
-
-        this.renderDots(0);
-
-        // Background-preload all images so they feel instant when navigated to
-        this.images.forEach(image => { new Image().src = image.thumbnailUrl; });
+        this.goToSlide(0);
     }
 
-    private createSlide(image: GalleryImage, index: number): HTMLElement {
+    private createSlide(img: HTMLImageElement, index: number): HTMLElement {
         const slide = document.createElement('div');
-        slide.className = `carousel-slide${index === 0 ? ' active' : ''}`;
+        slide.className = 'carousel-slide';
 
         const spinner = document.createElement('div');
         spinner.className = 'image-spinner';
         spinner.innerHTML = '<div class="spinner"></div>';
 
-        const img   = document.createElement('img');
-        img.alt     = `${this.altPrefix} ${index + 1}`;
-        img.src     = image.thumbnailUrl;
-        img.onload  = () => { spinner.style.display = 'none'; img.style.opacity = '1'; };
-        img.onerror = () => {
-            spinner.style.display = 'none';
-            img.src = FALLBACK_SVG;
-            img.style.opacity = '1';
-        };
+        img.addEventListener('load',  () => { spinner.style.display = 'none'; img.style.opacity = '1'; }, { once: true });
+        img.addEventListener('error', () => { spinner.style.display = 'none'; img.style.opacity = '1'; }, { once: true });
 
-        slide.appendChild(spinner);
-        slide.appendChild(img);
+        slide.append(spinner, img);
         slide.addEventListener('click', () => this.openLightbox(index));
 
         return slide;
     }
 
     private renderDots(currentPage: number): void {
-        const container = this.els.indicators;
-        container.innerHTML = '';
-
-        const total       = this.images.length;
-        const MAX_VISIBLE = 10;
+        const total    = this.imgEls.length;
+        const MAX_DOTS = 10;
 
         const makeDot = (index: number): HTMLButtonElement => {
             const btn = document.createElement('button');
@@ -359,75 +314,58 @@ export class GalleryCarousel {
         type DotItem = number | 'ellipsis';
 
         const getDotItems = (): DotItem[] => {
-            if (total <= MAX_VISIBLE) {
-                return Array.from({ length: total }, (_, i) => i);
-            }
-            if (currentPage <= 2) {
-                return [0, 1, 2, 3, 4, 'ellipsis', total - 1];
-            }
+            if (total <= MAX_DOTS) return Array.from({ length: total }, (_, i) => i);
+            if (currentPage <= 2)  return [0, 1, 2, 3, 4, 'ellipsis', total - 1];
             if (currentPage >= total - 3) {
                 return [0, 'ellipsis', total - 5, total - 4, total - 3, total - 2, total - 1];
             }
             return [0, 'ellipsis', currentPage - 1, currentPage, currentPage + 1, 'ellipsis', total - 1];
         };
 
+        this.els.indicators.innerHTML = '';
         getDotItems().forEach(item => {
-            container.appendChild(item === 'ellipsis' ? makeEllipsis() : makeDot(item));
+            this.els.indicators.appendChild(item === 'ellipsis' ? makeEllipsis() : makeDot(item));
         });
     }
 
     // ---- Navigation ------------------------------------------------------------
 
     goToSlide(index: number): void {
-        const slides = this.els.track.querySelectorAll<HTMLElement>('.carousel-slide');
-        index = clamp(index, 0, slides.length - 1);
+        this.currentIndex = clamp(index, 0, this.slideEls.length - 1);
 
-        slides.forEach(s => s.classList.remove('active'));
-        slides[index]?.classList.add('active');
+        this.slideEls.forEach((s, i) => s.classList.toggle('active', i === this.currentIndex));
+        this.renderDots(this.currentIndex);
 
-        this.currentIndex = index;
-        this.renderDots(index);
+        if (this.isLightboxOpen()) this.syncLightboxImage();
     }
 
-    galleryNext(): void { this.goToSlide(this.currentIndex + 1); }
-    galleryPrev(): void { this.goToSlide(this.currentIndex - 1); }
+    next(): void { this.goToSlide(this.currentIndex + 1); }
+    prev(): void { this.goToSlide(this.currentIndex - 1); }
 
     // ---- Lightbox --------------------------------------------------------------
 
+    private isLightboxOpen(): boolean {
+        return !this.els.lightbox.classList.contains('hidden');
+    }
+
     private openLightbox(index: number): void {
-        this.lightboxIndex = index;
+        this.goToSlide(index);
         this.syncLightboxImage();
         this.els.lightbox.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
     }
 
     private closeLightbox(): void {
-        // Sync the main gallery to wherever the user ended up in the lightbox
-        this.goToSlide(this.lightboxIndex);
         this.els.lightbox.classList.add('hidden');
         document.body.style.overflow = 'auto';
     }
 
-    private lightboxNext(): void {
-        this.lightboxIndex = (this.lightboxIndex + 1) % this.images.length;
-        this.syncLightboxImage();
-    }
-
-    private lightboxPrev(): void {
-        this.lightboxIndex = (this.lightboxIndex - 1 + this.images.length) % this.images.length;
-        this.syncLightboxImage();
-    }
-
     private syncLightboxImage(): void {
-        const src = this.getSlideImageSrc(this.lightboxIndex);
-        if (!src) return;
-        this.els.lightboxImage.src          = src;
+        const img = this.imgEls[this.currentIndex];
+        if (!img) return;
+        this.els.lightboxImage.src           = img.src;
+        this.els.lightboxImage.alt           = img.alt;
         this.els.lightboxImage.style.opacity = '1';
-    }
-
-    private getSlideImageSrc(index: number): string {
-        const slides = this.els.track.querySelectorAll<HTMLElement>('.carousel-slide');
-        return slides[index]?.querySelector('img')?.src ?? '';
     }
 }
 
@@ -437,6 +375,6 @@ declare const GALLERY_IMAGE_IDS: string[] | undefined;
 
 document.addEventListener('DOMContentLoaded', () => {
     if (typeof GALLERY_IMAGE_IDS !== 'undefined') {
-        new GalleryCarousel({ imageIds: GALLERY_IMAGE_IDS, altPrefix: 'Kegiatan OSIS' });
+        new GalleryCarousel({ imageIds: GALLERY_IMAGE_IDS });
     }
 });
