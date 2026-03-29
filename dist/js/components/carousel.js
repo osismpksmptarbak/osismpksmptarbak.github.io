@@ -205,7 +205,7 @@ export class GalleryCarousel {
     buildImageElements() {
         return this.imageIds.map((id, index) => {
             const img = document.createElement('img');
-            img.alt = `documentation number ${index + 1}`;
+            img.alt = `Documentation no. ${index + 1}`;
             img.src = `https://drive.google.com/thumbnail?id=${id}&sz=w800`;
             img.onerror = () => { img.src = FALLBACK_SVG; };
             return img;
