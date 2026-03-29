@@ -1,0 +1,31 @@
+# robots.txt
+# Website OSIS/MPK SMP Taruna Bakti
+# https://osismpksmptarbak.github.io
+
+User-agent: *
+Allow: /
+
+# Allow public pages
+Allow: /index.html
+Allow: /komisia.html
+Allow: /komisib.html
+Allow: /komisic.html
+Allow: /komisid.html
+Allow: /komisie.html
+Allow: /sekbid1.html
+Allow: /sekbid2.html
+Allow: /sekbid3.html
+Allow: /sekbid4.html
+Allow: /sekbid5.html
+Allow: /sekbid6.html
+Allow: /sekbid7.html
+Allow: /sekbid8.html
+Allow: /kegiatan-osis/
+
+# Disallow build/source directories
+Disallow: /dist/
+Disallow: /src/
+Disallow: /public/
+
+# Sitemap
+Sitemap: https://osismpksmptarbak.github.io/sitemap.xml
