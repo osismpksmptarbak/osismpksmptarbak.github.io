@@ -63,7 +63,7 @@ def main():
     print(f"\nTotal: {len(ids)} files")
 
     out = Path("image-ids.js")
-    out.write_text("const IMAGE_IDS = [\n" + "".join(f"  '{i}',\n" for i in ids) + "];\n")
+    out.write_text("const GALLERY_IMAGE_IDS = [\n" + "".join(f"  '{i}',\n" for i in ids) + "];\n")
     print(f"Saved to {out}")
 
 
